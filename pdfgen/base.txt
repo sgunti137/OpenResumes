@@ -1,0 +1,256 @@
+\documentclass[a4paper,10pt]{report}
+\usepackage[margin=0in ]{geometry}
+\usepackage{latexsym}
+\usepackage{float}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabu}
+\usepackage{textcomp}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.0in}
+% margin
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+%\raggedbottom
+% \raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-9pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%
+\vspace{5pt}
+
+\begin{document}
+%----------HEADING-----------------Starts----------------
+\vspace{-0.1000pt}
+
+%\begin{tabular}[h!]
+
+\parbox{2.35cm}{
+
+\includegraphics[width=2.25cm,clip]{iitg_logo.jpg}
+
+}
+\parbox{\dimexpr\linewidth-2.5cm\relax}{
+
+\begin{tabular*}{\textwidth}{l@{\hskip 1.5cm}r}
+
+%\textbf
+
+\textbf{\huge Nikitha Reddy}\\
+{Roll No. 190102052}&\href{mailto:nikithareddy2309@gmail.com}{ nikithareddy2309@gmail.com}\\
+{B.Tech. - Electronics and Communication Engineering}& Mobile : +91-9848670705\\
+{Minor in Computer Science and Engineering} &\href{mailto:nikithareddy2309@gmail.com}{ nikithareddy2309@gmail.com}\\
+{IIT Guwahati} & \href{https://www.linkedin.com/in/nikitha2309/}{linkedin.com/in/nikitha2309}
+
+\end{tabular*}
+}
+%\end{tabular}
+%----------HEADING-----------------Ends----------------
+
+
+\vspace{5pt}
+
+
+%----------Education-----------------Starts----------------
+\section{Education}
+\centering
+ \begin{tabu} to 1\textwidth { | X[c] | X[c] | X[c] | X[c]| }
+ \hline   \textbf{Degree/Certificate} & \textbf{Institute/Board} & \textbf{CGPA/Percentage} & \textbf{Year} \\
+ 
+ \hline B.Tech.& IIT, Guwahati & 0  & 2019 - Present \\
+ \hline  B.Tech.& IIT, Guwahati & 0  & 2019 - Present \\
+ \hline B.Tech.& IIT, Guwahati & 0  & 2019 - Present \\
+
+\hline
+\end{tabu}
+%---------- Education-----------------Ends----------------
+
+
+\vspace{4pt}
+
+
+%----------Projects-----------------Starts----------------
+\section{Projects}
+\resumeSubHeadingListStart
+
+  \resumeSubheading{Open Resumes}{Ongoing}{swc}{\href{https://git.io/JLbMB}{\textit{\small https://git.io/JLbMB    }}}
+  \begin{itemize}
+      \item A  project to develop a Resume generator using Django framework which helps to make a neat and quick resume using LaTeX
+  \end{itemize}
+  \vspace{2pt}
+  
+ \resumeSubheading{Open Resumes}{Ongoing}{swc}{\href{https://github.com/Nikitha2309/Open-Resumes}{\textit{\small https://git.io/JLbMB    }}}
+  \begin{itemize}
+      \item A  project to develop a Resume generator using Django framework which helps to make a neat and quick resume using LaTeX
+  \end{itemize}
+  \vspace{2pt}
+  
+  \resumeSubheading{Open Resumes}{Ongoing}{swc}{\href{https://github.com/Nikitha2309/Open-Resumes}{\textit{\small https://git.io/JLbMB    }}}
+  \begin{itemize}
+      \item A  project to develop a Resume generator using Django framework which helps to make a neat and quick resume using LaTeX
+  \end{itemize}
+  \vspace{2pt}
+  
+  \resumeSubheading{Open Resumes}{Ongoing}{swc}{\href{https://github.com/Nikitha2309/Open-Resumes}{\textit{\small https://git.io/JLbMB    }}}
+  \begin{itemize}
+      \item A  project to develop a Resume generator using Django framework which helps to make a neat and quick resume using LaTeX
+  \end{itemize}
+  \vspace{2pt}
+  
+\resumeSubHeadingListEnd
+%----------Projects-----------------Ends----------------
+
+
+\vspace{4pt}
+
+
+%----------Technical Skills-----------------Starts----------------
+\section{Technical Skills}
+
+ \resumeSubHeadingListStart
+ 
+ \resumeSubItem{Programming Languages}{C++,C, Python*}
+ \resumeSubItem{Web Technologies}{ HTML, CSS* }
+ \resumeSubItem{DBMS}{MongoDB}
+  \resumeSubItem{OS}{Windows}
+  \resumeSubItem{Miscelleneous}{KungFU}
+ \resumeSubItem{Other Skills}{Deep Sleeper}
+ 
+ \hfill * \textit{Elimentary Profficiency}
+ 
+ \resumeSubHeadingListEnd
+ %----------Technical Skills-----------------Ends----------------
+ 
+ 
+ \vspace{1pt}
+ 
+ 
+%----------Key courses-----------------Starts----------------
+ \section{Key courses taken}
+\vspace{-2pt}
+ \begin{multicols}{2}
+ \begin{itemize}[leftmargin = *,itemsep=-3pt]
+
+\item Introduction to Computing (Theory and Lab)
+\item Introduction to Computing (Theory and Lab)
+\item Introduction to Computing (Theory and Lab)
+\item Introduction to Computing (Theory and Lab)
+\item Introduction to Computing (Theory and Lab)
+\item Introduction to Computing (Theory and Lab)
+\item Introduction to Computing (Theory and Lab)
+\item Introduction to Computing (Theory and Lab)
+
+ \end{itemize}
+ \end{multicols}
+ \hfill * \textit{To be completed shortly}
+ %----------Key courses-----------------Ends----------------
+ 
+ 
+ \vspace{4pt}
+
+
+%----------POR-----------------Starts----------------
+\section{Positions of Responsibility}
+\resumeSubHeadingListStart
+
+\resumeSubItem{PR & Branding Team, Alcheringa}
+{\vspace{-7pt}
+\begin{itemize}
+    \item Maintain Public Relations and manage Branding work related to fest
+\end{itemize} }
+
+\resumeSubItem{PR & Branding Team, Alcheringa}
+{\vspace{-7pt}
+\begin{itemize}
+    \item Maintain Public Relations and manage Branding work related to fest
+\end{itemize} }
+
+\resumeSubItem{PR & Branding Team, Alcheringa}
+{\vspace{-7pt}
+\begin{itemize}
+    \item Maintain Public Relations and manage Branding work related to fest
+\end{itemize} }
+
+\resumeSubItem{PR & Branding Team, Alcheringa}
+{\vspace{-7pt}
+\begin{itemize}
+    \item Maintain Public Relations and manage Branding work related to fest
+\end{itemize} }
+
+\vspace{-2pt}
+\resumeSubHeadingListEnd
+%----------POR-----------------Ends----------------
+
+
+\vspace{4pt}
+
+
+%----------Achievements-----------------Starts----------------
+\section{Achievements}
+\resumeSubHeadingListStart
+  
+  \resumeSubItem{Joint Entrance Examination - Mains 2019}{Achieved All India Rank 1811 among  6,08,440 students }
+  \resumeSubItem{Joint Entrance Examination - Mains 2019}{Achieved All India Rank 1811 among  6,08,440 students }
+  \resumeSubItem{Joint Entrance Examination - Mains 2019}{Achieved All India Rank 1811 among  6,08,440 students }
+  \resumeSubItem{Joint Entrance Examination - Mains 2019}{Achieved All India Rank 1811 among  6,08,440 students }
+  \resumeSubItem{Joint Entrance Examination - Mains 2019}{Achieved All India Rank 1811 among  6,08,440 students }
+  \resumeSubItem{Joint Entrance Examination - Mains 2019}{Achieved All India Rank 1811 among  6,08,440 students }
+
+\resumeSubHeadingListEnd
+%----------Achievements-----------------Ends----------------
+
+
+\end{document}
