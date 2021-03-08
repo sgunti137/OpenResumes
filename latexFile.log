@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.2.6)  5 MAR 2021 17:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.2.6)  8 MAR 2021 17:10
 entering extended mode
 **./latexFile.tex
 (latexFile.tex
@@ -561,7 +561,7 @@ LaTeX Info: Redefining \nameref on input line 75.
 \@outlinefile=\write3
 \openout3 = `latexFile.out'.
 
-<iitg_logo.jpg, id=3, 114.4275pt x 115.43124pt>
+<iitg_logo.jpg, id=27, 114.4275pt x 115.43124pt>
 File: iitg_logo.jpg Graphic file (type jpg)
 <use iitg_logo.jpg>
 Package pdftex.def Info: iitg_logo.jpg  used on input line 85.
@@ -572,21 +572,17 @@ LaTeX Font Info:    Trying to load font information for U+lasy on input line 85
 (C:\Users\hp\AppData\Local\Programs\MiKTeX\tex/latex/base\ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-
-Package hyperref Warning: Suppressing empty link on input line 99.
-
-
 Underfull \hbox (badness 10000) in alignment at lines 99--99
 [][] 
  []
 
 
-Overfull \hbox (71.13188pt too wide) in paragraph at lines 99--99
-[][] 
+Overfull \hbox (65.44142pt too wide) in paragraph at lines 99--99
+[] 
  []
 
 
-Overfull \hbox (12.95447pt too wide) in paragraph at lines 85--102
+Overfull \hbox (17.22221pt too wide) in paragraph at lines 85--102
 []$[]$ $[]$ 
  []
 
@@ -606,20 +602,14 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-Package rerunfilecheck Warning: File `latexFile.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `latexFile.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  744C5E9AE639AC0C823A07840D9BF9C3;311.
+Package rerunfilecheck Info: File `latexFile.out' has not changed.
+(rerunfilecheck)             Checksum: 744C5E9AE639AC0C823A07840D9BF9C3;311.
  ) 
 Here is how much of TeX's memory you used:
- 8821 strings out of 479618
- 135261 string characters out of 2866452
- 551373 words of memory out of 3000000
- 25823 multiletter control sequences out of 15000+200000
+ 8828 strings out of 479618
+ 135341 string characters out of 2866452
+ 551379 words of memory out of 3000000
+ 25830 multiletter control sequences out of 15000+200000
  406407 words of font info for 39 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,13n,75p,228b,382s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -629,9 +619,9 @@ cmbx10.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmr10.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/pu
 blic/amsfonts/cm/cmti10.pfb>
-Output written on latexFile.pdf (1 page, 71002 bytes).
+Output written on latexFile.pdf (1 page, 76951 bytes).
 PDF statistics:
- 45 PDF objects out of 1000 (max. 8388607)
+ 65 PDF objects out of 1000 (max. 8388607)
  8 named destinations out of 1000 (max. 500000)
- 12 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 60 words of extra memory for PDF output out of 10000 (max. 10000000)
 

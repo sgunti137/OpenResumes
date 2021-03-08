@@ -76,7 +76,31 @@
             <div id = "pdf1" class="col-12 p-5">
                 <embed src="{% static 'pdfs/sample.pdf' %}" type="application/pdf" width="100%" height="100%">&nbsp;</embed>
             </div>   
-           <section class="container">
+
+        <h4> To fill the previously entered data, instead filling the boring form agian from start, choose the .txt file.</h4>
+        <div class="centered">
+        <input type = "file" class="btn btn-outline-secondary" name = "inputFile" id = "inputFile"> 
+        </div>
+           
+        <script type = "text/javascript">
+            document.getElementById("inputFile").addEventListener('change',function(){
+
+                var fr = new FileReader();
+                fr.onload = function(){
+                    
+                    var lines = fr.result.split('\n');
+                    for(var line = 0;line<lines.length;line++){
+                        var tmp = lines[line].split('#');
+                        document.getElementsByName(tmp[0])[0].value = tmp[1];
+                    } 
+                }
+                fr.readAsText(this.files[0]);
+            })
+        </script>
+        
+        
+        
+        <section class="container">
                <div class="container-fluid">
                    <div class="row">
                        <form class="col-12 p-5" name = "form1" action = '.' method="POST" id="form1">{% csrf_token %}
@@ -95,11 +119,11 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                   <label for="roll">Roll No.</label>
-                                  <input type="number" class="form-control" name="roll">
+                                  <input type="text" class="form-control" name="roll">
                                 </div>   
                                 <div class="form-group col-md-4">
                                     <label for="mobile">Phone Number</label>
-                                    <input type="number" class="form-control" name="mobile">
+                                    <input type="text" class="form-control" name="mobile">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="webmail">Campus mail id</label>
@@ -122,7 +146,7 @@
                                     <input type="email" class="form-control" name="email">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="LinkedIn">LinkedIn</label>
+                                    <label for="linkedIn">LinkedIn</label>
                                     <input type="text" class="form-control" name="linkedIn">
                                 </div>
                             </div>

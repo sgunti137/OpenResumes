@@ -78,14 +78,14 @@
 
 %\begin{tabular}[h!]
 
-\parbox{2.35cm}{
+\parbox{2.3cm}{
 
 \includegraphics[width=2.25cm,clip]{iitg_logo.jpg}
 
 }
-\parbox{\dimexpr\linewidth-2.5cm\relax}{
+\parbox{\dimexpr\linewidth-2.3cm\relax}{
 
-\begin{tabular*}{\textwidth}{l@{\hskip 1.5cm}r}
+\begin{tabular*}{\textwidth}{l@{\hskip 1.25cm}r}
 
 %\textbf
 

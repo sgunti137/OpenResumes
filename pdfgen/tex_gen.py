@@ -16,33 +16,37 @@ def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobile
     lines=readfile.readlines()
 
     #write some static code
-    for i in range(0,91):
+    for i in range(0,87):
         writefile.write(lines[i])
 
     #Heading Dynamic Code
     #if Minor is there 
+    writefile.write(r"\textbf{\huge "+name+r"}\\")
+    writefile.write("\n")
+
+    for i in range(87,91):
+        writefile.write(lines[i])
+
     if (minor!=""):
-        writefile.write(r"\textbf{\huge "+name+r"}\\")
-        writefile.write("\n")
         writefile.write(r"{Roll No. "+rollno+r"}&\href{mailto:"+email+r"}{ "+email+r"}\\")
         writefile.write("\n")
-        writefile.write(r"{"+stream+r". -"+branch+r"}& Mobile : "+mobileno+r"\\")
+        writefile.write(r"{"+stream+r"}& Mobile : "+mobileno+r"\\")
         writefile.write("\n")
-        writefile.write(r"{Minor in "+minor+r"}&\href{mailto:"+iitgmail+r"}{ "+iitgmail+r"}\\")
+        writefile.write(r"{"+branch+r"}&\href{mailto:"+iitgmail+r"}{ "+iitgmail+r"}\\")
         writefile.write("\n")
-        writefile.write(r"{"+college+r"} & \href{https://www."+linkedin+r"/}{"+linkedin+r"}")
+        writefile.write(r"{Minor in "+minor+r"} & \href{"+linkedin+r"/}{"+linkedin+r"}\\")
         writefile.write("\n")
+        writefile.write(r"{"+college+r"}&{}")
+        # writefile.write(r"{Minor in "+minor+r"}&{}")
     #else
     else:
-        writefile.write(r"\textbf{\huge "+name+r"}\\")
-        writefile.write("\n")
         writefile.write(r"{Roll No. "+rollno+r"}&\href{mailto:"+email+r"}{ "+email+r"}\\")
         writefile.write("\n")
-        writefile.write(r"{"+stream+r". -"+branch+r"}& Mobile : "+mobileno+r"\\")
+        writefile.write(r"{"+stream+r"}& Mobile : "+mobileno+r"\\")
         writefile.write("\n")
-        writefile.write(r"{"+college+r"}&\href{mailto:"+iitgmail+r"}{ "+iitgmail+r"}\\")
+        writefile.write(r"{"+branch+r"}&\href{mailto:"+iitgmail+r"}{ "+iitgmail+r"}\\")
         writefile.write("\n")
-        writefile.write(r"{} & \href{https://www."+linkedin+r"/}{"+linkedin+r"}")
+        writefile.write(r"{"+college+"} & \href{"+linkedin+r"/}{"+linkedin+r"}")
         writefile.write("\n")
 
     #write some static code
