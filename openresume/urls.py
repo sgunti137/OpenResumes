@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from pdfgen import views
+from app import views
 from django.urls import include
 
 urlpatterns = [

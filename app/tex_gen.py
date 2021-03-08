@@ -5,7 +5,7 @@ import os
 
 def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobileno,linkedin,education,projects,techskills,keyCourses,por,achievements):
     
-    PDFGEN_DIR = os.path.join(BASE_DIR,'pdfgen')
+    PDFGEN_DIR = os.path.join(BASE_DIR,'app')
 
     base_file_path = os.path.join(PDFGEN_DIR,"base.txt")
     latexFile_path = os.path.join(BASE_DIR,"latexFile.tex")

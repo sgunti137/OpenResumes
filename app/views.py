@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from pdfgen.tex_gen import createTextFile
+from app.tex_gen import createTextFile
 from openresume.settings import BASE_DIR
 import os
 
