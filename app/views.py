@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from app.tex_gen import createTextFile
 from openresume.settings import BASE_DIR
+from percent_rem import percentReplacerString
+from percent_rem import percentReplacerDict
 import os
 
 
@@ -14,9 +16,9 @@ def index(request):
     my_dict = {}
     if request.method == 'POST':
         md = request.POST
-        
-        print(md)
-        
+
+        print(md) 
+
         createTextFile(name = md['name'], rollno=str(md['roll']), stream = md['stream'],branch=md['programme'],minor=md['minor'],college="IITG",
             email= md['email'],iitgmail=md['webmail'],mobileno= str(md['mobile']),
             linkedin= md['linkedIn'],
