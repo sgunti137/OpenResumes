@@ -5,3 +5,6 @@ latexFile.out
 temp.tex
 static/data/datafile.txt
 static/pdfs/latexFile.pdf
+__pycache__/
+app/__pycache__/
+openresume/__pycache__/
