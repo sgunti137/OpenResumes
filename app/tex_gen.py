@@ -1,5 +1,7 @@
 from openresume.settings import BASE_DIR
 from pathlib import Path
+from percent_rem import percentReplacerString
+from percent_rem import percentReplacerDict
 import os
 
 
@@ -57,6 +59,8 @@ def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobile
     #education=[["d1","c1","p1","y1"],["d2","c2","p2","y2"],["d3","c3","p3","y3"]]
     for sublist in education:
         if(sublist[0]!=""):
+            for i in range(len(sublist)):
+                sublist[i]=percentReplacerString(sublist[i])
             writefile.write(r"\hline "+sublist[0] +r"& "+sublist[1]+ r"& "+sublist[2] +r"& "+sublist[3] +r"\\")
             writefile.write("\n")
    
@@ -105,6 +109,9 @@ def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobile
     #Projects Dynamic code
     #projects=[["title1","club1","desc1","link1","date1"],["title2","club2","desc2","link2","date2"],["title3","club3","desc3","link3","date3"],["title4","club4","desc4","link4","date4"]]
     for sublist in projects:
+        for i in range(len(sublist)):
+            if(i!=3):
+                sublist[i]=percentReplacerString(sublist[i])
         if(sublist[0]!="" and sublist[1]!="" and sublist[2]!="" and sublist[3]!="" and sublist[4]!=""):
             writefile.write(r"\resumeSubheading{"+sublist[0]+r"}{"+sublist[4]+r"}{"+sublist[1]+r"}{\href{"+sublist[3]+r"}{\textit{\small "+sublist[3]+r"   }}}")
             writefile.write("\n")
@@ -137,6 +144,8 @@ def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobile
         writefile.write(lines[163])
     #Technical Skills Dynamic code
     #techskills=["pllang","webtech","dbms","os","miscell","otherskills"]
+    for i in range(len(techskills)):
+        techskills[i]=percentReplacerString(techskills[i])
     if(techskills[0]!=""):
         writefile.write(r"\resumeSubItem{Programming Languages}{"+techskills[0]+r"}")
         writefile.write("\n")
@@ -177,6 +186,7 @@ def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobile
     #Key courses Dynamic code
     # keyCourses=["ma101","webd101","cpp110"]
     for course in keyCourses:
+        course=percentReplacerString(course)
         if(course!=""):
             writefile.write(r"\item "+course)
             writefile.write("\n")
@@ -198,6 +208,8 @@ def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobile
     #POR Dynamic code
     #por=[["title1","desc1"],["title2","desc2"],["title3","desc3"],["title4","desc4"]]
     for sublist in por:
+        for i in range(len(sublist)):
+            sublist[i]=percentReplacerString(sublist[i])
         if(sublist[0]!=""):
             writefile.write(r"\resumeSubItem{"+sublist[0]+r"}")
             writefile.write("\n")
@@ -231,6 +243,8 @@ def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobile
     #Achievements Dynamic code
     #achievements=[["title1","desc1"],["title2","desc2"],["title3","desc3"],["title4","desc4"],["title5","desc5"],["title6","desc6"]]
     for sublist in achievements:
+        for i in range(len(sublist)):
+            sublist[i]=percentReplacerString(sublist[i])
         if(sublist[0]!=""):
             writefile.write(r"\resumeSubItem{"+sublist[0]+r"}{"+sublist[1]+r"}")
             writefile.write("\n")
