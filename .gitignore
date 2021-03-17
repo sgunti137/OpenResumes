@@ -1,2 +1,7 @@
 latexFile.log
+latexFile.tex
+latexFile.aux
+latexFile.out
+temp.tex
+static/data/datafile.txt
 static/pdfs/latexFile.pdf

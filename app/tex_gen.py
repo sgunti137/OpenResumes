@@ -3,7 +3,7 @@ from pathlib import Path
 import os
 
 
-def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobileno,linkedin,education,projects,techskills,keyCourses,por,achievements):
+def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobileno,linkedin,education,internships,projects,techskills,keyCourses,por,achievements):
     
     PDFGEN_DIR = os.path.join(BASE_DIR,'app')
 
@@ -60,8 +60,38 @@ def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobile
             writefile.write(r"\hline "+sublist[0] +r"& "+sublist[1]+ r"& "+sublist[2] +r"& "+sublist[3] +r"\\")
             writefile.write("\n")
    
+    for i in range(115,120):
+        writefile.write(lines[i])
+
+    internFlag = False
+    for inlist in internships:
+        if(inlist[0]!=""):
+            internFlag = True
+            break
+
+
+    # internships start here
+    # [[exp1,expDes1],]
+    if(internFlag):
+        #indent
+        writefile.write(r'\vspace{4pt}')
+        writefile.write("\n")
+        writefile.write("\n")
+        writefile.write(r"\section{Internships and Experience}")
+        writefile.write("\n")
+        writefile.write(r"\resumeSubHeadingListStart")
+        writefile.write("\n")
+        for sublist in internships:
+            if (sublist[0] != ""):
+                writefile.write(r"\resumeSubItem{" + sublist[0] + r"}")
+                writefile.write(r" " + r"{" + sublist[1]  + r"}" + r"\\")
+                writefile.write("\n")
+        writefile.write(r"\resumeSubHeadingListEnd")
+
+
+
     #write some static code
-    for i in range(115,126):
+    for i in range(119,126):
         writefile.write(lines[i])
 
     proFlag = False
