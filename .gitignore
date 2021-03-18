@@ -9,3 +9,4 @@ openresume/__pycache__/
 latexFile.log
 static/pdfs/latexFile.pdf
 app/migrations/__pycache__/
+**/__pycache__
