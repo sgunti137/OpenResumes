@@ -8,3 +8,4 @@ app/__pycache__/
 openresume/__pycache__/
 latexFile.log
 static/pdfs/latexFile.pdf
+app/migrations/__pycache__/
