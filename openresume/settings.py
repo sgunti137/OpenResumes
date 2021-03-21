@@ -32,6 +32,34 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+client_id = 'e4cfa449-5da4-465b-b7d5-b95f56246469'
+tenant_id = '850aa78d-94e1-4bc6-9cf3-8c11b530701c'
+client_secret = 'fDYVBo_VkE0_OmK1~dh64YAQiR~rP3J5Qd'
+
+AUTH_ADFS = {
+    'AUDIENCE': client_id,
+    'CLIENT_ID': client_id,
+    'CLIENT_SECRET': client_secret,
+    'CLAIM_MAPPING': {'first_name': 'given_name',
+                      'last_name': 'family_name',
+                      'email': 'upn'},
+    'GROUPS_CLAIM': 'roles',
+    'MIRROR_GROUPS': True,
+    'USERNAME_CLAIM': 'upn',
+    'TENANT_ID': tenant_id,
+    'RELYING_PARTY_ID': client_id,
+    'LOGIN_EXEMPT_URLS': [],
+}
+
+# Configure django to redirect users to the right URL for login
+LOGIN_URL = "django_auth_adfs:login"
+LOGIN_REDIRECT_URL = ""
+
+AUTHENTICATION_BACKENDS = [
+    'django_auth_adfs.backend.AdfsAccessTokenBackend',
+    'django_auth_adfs.backend.AdfsAuthCodeBackend',
+]
+
 
 # Application definition
 
@@ -43,10 +71,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django_auth_adfs',
     'app',
 ]
 
-
+#app's client id
+#938d19c2-7557-42a0-8061-18f13004a54a
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,6 +86,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_auth_adfs.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'openresume.urls'

@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name = 'index'),
     path('results/',include('app.urls_results')),
+    path('oauth2/', include('django_auth_adfs.urls')),
 ]

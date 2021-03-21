@@ -4,12 +4,14 @@ from app.tex_gen import createTextFile
 from app.data_gen import data_generator
 from openresume.settings import BASE_DIR
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 from pathlib import Path
 import os
 
 
 # Create your views here.
 
+@login_required()
 def index(request):
     my_dict = {}
     if request.method == 'POST':
@@ -38,6 +40,7 @@ def index(request):
        
     return render(request,'pdfgen/index.html',context = my_dict)
 
+#@login_required()
 def results(request):
     results_dict = {}
     return render(request,'pdfgen/results.html',context = results_dict)
