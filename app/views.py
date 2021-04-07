@@ -1,3 +1,6 @@
+# utility imports
+from pathlib import Path
+import os
 from django.shortcuts import render
 from django.http import HttpResponse
 from app.tex_gen import createTextFile
@@ -5,15 +8,27 @@ from app.data_gen import data_generator
 from openresume.settings import BASE_DIR
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-from pathlib import Path
-import os
+
+# model imports
+from app.models import *
+from django.contrib.auth.models import User
+
+
 
 
 # Create your views here.
 
 @login_required()
 def index(request):
+    #*********************************************
     my_dict = {}
+    #*********************************************
+    us = User.objects.get(username = request.user)
+    res_rel = us.user_resume_relation_set.first()
+    resumes_list = list(Resume.objects.filter(user_resume_relation = res_rel))
+    
+
+    #************************************
     if request.method == 'POST':
         md = request.POST
         
@@ -51,4 +66,18 @@ def results(request):
     results_dict = {}
     return render(request,'pdfgen/results.html',context = results_dict)
 
+
+def home(request):
+    
+    us = User.objects.get(username = request.user)
+    res_rel = us.user_resume_relation_set.first()
+    resumes_list = list(Resume.objects.filter(user_resume_relation = res_rel))
+
+    home_dict = {"name":us.first_name}
+    home_dict["Resumes"] = resumes_list
+    
+    if len(resumes_list)==0:
+        return redirect('/index/')
+
+    return render(request,'pdfgen/home.html',context = home_dict)
 

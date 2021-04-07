@@ -53,7 +53,7 @@ AUTH_ADFS = {
 
 # Configure django to redirect users to the right URL for login
 LOGIN_URL = "django_auth_adfs:login"
-LOGIN_REDIRECT_URL = ""
+LOGIN_REDIRECT_URL = '/home'
 
 AUTHENTICATION_BACKENDS = [
     'django_auth_adfs.backend.AdfsAccessTokenBackend',
