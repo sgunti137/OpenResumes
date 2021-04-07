@@ -166,3 +166,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+SITE_ID=1
+

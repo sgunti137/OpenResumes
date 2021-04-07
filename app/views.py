@@ -16,7 +16,7 @@ def index(request):
     my_dict = {}
     if request.method == 'POST':
         md = request.POST
-
+        
         print(md) 
 
         createTextFile(name = md['name'], rollno=str(md['roll']), stream = md['stream'],branch=md['programme'],minor=md['minor'],college="IITG",
@@ -36,6 +36,12 @@ def index(request):
         os.system("pdflatex latexFile.tex")
         os.system("move latexFile.pdf ./static/pdfs")
         #return render(request,'pdfgen/results.html',context=my_dict)
+        print()
+        print(request.user)
+        print(request.user.id)
+        print(request.user.first_name)
+        print(request.user.last_name)
+        print()
         return redirect('/results/')
        
     return render(request,'pdfgen/index.html',context = my_dict)
