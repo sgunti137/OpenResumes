@@ -18,10 +18,13 @@ from django.urls import path
 from app import views
 from django.urls import include
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index,name = 'index'),
-    path('results/',include('app.urls_results')),
+    path('index/<str:pk>/',views.index,name = 'index'),
+    path('results/<str:pk>/',include('app.urls_results')),
     path('oauth2/', include('django_auth_adfs.urls')),
-    path('home/',include('app.urls_home')),
-]
+    path('',include('app.urls_home')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -40,17 +40,28 @@
        
         <!-- main content of the html page ************-->
         <main>
-            <h2>Title</h2>
-            <form method="POST" action = '.'>{% csrf_token %}
-            {% for resume in Resumes %}
-                <br>
-                <input type="radio" name = "resume_name" value="{{resume}}">
-                <label>{{resume}}</label>
-                <br>
-            {% endfor %}
-            <label for = "submit">Submit: </label>
-            <input type="submit" class = "btn btn-success" name = "submit">
-            </form>
+            <div class="row">
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-8">
+                    <h2>Title</h2>
+                    <form method="POST" action = '.'>{% csrf_token %}
+                    {% for resume in Resumes %}
+                        
+                        <input type="radio" name = "resume_id" value="{{resume.id}}">
+                        <label>{{resume}}</label>
+                        <br>
+                    {% endfor %}
+                    <label for = "newResume">Create new: </label>
+                    <div class="col-md-5">
+                        <input type = "text" class = "form-control" name = "newResume">
+                    </div><br>
+                    <label for = "submit">Submit: </label>
+                    <input type="submit" class = "btn btn-success" name = "submit">
+                    </form>
+                </div>
+            </div>
         </main> 
     </body>
 </html>

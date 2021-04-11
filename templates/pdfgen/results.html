@@ -37,11 +37,15 @@
         crossorigin="anonymous"></script>
     </head>
     <body>
+        
         <h1 id="top-header">Thank you for preferring us :)</h1>
         <!-- Header of the html page ***********-->
         <h2>Here are your results!</h2>
+        
         <a href = "{% static 'data/datafile.txt' %}" download>download</a> the data file<br>
         <a href = '{% url "django_auth_adfs:logout" %}'>Logout</a></a>
+
+        
         
         <!-- main content of the html page ************-->
         <main>
