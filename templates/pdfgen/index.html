@@ -102,7 +102,6 @@
         <a href = '{% url "django_auth_adfs:logout" %}'>Logout</a></a>
         
         
-        
         <section class="container">
                <div class="container-fluid">
                    <div class="row">
@@ -118,39 +117,39 @@
                                 
                                 <div class="form-group col-md-4">
                                   <label for="name">Name</label>
-                                  <input type="text" class="form-control" name="name">
+                                  <input type="text" class="form-control" name="name" value = "{{name}}">
                                 </div>
                                 <div class="form-group col-md-4">
                                   <label for="roll">Roll No.</label>
-                                  <input type="text" class="form-control" name="roll">
+                                  <input type="text" class="form-control" name="roll" value = "{{roll}}">
                                 </div>   
                                 <div class="form-group col-md-4">
                                     <label for="mobile">Phone Number</label>
-                                    <input type="text" class="form-control" name="mobile">
+                                    <input type="text" class="form-control" name="mobile" value = "{{mobile}}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="webmail">Campus mail id</label>
-                                    <input type="email" class="form-control" name="webmail">
+                                    <input type="email" class="form-control" name="webmail" value = "{{webmail}}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="stream">Stream</label>
-                                    <input type="text" class="form-control" name="stream" placeholder="B Tech / M Tech / Phd">
+                                    <input type="text" class="form-control" name="stream" placeholder="B Tech / M Tech / Phd" value = "{{stream}}">
                                  </div>
                                 <div class="form-group col-md-4">
                                     <label for="Programme">Programme</label>
-                                    <input type="text" class="form-control" name="programme" placeholder="Computer Science and Engineering">
+                                    <input type="text" class="form-control" name="programme" placeholder="Computer Science and Engineering" value = "{{programme}}">
                                  </div>
                                 <div class="form-group col-md-4">
                                     <label for="minor">Minor</label>
-                                    <input type="text" class="form-control" name="minor" placeholder="Minor in Mathematics">
+                                    <input type="text" class="form-control" name="minor" placeholder="Minor in Mathematics" value = "{{minor}}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="email">Alternate Mail</label>
-                                    <input type="email" class="form-control" name="email">
+                                    <input type="email" class="form-control" name="email" value = "{{email}}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="linkedIn">LinkedIn</label>
-                                    <input type="text" class="form-control" name="linkedIn">
+                                    <input type="text" class="form-control" name="linkedIn" value = "{{linkedIn}}">
                                 </div>
                             </div>
                         
@@ -164,43 +163,43 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for = "btechBoard">Degree(Instituion)</label>
-                                    <input type="text" class="form-control" name="btechBoard" placeholder="Indian Instiution of technolgy, Guwahati">
+                                    <input type="text" class="form-control" name="btechBoard" placeholder="Indian Instiution of technolgy, Guwahati" value = "{{btechBoard}}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="btechGrade">Grade/Percentage</label>
-                                    <input type="text" class="form-control" name="btechGrade" placeholder="6.5">
+                                    <input type="text" class="form-control" name="btechGrade" placeholder="6.5" value = "{{btechGrade}}">
                                 </div> 
                                 <div class="form-group col-md-4">
                                     <label for="btechYear">Pass out year</label>
-                                    <input type="text" class="form-control" name="btechYear" placeholder="2023(Expected)">
+                                    <input type="text" class="form-control" name="btechYear" placeholder="2023(Expected)" value = "{{btechYear}}">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for = "ssBoard">Senior secondary(Board)</label>
-                                    <input type="text" class="form-control" name="ssBoard" placeholder="CBSE">
+                                    <input type="text" class="form-control" name="ssBoard" placeholder="CBSE" value = "{{ssBoard}}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="ssGrade">Grade/Percentage</label>
-                                    <input type="text" class="form-control" name="ssGrade" placeholder="90%">
+                                    <input type="text" class="form-control" name="ssGrade" placeholder="90%" value = "{{ssGrade}}">
                                 </div> 
                                 <div class="form-group col-md-4">
                                     <label for="ssYear">Pass out year</label>
-                                    <input type="text" class="form-control" name="ssYear" placeholder="2019">
+                                    <input type="text" class="form-control" name="ssYear" placeholder="2019" value = "{{ssYear}}">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for = "sBoard">Secondary(Board)</label>
-                                    <input type="text" class="form-control" name="sBoard" placeholder="CBSE">
+                                    <input type="text" class="form-control" name="sBoard" placeholder="CBSE" value = "{{sBoard}}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="sGrade">Grade/Percentage</label>
-                                    <input type="text" class="form-control" name="sGrade" placeholder="9.5">
+                                    <input type="text" class="form-control" name="sGrade" placeholder="9.5" value = "{{sGrade}}">
                                 </div> 
                                 <div class="form-group col-md-4">
                                     <label for="sYear">Pass out year</label>
-                                    <input type="text" class="form-control" name="sYear" placeholder="2017">
+                                    <input type="text" class="form-control" name="sYear" placeholder="2017" value = "{{sYear}}">
                                 </div>
                             </div>
                         <div class="row">
@@ -213,37 +212,37 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="exp1">Company name 1</label>
-                                <input type="text" class="form-control" name="exp1" placeholder="Amazon">
+                                <input type="text" class="form-control" name="exp1" placeholder="Amazon" value = "{{exp1}}">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="exp2">Company name 2</label>
-                                <input type="text" class="form-control" name="exp2" placeholder="Swiggy">
+                                <input type="text" class="form-control" name="exp2" placeholder="Swiggy" value = "{{exp2}}">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="exp3">Company name 3</label>
-                                <input type="text" class="form-control" name="exp3" placeholder="Google">
+                                <input type="text" class="form-control" name="exp3" placeholder="Google" value = "{{exp3}}">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="exp4">Company name 4</label>
-                                <input type="text" class="form-control" name="exp4" placeholder="Microsoft">
+                                <input type="text" class="form-control" name="exp4" placeholder="Microsoft" value = "{{exp4}}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="expDes1">Description 1</label>
-                                <textarea class="form-control" rows="3"  name="expDes1" ></textarea>
+                                <textarea class="form-control" rows="3"  name="expDes1">{{expDes1}}</textarea>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="expDes2">Description 2</label>
-                                <textarea class="form-control" rows="3"  name="expDes2" ></textarea>
+                                <textarea class="form-control" rows="3"  name="expDes2">{{expDes2}}</textarea>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="expDes3">Description 3</label>
-                                <textarea class="form-control" rows="3"  name="expDes3" ></textarea>
+                                <textarea class="form-control" rows="3"  name="expDes3">{{expDes3}}</textarea>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="expDes4">Description 4</label>
-                                <textarea class="form-control" rows="3"  name="expDes4" ></textarea>
+                                <textarea class="form-control" rows="3"  name="expDes4">{{expDes4}}</textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -256,106 +255,106 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for = "proTitle1" >Project Title 1</label>
-                                <input type="text" class="form-control" name="proTitle1">
+                                <input type="text" class="form-control" name="proTitle1" value = "{{proTitle1}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for = "proDate1">Finished /Ongoing</label>
-                                <input type="text" class="form-control" name="proDate1" placeholder="Feb 2021 / Ongoing">
+                                <input type="text" class="form-control" name="proDate1" placeholder="Feb 2021 / Ongoing" value = "{{proDate1}}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for = "clubName1" >Club/Organization 1</label>
-                                <input type="text" class="form-control" name="clubName1" placeholder="SWC">
+                                <input type="text" class="form-control" name="clubName1" placeholder="SWC" value = "{{clubName1}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for = "githubLink1">github Link 1</label>
-                                <input type="text" class="form-control" name="githubLink1" placeholder="http://github.com/sample_name">
+                                <input type="text" class="form-control" name="githubLink1" placeholder="http://github.com/sample_name" value = "{{githubLink1}}">
                             </div>
                         </div>
                         <div class="form-row">    
                             <div class="form-group col-md-12"> 
                                 <label for = proDes1>Description</label><br>
-                                <textarea class="form-control" rows="3"  name="proDes1" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="proDes1">{{proDes1}}</textarea> 
                             </div>
                         </div><hr>
                         
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for = "proTitle2" >Project Title 2</label>
-                                <input type="text" class="form-control" name="proTitle2">
+                                <input type="text" class="form-control" name="proTitle2" value = "{{proTitle2}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for = "proDate2">Finished /Ongoing</label>
-                                <input type="text" class="form-control" name="proDate2" placeholder="Feb 2021 / Ongoing">
+                                <input type="text" class="form-control" name="proDate2" placeholder="Feb 2021 / Ongoing" value = "{{proDate2}}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for = "clubName2" >Club/Organization 2</label>
-                                <input type="text" class="form-control" name="clubName2" placeholder="SWC">
+                                <input type="text" class="form-control" name="clubName2" placeholder="SWC" value = "{{clubName2}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for = "githubLink2">github Link 2</label>
-                                <input type="text" class="form-control" name="githubLink2" placeholder="http://github.com/sample_name">
+                                <input type="text" class="form-control" name="githubLink2" placeholder="http://github.com/sample_name" value = "{{githubLink2}}">
                             </div>
                         </div>
                         <div class="form-row">    
                             <div class="form-group col-md-12"> 
                                 <label for = proDes2>Description</label><br>
-                                <textarea class="form-control" rows="3"  name="proDes2" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="proDes2">{{proDes2}}</textarea> 
                             </div>
                         </div><hr>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for = "proTitle3" >Project Title 3</label>
-                                <input type="text" class="form-control" name="proTitle3">
+                                <input type="text" class="form-control" name="proTitle3" value = "{{proTitle3}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for = "proDate3">Finished /Ongoing</label>
-                                <input type="text" class="form-control" name="proDate3" placeholder="Feb 2021 / Ongoing">
+                                <input type="text" class="form-control" name="proDate3" placeholder="Feb 2021 / Ongoing" value = "{{proDate2}}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for = "clubName3" >Club/Organization 3</label>
-                                <input type="text" class="form-control" name="clubName3" placeholder="SWC">
+                                <input type="text" class="form-control" name="clubName3" placeholder="SWC" value = "{{clubName3}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for = "githubLin3">github Link 3</label>
-                                <input type="text" class="form-control" name="githubLink3" placeholder="http://github.com/sample_name">
+                                <input type="text" class="form-control" name="githubLink3" placeholder="http://github.com/sample_name" value = "{{githubLink3}}">
                             </div>
                         </div>
                         <div class="form-row">    
                             <div class="form-group col-md-12"> 
                                 <label for = proDes3>Description</label><br>
-                                <textarea class="form-control" rows="3"  name="proDes3" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="proDes3">{{proDes3}}</textarea> 
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for = "proTitle4" >Project Title 4</label>
-                                <input type="text" class="form-control" name="proTitle4">
+                                <input type="text" class="form-control" name="proTitle4" value = "{{proTitle4}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for = "proDate4">Finished /Ongoing</label>
-                                <input type="text" class="form-control" name="proDate4" placeholder="Feb 2021 / Ongoing">
+                                <input type="text" class="form-control" name="proDate4" placeholder="Feb 2021 / Ongoing" value = "{{proDate4}}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for = "clubName4" >Club/Organization 4</label>
-                                <input type="text" class="form-control" name="clubName4" placeholder="SWC">
+                                <input type="text" class="form-control" name="clubName4" placeholder="SWC" value = "{{clubName4}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for = "githubLink4">github Link 4</label>
-                                <input type="text" class="form-control" name="githubLink4" placeholder="http://github.com/sample_name">
+                                <input type="text" class="form-control" name="githubLink4" placeholder="http://github.com/sample_name" value = "{{githubLink4}}">
                             </div>
                         </div>
                         <div class="form-row">    
                             <div class="form-group col-md-12"> 
                                 <label for = "proDes4">Description</label><br>
-                                <textarea class="form-control" rows="3"  name="proDes4" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="proDes4">{{proDes4}}</textarea> 
                             </div>
                         </div>
                        
@@ -370,27 +369,27 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="pLanguages">Programming Languages</label>
-                                <input type="text" class="form-control" name="pLanguages" placeholder="c++ , java*, python^">
+                                <input type="text" class="form-control" name="pLanguages" placeholder="c++ , java*, python^" value = "{{pLanguages}}">
                             </div> 
                             <div class="form-group col-md-4">
                                 <label for="webTechs">Web Technologies</label>
-                                <input type="text" class="form-control" name="webTechs" placeholder="HTML, CSS*, JavaScript^">
+                                <input type="text" class="form-control" name="webTechs" placeholder="HTML, CSS*, JavaScript^" value = "{{webTechs}}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="dbms">Database Management</label>
-                                <input type="text" class="form-control" name="dbms" placeholder="mySQL^, Oracle, RDBMS">
+                                <input type="text" class="form-control" name="dbms" placeholder="mySQL^, Oracle, RDBMS" value = "{{dbms}}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="os">Operating systems</label>
-                                <input type="text" class="form-control" name="os" placeholder="linux, Windows">
+                                <input type="text" class="form-control" name="os" placeholder="linux, Windows" value = "{{os}}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="miscellaneous">Miscellaneous</label>
-                                <input type="text" class="form-control" name="miscellaneous" placeholder="App Development, WebD, Machine Learning">
+                                <input type="text" class="form-control" name="miscellaneous" placeholder="App Development, WebD, Machine Learning" value = "{{miscellaneous}}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="otherSkills">Others</label>
-                                <input type="text" class="form-control" name="otherSkills" placeholder="...">
+                                <input type="text" class="form-control" name="otherSkills" placeholder="..." value = "{{otherSkills}}">
                             </div>
                             
                         </div>
@@ -405,35 +404,35 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="course1">Course1</label>
-                                <input type="text" class="form-control" name="course1" placeholder="Data Structures and Algorithms">
+                                <input type="text" class="form-control" name="course1" placeholder="Data Structures and Algorithms" value = "{{course1}}">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="course2">Course2</label>
-                                <input type="text" class="form-control" name="course2" placeholder="">
+                                <input type="text" class="form-control" name="course2" placeholder="" value = "{{course2}}">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="course3">Course3</label>
-                                <input type="text" class="form-control" name="course3" placeholder="">
+                                <input type="text" class="form-control" name="course3" placeholder="" value = "{{course3}}">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="course4">Course4</label>
-                                <input type="text" class="form-control" name="course4" placeholder="">
+                                <input type="text" class="form-control" name="course4" placeholder="" value = "{{course4}}">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="course5">Course5</label>
-                                <input type="text" class="form-control" name="course5" placeholder="">
+                                <input type="text" class="form-control" name="course5" placeholder="" value = "{{course5}}">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="course6">Course6</label>
-                                <input type="text" class="form-control" name="course6" placeholder="">
+                                <input type="text" class="form-control" name="course6" placeholder="" value = "{{course6}}">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="course7">Course7</label>
-                                <input type="text" class="form-control" name="course7" placeholder="">
+                                <input type="text" class="form-control" name="course7" placeholder="" value = "{{course7}}">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="course8">Course8</label>
-                                <input type="text" class="form-control" name="course8" placeholder="">
+                                <input type="text" class="form-control" name="course8" placeholder="" value = "{{course8}}">
                             </div>
                         </div>
                         <div class="row">
@@ -446,35 +445,35 @@
                         <div class="form-row col-md-12">
                             <div class="form-group col-md-6">
                                 <label for="por1">POR1</label>
-                                <input type="text" class="form-control" name="por1" placeholder="ex: Worked as club secretary of coding club,2020">
+                                <input type="text" class="form-control" name="por1" placeholder="ex: Worked as club secretary of coding club,2020" value = "{{por1}}">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="por1">POR2</label>
-                                <input type="text" class="form-control" name="por2" placeholder="">
+                                <label for="por2">POR2</label>
+                                <input type="text" class="form-control" name="por2" placeholder="" value = "{{por2}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="porDesc1">POR Description 1</label>
-                                <textarea class="form-control" rows="3"  name="porDesc1" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="porDesc1">{{porDesc1}}</textarea> 
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="porDesc2">POR Description 2</label>
-                                <textarea class="form-control" rows="3"  name="porDesc2" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="porDesc2">{{porDesc2}}</textarea> 
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="por1">POR3</label>
-                                <input type="text" class="form-control" name="por3" placeholder="">
+                                <input type="text" class="form-control" name="por3" placeholder="" value = "{{por3}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="por1">POR4</label>
-                                <input type="text" class="form-control" name="por4" placeholder="">
+                                <input type="text" class="form-control" name="por4" placeholder="" value = "{{por4}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="porDesc3">POR Description 3</label>
-                                <textarea class="form-control" rows="3"  name="porDesc3" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="porDesc3">{{porDesc3}}</textarea> 
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="porDesc4">POR Description 4</label>
-                                <textarea class="form-control" rows="3"  name="porDesc4" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="porDesc4">{{porDesc4}}</textarea> 
                             </div>
                         </div>
                         <div class="row">
@@ -487,54 +486,54 @@
                         <div class="form-row col-md-12">
                             <div class="form-group col-md-4">
                                 <label for="ach1">Achivement or extras 1</label>
-                                <input type="text" name = "ach1" class="form-control">
+                                <input type="text" name = "ach1" class="form-control" value = "{{ach1}}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="ach2">Achivement or extras 2</label>
-                                <input type="text" name = "ach2" class="form-control">
+                                <input type="text" name = "ach2" class="form-control" value = "{{ach2}}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="ach3">Achivement or extras 3</label>
-                                <input type="text" name = "ach3" class="form-control">
+                                <input type="text" name = "ach3" class="form-control" value = "{{ach3}}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="achDes1">Description1</label>
-                                <textarea class="form-control" rows="3"  name="achDes1" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="achDes1">{{achDes1}}</textarea> 
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="achDes2">Description2</label>
-                                <textarea class="form-control" rows="3"  name="achDes2" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="achDes2">{{achDes2}}</textarea> 
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="achDes3">Description3</label>
-                                <textarea class="form-control" rows="3"  name="achDes3" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="achDes3">{{achDes3}}</textarea> 
                             </div>
                         </div>
                         <hr>
                         <div class="form-row col-md-12">
                             <div class="form-group col-md-4">
                                 <label for="ach4">Achivement or extras 4</label>
-                                <input type="text" name = "ach4" class="form-control">
+                                <input type="text" name = "ach4" class="form-control" value = "{{ach4}}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="ach5">Achivement or extras 5</label>
-                                <input type="text" name = "ach5" class="form-control">
+                                <input type="text" name = "ach5" class="form-control" value = "{{ach5}}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="ach6">Achivement or extras 6</label>
-                                <input type="text" name = "ach6" class="form-control">
+                                <input type="text" name = "ach6" class="form-control" value = "{{ach6}}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="achDes4">Description4</label>
-                                <textarea class="form-control" rows="3"  name="achDes4" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="achDes4">{{achDes4}}</textarea> 
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="achDes5">Description5</label>
-                                <textarea class="form-control" rows="3"  name="achDes5" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="achDes5">{{achDes5}}</textarea> 
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="achDes6">Description6</label>
-                                <textarea class="form-control" rows="3"  name="achDes6" ></textarea> 
+                                <textarea class="form-control" rows="3"  name="achDes6">{{achDes6}}</textarea> 
                             </div>
                         </div>
                         <div class="centered">

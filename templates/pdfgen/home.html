@@ -41,10 +41,16 @@
         <!-- main content of the html page ************-->
         <main>
             <h2>Title</h2>
+            <form method="POST" action = '.'>{% csrf_token %}
             {% for resume in Resumes %}
-                <a href = "{% url 'index' %}">{{resume}}</a>
+                <br>
+                <input type="radio" name = "resume_name" value="{{resume}}">
+                <label>{{resume}}</label>
                 <br>
             {% endfor %}
+            <label for = "submit">Submit: </label>
+            <input type="submit" class = "btn btn-success" name = "submit">
+            </form>
         </main> 
     </body>
 </html>

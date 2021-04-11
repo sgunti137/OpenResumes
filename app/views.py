@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from app.tex_gen import createTextFile
 from app.data_gen import data_generator
-from openresume.settings import BASE_DIR
+from openresume.settings import BASE_DIR,MEDIA_ROOT
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
@@ -14,20 +14,28 @@ from app.models import *
 from django.contrib.auth.models import User
 
 
-
+resume_file_name = "emptyFile9989898998989.txt"
 
 # Create your views here.
 
 @login_required()
 def index(request):
+   
     #*********************************************
     my_dict = {}
     #*********************************************
     us = User.objects.get(username = request.user)
+    """
     res_rel = us.user_resume_relation_set.first()
     resumes_list = list(Resume.objects.filter(user_resume_relation = res_rel))
+    """
+    os.system("cd")
+    data_file_lines = open(os.path.join(MEDIA_ROOT, resume_file_name), 'r').readlines()
     
-
+    for line in data_file_lines:
+        tmp = line.split('#')
+        my_dict[str(tmp[0])] = str(tmp[1])
+    
     #************************************
     if request.method == 'POST':
         md = request.POST
@@ -51,24 +59,18 @@ def index(request):
         os.system("pdflatex latexFile.tex")
         os.system("move latexFile.pdf ./static/pdfs")
         #return render(request,'pdfgen/results.html',context=my_dict)
-        print()
-        print(request.user)
-        print(request.user.id)
-        print(request.user.first_name)
-        print(request.user.last_name)
-        print()
         return redirect('/results/')
        
     return render(request,'pdfgen/index.html',context = my_dict)
 
-#@login_required()
+@login_required()
 def results(request):
     results_dict = {}
     return render(request,'pdfgen/results.html',context = results_dict)
 
-
+@login_required()
 def home(request):
-    
+
     us = User.objects.get(username = request.user)
     res_rel = us.user_resume_relation_set.first()
     resumes_list = list(Resume.objects.filter(user_resume_relation = res_rel))
@@ -77,7 +79,16 @@ def home(request):
     home_dict["Resumes"] = resumes_list
     
     if len(resumes_list)==0:
-        return redirect('/index/')
+        return redirect('/')
+
+    if request.method == 'POST':
+        requestDir = request.POST
+        res_name = requestDir['resume_name']
+
+        global resume_file_name
+        resume_file_name = str(Resume.objects.get(name = res_name).rFile)
+        return redirect('/')
+        
 
     return render(request,'pdfgen/home.html',context = home_dict)
 

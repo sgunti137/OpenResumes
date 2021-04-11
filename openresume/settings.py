@@ -18,6 +18,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
 
 
 
@@ -48,12 +50,12 @@ AUTH_ADFS = {
     'USERNAME_CLAIM': 'upn',
     'TENANT_ID': tenant_id,
     'RELYING_PARTY_ID': client_id,
-    'LOGIN_EXEMPT_URLS': [],
+    'LOGIN_EXEMPT_URLS': ['','home/'],
 }
 
 # Configure django to redirect users to the right URL for login
 LOGIN_URL = "django_auth_adfs:login"
-LOGIN_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = 'home/'
 
 AUTHENTICATION_BACKENDS = [
     'django_auth_adfs.backend.AdfsAccessTokenBackend',
@@ -162,6 +164,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
     STATIC_DIR,
