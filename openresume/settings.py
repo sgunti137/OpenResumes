@@ -33,9 +33,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-client_id='7af10372-1af0-43bb-b5c2-2eeadd0650c8'
+client_id = 'e4cfa449-5da4-465b-b7d5-b95f56246469'
 tenant_id = '850aa78d-94e1-4bc6-9cf3-8c11b530701c'
-client_secret = '-_p4IDJ8Qv~5.2R33TJ-E12PTtS-bgzyQ.'
+client_secret = 'fDYVBo_VkE0_OmK1~dh64YAQiR~rP3J5Qd'
 
 AUTH_ADFS = {
     'AUDIENCE': client_id,

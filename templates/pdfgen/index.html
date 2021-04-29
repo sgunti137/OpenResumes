@@ -171,22 +171,64 @@
                                 <div class="Edu1">
                                     <div class="form-row" >
                                         <div class="form-group col-md-4">
-                                            <label for = "Board1">Degree(Instituion)</label>
-                                            <input type="text" class="form-control" name="Board1" placeholder="Indian Instiution of technolgy, Guwahati" value = "{{Board1}}">
+                                            <label for = "Board1">Mtech Institution(optional)</label>
+                                            <input type="text" class="form-control" name="mtechBoard" placeholder="IITG" value = "{{mtechBoard}}">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="Grade1">Grade/Percentage</label>
-                                            <input type="text" class="form-control" name="Grade1" placeholder="6.5" value = "{{Grade1}}">
+                                            <input type="text" class="form-control" name="mtechGrade" placeholder="6.5" value = "{{mtechGrade}}">
                                         </div> 
                                         <div class="form-group col-md-4">
                                             <label for="Year1">Pass out year</label>
-                                            <input type="text" class="form-control" name="Year1" placeholder="2023(Expected)" value = "{{Year1}}">
+                                            <input type="text" class="form-control" name="mtechYear" placeholder="2022(expected)" value = "{{mtechYear}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-row" >
+                                        <div class="form-group col-md-4">
+                                            <label for = "Board1">Btech(Instituion)</label>
+                                            <input type="text" class="form-control" name="btechBoard" placeholder="Indian Instiution of technolgy, Guwahati" value = "{{btechBoard}}">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="Grade1">Grade/Percentage</label>
+                                            <input type="text" class="form-control" name="btechGrade" placeholder="6.5" value = "{{btechGrade}}">
+                                        </div> 
+                                        <div class="form-group col-md-4">
+                                            <label for="Year1">Pass out year</label>
+                                            <input type="text" class="form-control" name="btechYear" placeholder="2023(Expected)" value = "{{btechYear}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-row" >
+                                        <div class="form-group col-md-4">
+                                            <label for = "Board1">Senior secondary</label>
+                                            <input type="text" class="form-control" name="ssBoard" placeholder="CBSE" value = "{{ssBoard}}">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="Grade1">Grade/Percentage</label>
+                                            <input type="text" class="form-control" name="ssGrade" placeholder="95%" value = "{{ssGrade}}">
+                                        </div> 
+                                        <div class="form-group col-md-4">
+                                            <label for="Year1">Pass out year</label>
+                                            <input type="text" class="form-control" name="ssYear" placeholder="2019" value = "{{ssYear}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-row" >
+                                        <div class="form-group col-md-4">
+                                            <label for = "Board1">Secondary</label>
+                                            <input type="text" class="form-control" name="sBoard" placeholder="CBSE" value = "{{sBoard}}">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="Grade1">Grade/Percentage</label>
+                                            <input type="text" class="form-control" name="sGrade" placeholder="9.5" value = "{{sGrade}}">
+                                        </div> 
+                                        <div class="form-group col-md-4">
+                                            <label for="Year1">Pass out year</label>
+                                            <input type="text" class="form-control" name="sYear" placeholder="2017" value = "{{sYear}}">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <input type="button" class = "btn btn-success" value="Add More" onclick="add_more_edu()">
+                            <!--input type="button" class = "btn btn-success" value="Add More" onclick="add_more_edu()">
                             <input type="button" class = "btn btn-success" value="Remove" onclick="remove_edu()">
 
                             <script>
@@ -293,7 +335,7 @@
                                     var parent = document.getElementById("Education");
                                     parent.removeChild(parent.lastChild);
                                 }
-                            </script>
+                            </script-->
 
                             <!---------------------------------- Experience ------------------------->
 
@@ -305,28 +347,47 @@
                                 </div>
                             </div>
 
-                            <div id="Expe" >
-                                <div class= "Exp1" >
+                            <!--div id="Expe" >
+                                <div class= "exp1" >
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <label for="Company1">Company Name 1</label>
-                                            <input type="text" class="form-control" name="Company1" placeholder="Amazon" value = "{{Company1}}">
+                                            <label for="exp1">Company Name 1</label>
+                                            <input type="text" class="form-control" name="exp1" placeholder="Amazon" value = "{{exp1}}">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <label for="JobDescription1">Job Description 1</label>
-                                            <textarea class="form-control" rows="3"  name="JobDescription1">{{JobDescription1}}</textarea>
+                                            <label for="expDes1">Description 1</label>
+                                            <textarea class="form-control" rows="3"  name="epxDes1">{{expDes1}}</textarea>
                                         </div>
                                     </div>
                                 </div>
+                            </div-->
+                            
+
+                            <!-- First load the elements in the experience list and then give flexibility-->>
+                            {% for expitem in exp_list %}
+                            <div class= "{{expitem.exp_string}}" >
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="{{expitem.exp_string}}">Company Name {{expitem.ind}}</label>
+                                        <input type="text" class="form-control" name="{{expitem.exp_string}}" placeholder="Amazon" value = "{{expitem.Exp}}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="{{expitem.exp_des_string}}">Description {{expitem.ind}}</label>
+                                        <textarea class="form-control" rows="3"  name="{{expitem.exp_des_string}}">{{expitem.ExpDes}}</textarea>
+                                    </div>
+                                </div>
                             </div>
+                            {% endfor %}
 
                             <input type="button" class = "btn btn-success" value="Add More" onclick="add_more_exp()">
                             <input type="button" class = "btn btn-success" value="Remove" onclick="remove_exp()">
 
                             <script>
-                                var ExpFields=1;
+                                var ExpFields= parseInt("{{expCount}}");
                                 function add_more_exp()
                                 {
                                     ExpFields=ExpFields+1;
@@ -351,59 +412,6 @@
 
                                     div.innerHTML=str;
                                     parent.appendChild(div);
-
-                                    // ExpFields=ExpFields+1;
-                                    // var parent = document.getElementById("Expe");
-
-                                    // var div = document.createElement("div");
-                                    // div.setAttribute("class","Expe"+EduFields);
-
-                                    // var sub1 = document.createElement("div");
-                                    // sub1.setAttribute("class","form-row");
-
-                                    // var sub1_1 = document.createElement("div");
-                                    // sub1_1.setAttribute("class","form-group col-md-12");
-                                    // var label1_1 = document.createElement("label");
-                                    // label1_1.setAttribute("for","Company"+ExpFields);
-                                    // label1_1.innerHTML = 'Company Name'+ExpFields;
-                                    // var input1_1 = document.createElement("input");
-                                    // input1_1.setAttribute("type","text");
-                                    // input1_1.setAttribute("class","form-control");
-                                    // input1_1.setAttribute("name","Company"+ExpFields);
-                                    // input1_1.setAttribute("placeholder","Amazon");
-                                    // var str1_1= '{{Company';
-                                    // str1_1 = str1_1 + ExpFields 
-                                    // str1_1 = str1_1 + '}}';
-                                    // input1_1.setAttribute("value",str1_1);
-                                    // sub1_1.appendChild(label1_1);
-                                    // sub1_1.appendChild(input1_1);
-
-                                    // var sub2 = document.createElement("div");
-                                    // sub1.setAttribute("class","form-row");
-
-                                    // var sub2_1 = document.createElement("div");
-                                    // sub2_1.setAttribute("class","form-group col-md-12");
-                                    // var label2_1 = document.createElement("label");
-                                    // label2_1.setAttribute("for","JobDescription"+ExpFields);
-                                    // label2_1.innerHTML = 'Job Description'+ExpFields;
-                                    // var input2_1 = document.createElement("textarea");
-                                    // input2_1.setAttribute("class","form-control");
-                                    // input2_1.setAttribute("name","JobDescription"+ExpFields);
-                                    // input2_1.setAttribute("rows",3);
-                                    // var str2_1= '{{Job Description'
-                                    // str2_1 = str2_1 + ExpFields ;
-                                    // str2_1 = str2_1 + '}}';
-                                    // input2_1.innerHTML=str2_1;
-                                    // sub2_1.appendChild(label2_1);
-                                    // sub2_1.appendChild(input2_1);
-
-                                    // sub1.appendChild(sub1_1);
-                                    // sub2.appendChild(sub2_1);
-                            
-                                    // div.appendChild(sub1);
-                                    // div.appendChild(sub2);
-
-                                    // parent.appendChild(div);
                                 }
                                 function remove_exp()
                                 {
@@ -424,7 +432,7 @@
                             </div>
 
                             <div id = "Project">
-                                <div id="Pro1">
+                                <!--div id="Pro1">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for = "ProTitle1" >Project Title 1</label>
@@ -451,14 +459,43 @@
                                             <textarea class="form-control" rows="3"  name="ProDes1">{{ProDes1}}</textarea> 
                                         </div>
                                     </div>
-                                </div>    
+                                </div-->   
+                                
+                                {% for proItem in project_list %}
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for = "{{proItem.title_string}}" >Project Title {{proItem.ind}}</label>
+                                            <input type="text" class="form-control" name="{{proItem.title_string}}" value = "{{proItem.title}}">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for = "{{proItem.date_string}}">Finished /Ongoing</label>
+                                            <input type="text" class="form-control" name="{{proItem.date_string}}" placeholder="Feb 2021 / Ongoing" value = "{{proItem.date}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for = "{{proItem.club_string}}" >Club/Organization {{proItem.ind}}</label>
+                                            <input type="text" class="form-control" name="{{proItem.club_string}}" placeholder="SWC" value = "{{proItem.club}}">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for = "{{proItem.github_string}}" >Github Link {{proitem.ind}}</label>
+                                            <input type="text" class="form-control" name="{{proItem.github_string}}" placeholder="http://github.com/sample_name" value = "{{proItem.github}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">    
+                                        <div class="form-group col-md-12"> 
+                                            <label for = "{{proItem.des_string}}">Description</label><br>
+                                            <textarea class="form-control" rows="3"  name="{{proItem.des_string}}">{{proItem.des}}</textarea> 
+                                        </div>
+                                    </div>
+                                {% endfor %}
                             </div>
 
                             <input type="button" class = "btn btn-success" value="Add More" onclick="add_more_pro()">
                             <input type="button" class = "btn btn-success" value="Remove" onclick="remove_pro()">
 
                             <script>
-                                var ProFields= 1;
+                                var ProFields= parseInt("{{projectsCount}}");
                                 function add_more_pro()
                                 {
                                     ProFields=ProFields+1;
@@ -673,7 +710,7 @@
                                 </div>
                             </div>
 
-                            <div id="Courses">
+                            <!--div id="Courses">
                                 <div class="Course1">
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
@@ -681,14 +718,24 @@
                                             <input type="text" class="form-control" name="course1" placeholder="Data Structures and Algorithms" value = "{{course1}}">
                                         </div>
                                     </div>
+                                </div-->
+                            
+                                {% for courseItem in courses_list %}
+                                <div class="{{courseItem.course_string}}">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="{{courseItem.course_string}}">{{courseItem.course_string}}</label>
+                                            <input type="text" class="form-control" name="{{courseItem.course_string}}" placeholder="Data Structures and Algorithms" value = "{{courseItem.Course}}">
+                                        </div>
+                                    </div>
                                 </div>
+                                {% endfor %}
                             </div>
-
                             <input type="button" class = "btn btn-success" value="Add More" onclick="add_more_courses()">
                             <input type="button" class = "btn btn-success" value="Remove" onclick="remove_courses()">
 
                             <script>
-                                var CourseFields= 1;
+                                var CourseFields= parseInt("{{coursesCount}}");
                                 function add_more_courses()
                                 {
                                     CourseFields=CourseFields+1;
@@ -725,7 +772,7 @@
                             </div>
 
                             <div id="PORS">
-                                <div class="POR1">
+                                <!--div class="POR1">
                                     <div class="form-group col-md-12">
                                         <label for="por1">POR1</label>
                                         <input type="text" class="form-control" name="por1" placeholder="ex: Worked as club secretary of coding club,2020" value = "{{por1}}">
@@ -734,14 +781,29 @@
                                         <label for="porDesc1">POR Description 1</label>
                                         <textarea class="form-control" rows="3"  name="porDesc1">{{porDesc1}}</textarea> 
                                     </div>
-                                </div>
+                                </div-->
+
+                                {% for porItem in por_list %}
+                                    <div class="porItem.por_string">
+                                        <div class="form-group col-md-12">
+                                            <label for="porItem.por_string">POR{{porItem.ind}}</label>
+                                            <input type="text" class="form-control" name="{{porItem.por_string}}" placeholder="ex: Worked as club secretary of coding club,2020" value = "{{porItem.Por}}">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="{{porItem.por_des_string}}">POR Description {{porItem.ind}}</label>
+                                            <textarea class="form-control" rows="3"  name="{{porItem.por_des_string}}">{{porItem.PorDesc}}</textarea> 
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+
                             </div>
 
                             <input type="button" class = "btn btn-success" value="Add More" onclick="add_more_pors()">
                             <input type="button" class = "btn btn-success" value="Remove" onclick="remove_pors()">
 
                             <script>
-                                var PORFields= 1;
+                                var PORFields= parseInt("{{porCount}}");
                                 function add_more_pors()
                                 {
                                     PORFields=PORFields+1;
@@ -782,7 +844,7 @@
                             </div>
 
                             <div id="Achievements">
-                                <div class="Ach1">
+                                <!--div class="Ach1">
                                     <div class="form-row col-md-12">
                                         <label for="ach1">Achivement or extras 1</label>
                                         <input type="text" name = "ach1" class="form-control" value = "{{ach1}}">
@@ -791,14 +853,28 @@
                                         <label for="achDes1">Description</label>
                                         <textarea class="form-control" rows="3"  name="achDes1">{{achDes1}}</textarea> 
                                     </div>
-                                </div>
-                            </div>
+                                </div-->
                             
+
+                                {% for achItem in ach_list %}
+                                <div class="{{achItem.ach_string}}">
+                                    <div class="form-row col-md-12">
+                                        <label for="{{achItem.ach_string}}">Achivement or extras {{achItem.ind}}</label>
+                                        <input type="text" name = "{{achItem.ach_string}}" class="form-control" value = "{{achItem.Ach}}">
+                                    </div>
+                                    <div class="form-row col-md-12">
+                                        <label for="{{achItem.ach_des_string}}">Description</label>
+                                        <textarea class="form-control" rows="3"  name="{{achItem.ach_des_string}}">{{achItem.AchDes}}</textarea> 
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
                             <input type="button" class = "btn btn-success" value="Add More" onclick="add_more_achievements()">
                             <input type="button" class = "btn btn-success" value="Remove" onclick="remove_achievements()">
 
+                            <!-- The function that adds or deletes  achivements -->
                             <script>
-                                var AchFields= 1;
+                                var AchFields= parseInt("{{achCount}}");
                                 function add_more_achievements()
                                 {
                                     AchFields=AchFields+1;

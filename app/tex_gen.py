@@ -89,7 +89,7 @@ def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobile
         for sublist in internships:
             if (sublist[0] != ""):
                 writefile.write(r"\resumeSubItem{" + sublist[0] + r"}")
-                writefile.write(r" " + r"{" + sublist[1]  + r"}" + r"\\")
+                writefile.write(r" " + r"{" + sublist[1]  + r"}" + r"")
                 writefile.write("\n")
         writefile.write(r"\resumeSubHeadingListEnd")
 
