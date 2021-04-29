@@ -33,9 +33,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-client_id = 'e4cfa449-5da4-465b-b7d5-b95f56246469'
+client_id='7af10372-1af0-43bb-b5c2-2eeadd0650c8'
 tenant_id = '850aa78d-94e1-4bc6-9cf3-8c11b530701c'
-client_secret = 'fDYVBo_VkE0_OmK1~dh64YAQiR~rP3J5Qd'
+client_secret = '-_p4IDJ8Qv~5.2R33TJ-E12PTtS-bgzyQ.'
 
 AUTH_ADFS = {
     'AUDIENCE': client_id,
@@ -54,7 +54,7 @@ AUTH_ADFS = {
 
 # Configure django to redirect users to the right URL for login
 LOGIN_URL = "django_auth_adfs:login"
-LOGIN_REDIRECT_URL = 'home/'
+LOGIN_REDIRECT_URL = ''
 
 AUTHENTICATION_BACKENDS = [
     'django_auth_adfs.backend.AdfsAccessTokenBackend',
