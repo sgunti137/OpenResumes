@@ -60,7 +60,8 @@ def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobile
     for sublist in education:
         if(sublist[0]!=""):
             for i in range(len(sublist)):
-                sublist[i]=percentReplacerString(sublist[i])
+                # sublist[i]=percentReplacerString(sublist[i])
+                sublist[i]=sublist[i].replace('%',r'\%')
             writefile.write(r"\hline "+sublist[0] +r"& "+sublist[1]+ r"& "+sublist[2] +r"& "+sublist[3] +r"\\")
             writefile.write("\n")
    

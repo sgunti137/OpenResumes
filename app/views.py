@@ -43,24 +43,135 @@ def index(request,pk):
         md = request.POST
         
         print(md) 
+        
+        education=[]
+        internships=[]
+        projects=[]
+        # techskills=[]
+        course=[]
+        por=[]
+        achievements=[]
+        
+        # edu_list = ['BTech','Seniory Secondary','Secondary']
+        
+        i=1
+        while i:
+           l =[]
+        #    str0 = edu_list[i-1]
+           str1 = 'Board' + str(i)
+           str2 = 'Grade' + str(i)
+           str3 = 'Year' + str(i)
+           
+           if str1 in md.keys():
+               l.append('Btech')
+               l.append(md[str1])
+               l.append(md[str2])
+               l.append(md[str3])
+               education.append(l)
+           else:
+               break
+           i=i+1
+           
+        
+           
+        i=1
+        while i:
+           l =[]
+           str1 = 'Company' + str(i)
+           str2 = 'JobDescription' + str(i)
+           
+           if str1 in md.keys():
+               l.append(md[str1])
+               l.append(md[str2])
+               internships.append(l)
+           else:
+               break
+           i=i+1
+           
+        i=1
+        while i:
+           l =[]
+           str1 = 'ProTitle' + str(i)
+           str2 = 'ProDate' + str(i)
+           str3 = 'ClubName' + str(i)
+           str4 = 'GithubLink' +str(i)
+           str5 = 'ProDes' + str(i)
+           
+           
+           if str1 in md.keys():
+               l.append(md[str1])
+               l.append(md[str2])
+               l.append(md[str3])
+               l.append(md[str4])
+               l.append(md[str5])    
+               projects.append(l)
+           else:
+               break
+           i=i+1
+           
+        i=1
+        while i:
+        #    l =[]
+           str1 = 'course' + str(i)
+           
+           if str1 in md.keys():
+               course.append(md[str1])    
+            #    course.append(l)
+           else:
+               break
+           i=i+1
+           
+        i=1
+        while i:
+           l =[]
+           str1 = 'por' + str(i)
+           str2 = 'porDesc' + str(i)
+           
+           
+           if str1 in md.keys():
+               l.append(md[str1])
+               l.append(md[str2])    
+               por.append(l)
+           else:
+               break
+           i=i+1
+           
+        i=1
+        while i:
+           l =[]
+           str1 = 'ach' + str(i)
+           str2 = 'achDes' + str(i)
+           
+           
+           if str1 in md.keys():
+               l.append(md[str1])
+               l.append(md[str2])    
+               achievements.append(l)
+           else:
+               break
+           i=i+1
+               
+                
+            
+        
 
         createTextFile(name = md['name'], rollno=str(md['roll']), stream = md['stream'],branch=md['programme'],minor=md['minor'],college="IITG",
             email= md['email'],iitgmail=md['webmail'],mobileno= str(md['mobile']),
             linkedin= md['linkedIn'],
-            education=[["B.Tech",md['btechBoard'],md['btechGrade'],md['btechYear']],["Senior secondary",md['ssBoard'],md['ssGrade'],md['ssYear']],["Secondary",md['sBoard'],md['sGrade'],md['sYear']]],
-            internships=[[md['exp1'],md['expDes1']],[md['exp2'],md['expDes2']],[md['exp3'],md['expDes3']],[md['exp4'],md['expDes4']]],
-            projects=[[md['proTitle1'],md['clubName1'],md['proDes1'],md['githubLink1'],md['proDate1']],[md['proTitle2'],md['clubName2'],md['proDes2'],md['githubLink2'],md['proDate2']],[md['proTitle3'],md['clubName3'],md['proDes3'],md['githubLink3'],md['proDate3']],[md['proTitle4'],md['clubName4'],md['proDes4'],md['githubLink4'],md['proDate4']]],
+            education=education,
+            internships=internships,
+            projects=projects,
             techskills=[md['pLanguages'],md['webTechs'],md['dbms'],md['os'],md['miscellaneous'],md['otherSkills']],
-            keyCourses=[md['course1'],md['course2'],md['course3'],md['course4'],md['course5'],md['course6'],md['course7'],md['course8']],
-            por=[[md['por1'],md['porDesc1']],[md['por2'],md['porDesc2']],[md['por3'],md['porDesc3']],[md['por4'],md['porDesc4']]],
-            achievements=[[md['ach1'],md['achDes1']],[md['ach2'],md['achDes2']],[md['ach3'],md['achDes3']],[md['ach4'],md['achDes4']],[md['ach5'],md['achDes5']],[md['ach6'],md['achDes6']]]) 
+            keyCourses=course,
+            por=por,
+            achievements=achievements)
 
-        data_generator(md,resume_file_name)
+        # data_generator(md,resume_file_name)
         
 
         os.system("pdflatex latexFile.tex")
         os.system("move latexFile.pdf ./static/pdfs")
-        #return render(request,'pdfgen/results.html',context=my_dict)
+        # #return render(request,'pdfgen/results.html',context=my_dict)
         return redirect('/results/'+str(pk)+'/')
        
     return render(request,'pdfgen/index.html',context = my_dict)
@@ -89,8 +200,8 @@ def home(request):
     home_dict = {"name":us.first_name}
     home_dict["Resumes"] = resumes_list
     
-    if len(resumes_list)==0:
-        return redirect('index/')
+    # if len(resumes_list)==0:
+    #     return redirect('index/')
 
     if request.method == 'POST':
         requestDir = request.POST
