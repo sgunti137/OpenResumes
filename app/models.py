@@ -5,7 +5,9 @@ from django.contrib.auth.models import User
 
 class Resume(models.Model):
     name = models.CharField(max_length = 40)
-    rFile = models.FileField(blank = True, null = True, upload_to = '')
+    rFile = models.FileField(blank = True, null = True, upload_to = 'data')
+    pdfFile = models.CharField(max_length = 40)
+    latexFile = models.CharField(max_length = 40)
 
     def __str__(self):
         return self.name

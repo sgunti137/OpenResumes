@@ -1,17 +1,19 @@
-from openresume.settings import BASE_DIR
+from openresume.settings import BASE_DIR,MEDIA_ROOT,STATIC_DIR
 from pathlib import Path
 from percent_rem import percentReplacerString
 from percent_rem import percentReplacerDict
 import os
 
+LATEX_ROOT = os.path.join(STATIC_DIR,'latex')
 
-def createTextFile(name,rollno,stream,branch,minor,college,email,iitgmail,mobileno,linkedin,education,internships,projects,techskills,keyCourses,por,achievements):
+def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email,iitgmail,mobileno,linkedin,education,internships,projects,techskills,keyCourses,por,achievements):
     
     PDFGEN_DIR = os.path.join(BASE_DIR,'app')
 
     base_file_path = os.path.join(PDFGEN_DIR,"base.txt")
-    latexFile_path = os.path.join(BASE_DIR,"latexFile.tex")
+    latexFile_path = os.path.join(LATEX_ROOT,latex_file_name)
 
+    print(str(latexFile_path))
     readfile = open(str(base_file_path),"rt")
     writefile=open(str(latexFile_path),"w")
 

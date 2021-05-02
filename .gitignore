@@ -7,7 +7,8 @@ __pycache__/
 app/__pycache__/
 openresume/__pycache__/
 latexFile.log
-static/pdfs/latexFile.pdf
+static/pdfs/
+static/latex/
 static/datafile.txt
 app/migrations/__pycache__/
 **/__pycache__
