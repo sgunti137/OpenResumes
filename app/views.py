@@ -167,6 +167,11 @@ def index(request,pk):
         exp_list.append(expObj(exp_string,exp_des_string, i+1,my_dict[exp_string],my_dict[exp_des_string]))
     my_dict["exp_list"] = exp_list
 
+
+    #the name of the pdf to be passed for displaying in the top
+    pdf_string = 'pdfs/' + str(resume_mod.pdfFile)
+    my_dict['pdf_string'] = pdf_string
+
     #************************************
     if request.method == 'POST':
         md = request.POST
@@ -182,8 +187,11 @@ def index(request,pk):
         achievements=[]
         
         # edu_list = ['BTech','Seniory Secondary','Secondary']
-        
 
+
+
+
+        
         education = [
                      ["M.Tech",md["mtechBoard"], md["mtechGrade"],md["mtechYear"]],
                      ["B.Tech",md["btechBoard"],md["btechGrade"],md["btechYear"]],
@@ -194,14 +202,11 @@ def index(request,pk):
         #collecting internships data     
         i=1
         while i:
-           l =[]
            str1 = 'exp' + str(i)
            str2 = 'expDes' + str(i)
            
            if str1 in md.keys():
-               l.append(md[str1])
-               l.append(md[str2])
-               internships.append(l)
+               internships.append([md[str1],md[str2]])
            else:
                break
            i=i+1
@@ -260,15 +265,11 @@ def index(request,pk):
         #collecting ach data
         i=1
         while i:
-           l =[]
            str1 = 'ach' + str(i)
            str2 = 'achDes' + str(i)
-           
-           
-           if str1 in md.keys():
-               l.append(md[str1])
-               l.append(md[str2])    
-               achievements.append(l)
+
+           if str1 in md.keys():   
+               achievements.append([md[str1], md[str2]])
            else:
                break
            i=i+1

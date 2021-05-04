@@ -3,925 +3,638 @@
 {% load static %}
 
 <html>
-    <head>
-        <title>
-            Open resumes
-        </title>
-        <meta charset ="utf-8">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
-        <!-- Bootstrap CSS library -->
-    <link rel="stylesheet" href=
-    "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity=
-    "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous">
-         
-        <!-- jQuery library -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity=
-    "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-         
-        <!-- JS library -->
-        <script src=
-    "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity=
-    "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-         
-        <!-- Latest compiled JavaScript library -->
-        <script src=
-    "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity=
-    "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <h1 id="top-header">Resume Generator</h1>
-        <!-- Header of the html page ***********-->
-        <header>
-            <div id="tHead">
-                <div id="logo">
-                    <img src="{% static 'images/saho.png' %}" />
-                </div>
-                <!--navigation menu-->
-                <nav>
-                    <div id="menu">
-                        <ul>
-                            <li class="active"><a href="#sBasics">Basics</a></li>
-                            <li><a href="#sEducation">Education</a></li>
-                            <li><a href="#sExperience">Experience</a></li>
-                            <li><a href="#sProjects">Projects</a></li>
-                            <li><a href="#sTechSkills">Tech Skills</a></li>
-                            <li><a href="#sKeyCourses">Key Courses</a></li>
-                            <li><a href="#sPOR">POR</a></li>
-                            <li><a href="#sAchivements">Achivements</a></li>
-                        </ul>
-                    </div>
-                </nav>
 
-               
+<head>
+    <title>
+        Open resumes
+    </title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <!-- Bootstrap CSS library -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+    <!-- JS library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+    <!-- Latest compiled JavaScript library -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1 id="top-header">Resume Generator</h1>
+    <!-- Header of the html page ***********-->
+    <header>
+        <div id="tHead">
+            <div id="logo">
+                <img src="{% static 'images/saho.png' %}" />
             </div>
-            <!--
+            <!--navigation menu-->
+            <nav>
+                <div id="menu">
+                    <ul>
+                        <li class="active"><a href="#sBasics">Basics</a></li>
+                        <li><a href="#sEducation">Education</a></li>
+                        <li><a href="#sExperience">Experience</a></li>
+                        <li><a href="#sProjects">Projects</a></li>
+                        <li><a href="#sTechSkills">Tech Skills</a></li>
+                        <li><a href="#sKeyCourses">Key Courses</a></li>
+                        <li><a href="#sPOR">POR</a></li>
+                        <li><a href="#sAchivements">Achivements</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+
+        </div>
+        <!--
             <div id = "headerImg">
                 <img src="images/saho.png">
                 <h2 id ="image-text">
                     openResumes
                 </h2>
             </div>-->
-        </header>
-        
-        <!-- main content of the html page ************-->
-        <main>
+    </header>
 
-            <div id = "pdf1" class="col-12 p-5">
-                <embed src="{% static 'pdfs/sample.pdf' %}" type="application/pdf" width="100%" height="100%">&nbsp;</embed>
-            </div>   
+    <!-- main content of the html page ************-->
+    <main>
 
-            <h4> To fill the previously entered data, instead filling the boring form agian from start, choose the .txt file.</h4>
+        <div id="pdf1" class="col-12 p-5">
+            <embed src="{% static pdf_string %}" type="application/pdf" width="100%" height="100%">&nbsp;</embed>
+        </div>
 
-            <div class="centered">
-                <input type = "file" class="btn btn-outline-secondary" name = "inputFile" id = "inputFile"> 
-            </div>
-            
-            <script type = "text/javascript">
-                document.getElementById("inputFile").addEventListener('change',function(){
+        <h4> To fill the previously entered data, instead filling the boring form agian from start, choose the .txt
+            file.</h4>
 
-                    var fr = new FileReader();
-                    fr.onload = function(){
-                        
-                        var lines = fr.result.split('\n');
-                        for(var line = 0;line<lines.length;line++){
-                            var tmp = lines[line].split('#');
-                            document.getElementsByName(tmp[0])[0].value = tmp[1];
-                        } 
+        <div class="centered">
+            <input type="file" class="btn btn-outline-secondary" name="inputFile" id="inputFile">
+        </div>
+
+        <script type="text/javascript">
+            document.getElementById("inputFile").addEventListener('change', function () {
+
+                var fr = new FileReader();
+                fr.onload = function () {
+
+                    var lines = fr.result.split('\n');
+                    for (var line = 0; line < lines.length; line++) {
+                        var tmp = lines[line].split('#');
+                        document.getElementsByName(tmp[0])[0].value = tmp[1];
                     }
-                    fr.readAsText(this.files[0]);
-                })
-            </script>
+                }
+                fr.readAsText(this.files[0]);
+            })
+        </script>
 
-            <br>
-            <a href = '{% url "django_auth_adfs:logout" %}'>Logout</a></a>
-        
-            <section class="container">
+        <br>
+        <a href='{% url "django_auth_adfs:logout" %}'>Logout</a></a>
+
+        <section class="container">
             <div class="container-fluid">
                 <div class="row">
-                    <form class="col-12 p-5" name = "form1" action = '.' method="POST" id="form1">{% csrf_token %}
-                            <!---------------------------------- Basics ------------------------->
+                    <form class="col-12 p-5" name="form1" action='.' method="POST" id="form1">{% csrf_token %}
+                        <!---------------------------------- Basics ------------------------->
 
-                            <div class="row">
-                                <div id="sBasics">
-                                    <div class="column-title">
-                                        <h2>Basic Information</h2>
-                                    </div>
-                                </div>
-                            </div>  
-
-                            <div class="form-row">
-                                
-                                <div class="form-group col-md-4">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control" name="name" value = "{{name}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="roll">Roll No.</label>
-                                    <input type="text" class="form-control" name="roll" value = "{{roll}}">
-                                </div>   
-                                <div class="form-group col-md-4">
-                                    <label for="mobile">Phone Number</label>
-                                    <input type="text" class="form-control" name="mobile" value = "{{mobile}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="webmail">Campus mail id</label>
-                                    <input type="email" class="form-control" name="webmail" value = "{{webmail}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="stream">Stream</label>
-                                    <input type="text" class="form-control" name="stream" placeholder="B Tech / M Tech / Phd" value = "{{stream}}">
-                                    </div>
-                                <div class="form-group col-md-4">
-                                    <label for="Programme">Programme</label>
-                                    <input type="text" class="form-control" name="programme" placeholder="Computer Science and Engineering" value = "{{programme}}">
-                                    </div>
-                                <div class="form-group col-md-4">
-                                    <label for="minor">Minor</label>
-                                    <input type="text" class="form-control" name="minor" placeholder="Minor in Mathematics" value = "{{minor}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="email">Alternate Mail</label>
-                                    <input type="email" class="form-control" name="email" value = "{{email}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="linkedIn">LinkedIn</label>
-                                    <input type="text" class="form-control" name="linkedIn" value = "{{linkedIn}}">
+                        <div class="row">
+                            <div id="sBasics">
+                                <div class="column-title">
+                                    <h2>Basic Information</h2>
                                 </div>
                             </div>
+                        </div>
 
-                            <!---------------------------------- Education ------------------------->
+                        <div class="form-row">
 
-                            <div class="row">
-                                <div id="sEducation">
-                                    <div class="column-title">
-                                        <h2>Education</h2>
-                                    </div>
-                                </div>
-                            </div>   
+                            <div class="form-group col-md-4">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" name="name" value="{{name}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="roll">Roll No.</label>
+                                <input type="text" class="form-control" name="roll" value="{{roll}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="mobile">Phone Number</label>
+                                <input type="text" class="form-control" name="mobile" value="{{mobile}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="webmail">Campus mail id</label>
+                                <input type="email" class="form-control" name="webmail" value="{{webmail}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="stream">Stream</label>
+                                <input type="text" class="form-control" name="stream"
+                                    placeholder="B Tech / M Tech / Phd" value="{{stream}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Programme">Programme</label>
+                                <input type="text" class="form-control" name="programme"
+                                    placeholder="Computer Science and Engineering" value="{{programme}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="minor">Minor</label>
+                                <input type="text" class="form-control" name="minor" placeholder="Minor in Mathematics"
+                                    value="{{minor}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="email">Alternate Mail</label>
+                                <input type="email" class="form-control" name="email" value="{{email}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="linkedIn">LinkedIn</label>
+                                <input type="text" class="form-control" name="linkedIn" value="{{linkedIn}}">
+                            </div>
+                        </div>
 
-                            <div id="Education" >
-                                <div class="Edu1">
-                                    <div class="form-row" >
-                                        <div class="form-group col-md-4">
-                                            <label for = "Board1">Mtech Institution(optional)</label>
-                                            <input type="text" class="form-control" name="mtechBoard" placeholder="IITG" value = "{{mtechBoard}}">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="Grade1">Grade/Percentage</label>
-                                            <input type="text" class="form-control" name="mtechGrade" placeholder="6.5" value = "{{mtechGrade}}">
-                                        </div> 
-                                        <div class="form-group col-md-4">
-                                            <label for="Year1">Pass out year</label>
-                                            <input type="text" class="form-control" name="mtechYear" placeholder="2022(expected)" value = "{{mtechYear}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row" >
-                                        <div class="form-group col-md-4">
-                                            <label for = "Board1">Btech(Instituion)</label>
-                                            <input type="text" class="form-control" name="btechBoard" placeholder="Indian Instiution of technolgy, Guwahati" value = "{{btechBoard}}">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="Grade1">Grade/Percentage</label>
-                                            <input type="text" class="form-control" name="btechGrade" placeholder="6.5" value = "{{btechGrade}}">
-                                        </div> 
-                                        <div class="form-group col-md-4">
-                                            <label for="Year1">Pass out year</label>
-                                            <input type="text" class="form-control" name="btechYear" placeholder="2023(Expected)" value = "{{btechYear}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row" >
-                                        <div class="form-group col-md-4">
-                                            <label for = "Board1">Senior secondary</label>
-                                            <input type="text" class="form-control" name="ssBoard" placeholder="CBSE" value = "{{ssBoard}}">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="Grade1">Grade/Percentage</label>
-                                            <input type="text" class="form-control" name="ssGrade" placeholder="95%" value = "{{ssGrade}}">
-                                        </div> 
-                                        <div class="form-group col-md-4">
-                                            <label for="Year1">Pass out year</label>
-                                            <input type="text" class="form-control" name="ssYear" placeholder="2019" value = "{{ssYear}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row" >
-                                        <div class="form-group col-md-4">
-                                            <label for = "Board1">Secondary</label>
-                                            <input type="text" class="form-control" name="sBoard" placeholder="CBSE" value = "{{sBoard}}">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="Grade1">Grade/Percentage</label>
-                                            <input type="text" class="form-control" name="sGrade" placeholder="9.5" value = "{{sGrade}}">
-                                        </div> 
-                                        <div class="form-group col-md-4">
-                                            <label for="Year1">Pass out year</label>
-                                            <input type="text" class="form-control" name="sYear" placeholder="2017" value = "{{sYear}}">
-                                        </div>
-                                    </div>
+                        <!---------------------------------- Education ------------------------->
+
+                        <div class="row">
+                            <div id="sEducation">
+                                <div class="column-title">
+                                    <h2>Education</h2>
                                 </div>
                             </div>
+                        </div>
 
-                            <!--input type="button" class = "btn btn-success" value="Add More" onclick="add_more_edu()">
-                            <input type="button" class = "btn btn-success" value="Remove" onclick="remove_edu()">
-
-                            <script>
-                                var EduFields=1;
-                                function add_more_edu()
-                                {
-                                    // EduFields=EduFields+1;
-                                    // var parent = document.getElementById("Education");
-                                    // var div = document.createElement("div");
-                                    // div.setAttribute("class","Edu"+EduFields);
-                                    // var str='<div class="form-row" >';
-                                    // str=str+        '<div class="form-group col-md-4">';
-                                    // str=str+        '<label for = "Board' + EduFields + '">Degree(Instituion)</label>';
-                                    // str=str+        '<input type="text" class="form-control" name="Board' + EduFields + '" placeholder="Indian Instiution of technolgy, Guwahati" value = "{{Board' ;
-                                    //                                     str=str+ EduFields;
-                                    //                                     str=str + '}}">';
-                                    // str=str+    '</div>';
-                                    // str=str+    '<div class="form-group col-md-4">';
-                                    // str=str+        '<label for="Grade' + EduFields + '">Grade/Percentage</label>';
-                                    // str=str+        '<input type="text" class="form-control" name="Grade' + EduFields + '" placeholder="6.5" value = "{{Grade';
-                                    //                                     str=str + EduFields;
-                                    //                                     str=str + '}}">';
-                                    // str=str+    '</div>'; 
-                                    // str=str+    '<div class="form-group col-md-4">';
-                                    // str=str+        '<label for="Year' + EduFields + '">Pass out year</label>';
-                                    // str=str+        '<input type="text" class="form-control" name="Year' + EduFields + '" placeholder="2023(Expected)" value = "{{Year';
-                                    //                                    str=str + EduFields;
-                                    //                                    str=str + '}}">';
-                                    // str=str+    '</div>';
-                                    // str=str+ '</div>';
-                                    // div.innerHTML=str;
-                                    // parent.appendChild("div");
-
-                                    EduFields=EduFields+1;
-                                    var parent = document.getElementById("Education");
-
-                                    var div = document.createElement("div");
-                                    div.setAttribute("class","Edu"+EduFields);
-
-                                    var sub1 = document.createElement("div");
-                                    sub1.setAttribute("class","form-row");
-
-                                    var sub1_1 = document.createElement("div");
-                                    sub1_1.setAttribute("class","form-group col-md-4");
-                                    var label1_1 = document.createElement("label");
-                                    label1_1.setAttribute("for","Board"+EduFields);
-                                    label1_1.innerHTML = 'Degree(Instituion)';
-                                    var input1_1 = document.createElement("input");
-                                    input1_1.setAttribute("type","text");
-                                    input1_1.setAttribute("class","form-control");
-                                    input1_1.setAttribute("name","Board"+EduFields);
-                                    input1_1.setAttribute("placeholder","Indian Instiution of technolgy, Guwahati");
-                                    var str1_1 = '{{Board';
-                                    str1_1=str1_1+EduFields;
-                                    str1_1=str1_1+'}}';
-                                    input1_1.setAttribute("value",str1_1);
-                                    sub1_1.appendChild(label1_1);
-                                    sub1_1.appendChild(input1_1);
-
-                                    var sub1_2 = document.createElement("div");
-                                    sub1_2.setAttribute("class","form-group col-md-4");
-                                    var label1_2 = document.createElement("label");
-                                    label1_2.setAttribute("for","Grade"+EduFields);
-                                    label1_2.innerHTML = 'Grade/Percentage';
-                                    var input1_2 = document.createElement("input");
-                                    input1_2.setAttribute("type","text");
-                                    input1_2.setAttribute("class","form-control");
-                                    input1_2.setAttribute("name","Grade"+EduFields);
-                                    input1_2.setAttribute("placeholder","6.5");
-                                    var str1_2 = '{{Grade';
-                                    str1_2=str1_2+EduFields;
-                                    str1_2=str1_2+'}}';
-                                    input1_2.setAttribute("value",str1_2);
-                                    sub1_2.appendChild(label1_2);
-                                    sub1_2.appendChild(input1_2);
-
-                                    var sub1_3 = document.createElement("div");
-                                    sub1_3.setAttribute("class","form-group col-md-4");
-                                    var label1_3 = document.createElement("label");
-                                    label1_3.setAttribute("for","Year"+EduFields);
-                                    label1_3.innerHTML = 'Pass Out Year';
-                                    var input1_3 = document.createElement("input");
-                                    input1_3.setAttribute("type","text");
-                                    input1_3.setAttribute("class","form-control");
-                                    input1_3.setAttribute("name","Year"+EduFields);
-                                    input1_3.setAttribute("placeholder","2023");
-                                    var str1_3 = '{{Year';
-                                    str1_3=str1_3+EduFields;
-                                    str1_3=str1_3+'}}';
-                                    input1_3.setAttribute("value",str1_3);
-                                    sub1_3.appendChild(label1_3);
-                                    sub1_3.appendChild(input1_3);
-
-                                    sub1.appendChild(sub1_1);
-                                    sub1.appendChild(sub1_2);
-                                    sub1.appendChild(sub1_3);
-
-                                    div.appendChild(sub1);
-
-                                    parent.appendChild(div);
-                                }
-                                function remove_edu()
-                                {
-                                    var parent = document.getElementById("Education");
-                                    parent.removeChild(parent.lastChild);
-                                }
-                            </script-->
-
-                            <!---------------------------------- Experience ------------------------->
-
-                            <div class="row">
-                                <div id="sExperience">
-                                    <div class="column-title">
-                                        <h2>Experience / Internship</h2>
+                        <div id="Education">
+                            <div class="Edu1">
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="Board1">Mtech Institution(optional)</label>
+                                        <input type="text" class="form-control" name="mtechBoard" placeholder="IITG"
+                                            value="{{mtechBoard}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="Grade1">Grade/Percentage</label>
+                                        <input type="text" class="form-control" name="mtechGrade" placeholder="6.5"
+                                            value="{{mtechGrade}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="Year1">Pass out year</label>
+                                        <input type="text" class="form-control" name="mtechYear"
+                                            placeholder="2022(expected)" value="{{mtechYear}}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="Board1">Btech(Instituion)</label>
+                                        <input type="text" class="form-control" name="btechBoard"
+                                            placeholder="Indian Instiution of technolgy, Guwahati"
+                                            value="{{btechBoard}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="Grade1">Grade/Percentage</label>
+                                        <input type="text" class="form-control" name="btechGrade" placeholder="6.5"
+                                            value="{{btechGrade}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="Year1">Pass out year</label>
+                                        <input type="text" class="form-control" name="btechYear"
+                                            placeholder="2023(Expected)" value="{{btechYear}}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="Board1">Senior secondary</label>
+                                        <input type="text" class="form-control" name="ssBoard" placeholder="CBSE"
+                                            value="{{ssBoard}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="Grade1">Grade/Percentage</label>
+                                        <input type="text" class="form-control" name="ssGrade" placeholder="95%"
+                                            value="{{ssGrade}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="Year1">Pass out year</label>
+                                        <input type="text" class="form-control" name="ssYear" placeholder="2019"
+                                            value="{{ssYear}}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="Board1">Secondary</label>
+                                        <input type="text" class="form-control" name="sBoard" placeholder="CBSE"
+                                            value="{{sBoard}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="Grade1">Grade/Percentage</label>
+                                        <input type="text" class="form-control" name="sGrade" placeholder="9.5"
+                                            value="{{sGrade}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="Year1">Pass out year</label>
+                                        <input type="text" class="form-control" name="sYear" placeholder="2017"
+                                            value="{{sYear}}">
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <!--div id="Expe" >
-                                <div class= "exp1" >
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label for="exp1">Company Name 1</label>
-                                            <input type="text" class="form-control" name="exp1" placeholder="Amazon" value = "{{exp1}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label for="expDes1">Description 1</label>
-                                            <textarea class="form-control" rows="3"  name="epxDes1">{{expDes1}}</textarea>
-                                        </div>
-                                    </div>
+                        <!---------------------------------- Experience ------------------------->
+
+                        <div class="row">
+                            <div id="sExperience">
+                                <div class="column-title">
+                                    <h2>Experience / Internship</h2>
                                 </div>
-                            </div-->
-                            
-
-                            <!-- First load the elements in the experience list and then give flexibility-->
+                            </div>
+                        </div>
+                        <div id = "Expe">
                             {% for expitem in exp_list %}
-                            <div class= "{{expitem.exp_string}}" >
+                            <div class="{{expitem.exp_string}}">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="{{expitem.exp_string}}">Company Name {{expitem.ind}}</label>
-                                        <input type="text" class="form-control" name="{{expitem.exp_string}}" placeholder="Amazon" value = "{{expitem.Exp}}">
+                                        <input type="text" class="form-control" name="{{expitem.exp_string}}"
+                                            placeholder="Amazon" value="{{expitem.Exp}}">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="{{expitem.exp_des_string}}">Description {{expitem.ind}}</label>
-                                        <textarea class="form-control" rows="3"  name="{{expitem.exp_des_string}}">{{expitem.ExpDes}}</textarea>
+                                        <textarea class="form-control" rows="3"
+                                            name="{{expitem.exp_des_string}}">{{expitem.ExpDes}}</textarea>
                                     </div>
                                 </div>
                             </div>
                             {% endfor %}
+                        </div>
+                        <input type="button" class="btn btn-success" value="Add More" onclick="add_more_exp()">
+                        <input type="button" class="btn btn-success" value="Remove" onclick="remove_exp()">
 
-                            <input type="button" class = "btn btn-success" value="Add More" onclick="add_more_exp()">
-                            <input type="button" class = "btn btn-success" value="Remove" onclick="remove_exp()">
+                        <script>
+                            var ExpFields = parseInt("{{expCount}}");
+                            function add_more_exp() {
+                                ExpFields = ExpFields + 1;
+                                var parent = document.getElementById("Expe");
+                                var div = document.createElement("div");
+                                div.setAttribute("class", "Exp" + ExpFields);
 
-                            <script>
-                                var ExpFields= parseInt("{{expCount}}");
-                                function add_more_exp()
-                                {
-                                    ExpFields=ExpFields+1;
-                                    var parent= document.getElementById("Expe");
-                                    var div = document.createElement("div");
-                                    div.setAttribute("class","Exp"+ExpFields);
+                                var str = '<div class="form-row">';
+                                str = str + '<div class="form-group col-md-12">';
+                                str = str + '<label for="exp' + ExpFields + '">Company name ' + ExpFields + '</label>';
+                                str = str + '<input type="text" class="form-control" name="exp' + ExpFields + '" placeholder="Amazon">';
+                                str = str + '</div>';
+                                str = str + '<div class="form-group col-md-12">';
+                                str = str + '<label for="expDes' + ExpFields + '">Description ' + ExpFields + '</label>';
+                                str = str + '<textarea class="form-control" rows="3"  name="expDes' + ExpFields + '"></textarea>';
+                                str = str + '</div>';
+                                str = str + '</div>';
 
-                                    var str = '<div class="form-row">';
-                                    str = str +     '<div class="form-group col-md-12">';
-                                    str = str +         '<label for="Company' + ExpFields + '">Company name ' + ExpFields + '</label>';
-                                    str = str +         '<input type="text" class="form-control" name="Company' + ExpFields + '" placeholder="Amazon" value = "{{Company';
-                                                                     str = str + ExpFields;
-                                                                     str = str + '}}">'; 
-                                    str = str +     '</div>';
-                                    str = str +     '<div class="form-group col-md-12">';
-                                    str = str +         '<label for="JobDescription' + ExpFields + '">Description ' + ExpFields + '</label>';
-                                    str = str +         '<textarea class="form-control" rows="3"  name="JobDescription' + ExpFields + '">{{JobDescription';
-                                                                     str = str + ExpFields ;
-                                                                     str = str + '}}</textarea>';
-                                    str = str +     '</div>';
-                                    str = str + '</div>';
+                                div.innerHTML = str;
+                                parent.appendChild(div);
+                            }
+                            function remove_exp() {
+                                ExpFields = ExpFields - 1;
+                                var parent = document.getElementById("Expe");
+                                parent.removeChild(parent.lastChild);
+                            }
+                        </script>
 
-                                    div.innerHTML=str;
-                                    parent.appendChild(div);
-                                }
-                                function remove_exp()
-                                {
-                                    ExpFields=ExpFields-1;
-                                    var parent = document.getElementById("Expe");
-                                    parent.removeChild(parent.lastChild);
-                                }   
-                            </script>
+                        <!---------------------------------- Projects ------------------------->
 
-                            <!---------------------------------- Projects ------------------------->
-
-                            <div class="row">
-                                <div id="sProjects">
-                                    <div class="column-title">
-                                        <h2>Projects</h2>
-                                    </div>
+                        <div class="row">
+                            <div id="sProjects">
+                                <div class="column-title">
+                                    <h2>Projects</h2>
                                 </div>
                             </div>
+                        </div>
 
-                            <div id = "Project">
-                                <!--div id="Pro1">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for = "ProTitle1" >Project Title 1</label>
-                                            <input type="text" class="form-control" name="ProTitle1" value = "{{ProTitle1}}">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for = "ProDate1">Finished /Ongoing</label>
-                                            <input type="text" class="form-control" name="ProDate1" placeholder="Feb 2021 / Ongoing" value = "{{ProDate1}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for = "ClubName1" >Club/Organization 1</label>
-                                            <input type="text" class="form-control" name="ClubName1" placeholder="SWC" value = "{{ClubName1}}">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for = "GithubLink1">Github Link 1</label>
-                                            <input type="text" class="form-control" name="GithubLink1" placeholder="http://github.com/sample_name" value = "{{GithubLink1}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">    
-                                        <div class="form-group col-md-12"> 
-                                            <label for = ProDes1>Description</label><br>
-                                            <textarea class="form-control" rows="3"  name="ProDes1">{{ProDes1}}</textarea> 
-                                        </div>
-                                    </div>
-                                </div-->   
-                                
-                                {% for proItem in project_list %}
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for = "{{proItem.title_string}}" >Project Title {{proItem.ind}}</label>
-                                            <input type="text" class="form-control" name="{{proItem.title_string}}" value = "{{proItem.title}}">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for = "{{proItem.date_string}}">Finished /Ongoing</label>
-                                            <input type="text" class="form-control" name="{{proItem.date_string}}" placeholder="Feb 2021 / Ongoing" value = "{{proItem.date}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for = "{{proItem.club_string}}" >Club/Organization {{proItem.ind}}</label>
-                                            <input type="text" class="form-control" name="{{proItem.club_string}}" placeholder="SWC" value = "{{proItem.club}}">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for = "{{proItem.github_string}}" >Github Link {{proitem.ind}}</label>
-                                            <input type="text" class="form-control" name="{{proItem.github_string}}" placeholder="http://github.com/sample_name" value = "{{proItem.github}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">    
-                                        <div class="form-group col-md-12"> 
-                                            <label for = "{{proItem.des_string}}">Description</label><br>
-                                            <textarea class="form-control" rows="3"  name="{{proItem.des_string}}">{{proItem.des}}</textarea> 
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
+                        <div id="Project">
 
-                            <input type="button" class = "btn btn-success" value="Add More" onclick="add_more_pro()">
-                            <input type="button" class = "btn btn-success" value="Remove" onclick="remove_pro()">
-
-                            <script>
-                                var ProFields= parseInt("{{projectsCount}}");
-                                function add_more_pro()
-                                {
-                                    ProFields=ProFields+1;
-                                    console.log(ProFields,"LALLALA");
-                                    var parent= document.getElementById("Project");
-                                    var div = document.createElement("div");
-                                    div.setAttribute("class","Pro"+ProFields);
-
-                                    var str =   '<hr>'
-                                    str = str + '<div class="form-row">';
-                                    str = str    +  '<div class="form-group col-md-6">';
-                                    str = str    +      '<label for = "ProTitle' + ProFields + '" >Project Title ' + ProFields + '</label>';
-                                    str = str    +      '<input type="text" class="form-control" name="ProTitle' + ProFields + '" value = "{{ProTitle';
-                                                                                            str = str + ProFields ;
-                                                                                            str = str + '}}">';
-                                    str = str    +   '</div>';
-                                    str = str    +   '<div class="form-group col-md-6">';
-                                    str = str    +      '<label for = "ProDate' + ProFields + '">Finished /Ongoing</label>';
-                                    str = str    +      '<input type="text" class="form-control" name="ProDate' + ProFields + '" placeholder="Feb 2021 / Ongoing" value = "{{ProDate1' ;
-                                                                                            str = str + ProFields ;
-                                                                                            str = str + '}}">';
-                                    str = str    +   '</div>';
-                                    str = str    +   '<div class="form-group col-md-6">';
-                                    str = str    +      '<label for = "ClubName' + ProFields + '" >Club/Organization ' + ProFields + '</label>';
-                                    str = str    +       '<input type="text" class="form-control" name="ClubName' + ProFields + '" placeholder="SWC" value = "{{ClubName';
-                                                                                           str = str + ProFields ;
-                                                                                           str = str + '}}">';
-                                    str = str    +  '</div>';
-                                    str = str    +  '<div class="form-group col-md-6">';
-                                    str = str    +      '<label for = "GithubLink' + ProFields + '">Github Link ' + ProFields + '</label>';
-                                    str = str    +      '<input type="text" class="form-control" name="GithubLink' + ProFields + '" placeholder="http://github.com/sample_name" value = "{{GithubLink' ;
-                                                                                           str = str + ProFields ;
-                                                                                           str = str + '}}">';
-                                    str = str    +  '</div>';
-                                    str = str    +  '<div class="form-group col-md-12"> ';
-                                    str = str    +      '<label for = ProDes' + ProFields + '>Description</label>';
-                                    str = str    +      '<br>';
-                                    str = str    +      '<textarea class="form-control" rows="3"  name="ProDes' + ProFields + '">{{ProDes' ;
-                                                                                           str = str + ProFields ;
-                                                                                           str = str + '}}</textarea>';
-                                    str = str    +   '</div>';
-                                    str = str + '</div>';
-
-                                    div.innerHTML=str;
-                                    parent.appendChild(div);
-
-                                    // ProFields=ProFields+1;
-                                    // var parent = document.getElementById("Project");
-
-                                    // var div = document.createElement("div");
-                                    // div.setAttribute("class","Pro"+EduFields);
-
-                                    // var sub1 = document.createElement("div");
-                                    // sub1.setAttribute("class","form-row");
-
-                                    // var sub1_1 = document.createElement("div");
-                                    // sub1_1.setAttribute("class","form-group col-md-6");
-                                    // var label1_1 = document.createElement("label");
-                                    // label1_1.setAttribute("for","ProTitle"+ProFields);
-                                    // label1_1.innerHTML = 'Project Title '+ProFields;
-                                    // var input1_1 = document.createElement("input");
-                                    // input1_1.setAttribute("type","text");
-                                    // input1_1.setAttribute("class","form-control");
-                                    // input1_1.setAttribute("name","ProTitle"+ProFields);
-                                    // var str1_1= '{{ProTitle';
-                                    // str1_1 = str1_1 + ProFields; 
-                                    // str1_1 = str1_1 + '}}';
-                                    // input1_1.setAttribute("value",str1_1);
-                                    // sub1_1.appendChild(label1_1);
-                                    // sub1_1.appendChild(input1_1);
-
-                                    // var sub1_2 = document.createElement("div");
-                                    // sub1_2.setAttribute("class","form-group col-md-6");
-                                    // var label1_2 = document.createElement("label");
-                                    // label1_2.setAttribute("for","ProDate"+ProFields);
-                                    // label1_2.innerHTML = 'Finished /Ongoing';
-                                    // var input1_2 = document.createElement("input");
-                                    // input1_2.setAttribute("type","text");
-                                    // input1_2.setAttribute("class","form-control");
-                                    // input1_2.setAttribute("name","ProDate"+ProFields);
-                                    // input1_2.setAttribute("placeholder","Feb 2021 / Ongoing");
-                                    // var str1_2= '{{ProDate';
-                                    // str1_2 = str1_2 + ProFields; 
-                                    // str1_2 = str1_2 + '}}';
-                                    // input1_2.setAttribute("value",str1_2);
-                                    // sub1_2.appendChild(label1_2);
-                                    // sub1_2.appendChild(input1_2);
-
-                                    // var sub2 = document.createElement("div");
-                                    // sub1.setAttribute("class","form-row");
-
-                                    // var sub2_1 = document.createElement("div");
-                                    // sub2_1.setAttribute("class","form-group col-md-6");
-                                    // var label2_1 = document.createElement("label");
-                                    // label2_1.setAttribute("for","ClubName"+ProFields);
-                                    // label2_1.innerHTML = 'Club/Organization '+ProFields;
-                                    // var input2_1 = document.createElement("input");
-                                    // input2_1.setAttribute("class","form-control");
-                                    // input2_1.setAttribute("name","ClubName"+ProFields);
-                                    // input2_1.setAttribute("type","text");
-                                    // input2_1.setAttribute("placeholder","SWC");
-                                    // var str2_1= '{{ClubName'
-                                    // str2_1 = str2_1 + ProFields ;
-                                    // str2_1 = str2_1 + '}}';
-                                    // input2_1.innerHTML=str2_1;
-                                    // sub2_1.appendChild(label2_1);
-                                    // sub2_1.appendChild(input2_1);
-
-                                    // var sub2_2 = document.createElement("div");
-                                    // sub2_2.setAttribute("class","form-group col-mid-6");
-                                    // var label2_2 = document.createElement("label");
-                                    // label2_2.setAttribute("for","GithubLink"+ProFields);
-                                    // label2_2.innerHTML='Github Link '+ProFields;
-                                    // var input2_2 = document.createElement("input");
-                                    // input2_2.setAttribute("class","form-control");
-                                    // input2_2.setAttribute("name","GithubLink"+ProFields);
-                                    // input2_2.setAttribute("type","text");
-                                    // input2_2.setAttribute("placeholder","http://github.com/sample_name");
-                                    // var str2_2= '{{GithubLink'
-                                    // str2_2 = str2_2 + ProFields ;
-                                    // str2_2 = str2_2 + '}}';
-                                    // input2_2.innerHTML=str2_2;
-                                    // sub2_2.appendChild(label2_2);
-                                    // sub2_2.appendChild(input2_2);
-
-                                    // var sub3 = document.createElement("div");
-                                    // sub3.setAttribute("class","form-row");
-
-                                    // var sub3_1 = document.createElement("div");
-                                    // sub3_1.setAttribute("class","form-group col-md-12");
-                                    // var label3_1 = document.createElement("label");
-                                    // label3_1.setAttribute("for","ProDes1"+ProFields);
-                                    // label3_1.innerHTML = 'Description';
-                                    // var input3_1 = document.createElement("textarea");
-                                    // input3_1.setAttribute("class","form-control");
-                                    // input3_1.setAttribute("name","ProDes"+ProFields);
-                                    // input3_1.setAttribute("rows",3);
-                                    // var str3_1= '{{ProDes'
-                                    // str3_1 = str3_1 + ProFields ;
-                                    // str3_1 = str3_1 + '}}';
-                                    // input3_1.innerHTML=str3_1;
-                                    // sub3_1.appendChild(label3_1);
-                                    // sub3_1.appendChild(input3_1);
-
-                                    // sub1.appendChild(sub1_1);
-                                    // sub1.appendChild(sub1_2);
-                                    // sub2.appendChild(sub2_1);
-                                    // sub2.appendChild(sub2_2);
-                                    // sub3.appendChild(sub3_1);
-                            
-                                    // div.appendChild(sub1);
-                                    // div.appendChild(sub2);
-                                    // div.appendChild(sub3);
-
-                                    // parent.appendChild(div);
-                                }
-                                function remove_pro()
-                                {
-                                    ProFields=ProFields-1;
-                                    var parent = document.getElementById("Project");
-                                    parent.removeChild(parent.lastChild);
-                                }
-                            </script>
-
-                            <!---------------------------------- Tech Skills ------------------------->
-
-                            <div class="row">
-                                <div id="sTechSkills">
-                                    <div class="column-title">
-                                        <h2>Technical Skills</h2>
-                                        Add superscript * to mention elementary proficiency.<hr>
-                                    </div>
-                                </div>
-                            </div>
-
+                            {% for proItem in project_list %}
                             <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="pLanguages">Programming Languages</label>
-                                    <input type="text" class="form-control" name="pLanguages" placeholder="c++ , java*, python^" value = "{{pLanguages}}">
-                                </div> 
-                                <div class="form-group col-md-4">
-                                    <label for="webTechs">Web Technologies</label>
-                                    <input type="text" class="form-control" name="webTechs" placeholder="HTML, CSS*, JavaScript^" value = "{{webTechs}}">
+                                <div class="form-group col-md-6">
+                                    <label for="{{proItem.title_string}}">Project Title {{proItem.ind}}</label>
+                                    <input type="text" class="form-control" name="{{proItem.title_string}}"
+                                        value="{{proItem.title}}">
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="dbms">Database Management</label>
-                                    <input type="text" class="form-control" name="dbms" placeholder="mySQL^, Oracle, RDBMS" value = "{{dbms}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="os">Operating systems</label>
-                                    <input type="text" class="form-control" name="os" placeholder="linux, Windows" value = "{{os}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="miscellaneous">Miscellaneous</label>
-                                    <input type="text" class="form-control" name="miscellaneous" placeholder="App Development, WebD, Machine Learning" value = "{{miscellaneous}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="otherSkills">Others</label>
-                                    <input type="text" class="form-control" name="otherSkills" placeholder="..." value = "{{otherSkills}}">
-                                </div>
-                            
-                            </div>
-
-                            <!---------------------------------- Key Courses ------------------------->  
-
-                            <div class="row">
-                                <div id="sKeyCourses">
-                                    <div class="column-title">
-                                        <h2>Key Courses Taken</h2>
-                                        superscript * for mentioning any ongoing courses<hr>
-                                    </div>
+                                <div class="form-group col-md-6">
+                                    <label for="{{proItem.date_string}}">Finished /Ongoing</label>
+                                    <input type="text" class="form-control" name="{{proItem.date_string}}"
+                                        placeholder="Feb 2021 / Ongoing" value="{{proItem.date}}">
                                 </div>
                             </div>
-
-                            <!--div id="Courses">
-                                <div class="Course1">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label for="course1">Course1</label>
-                                            <input type="text" class="form-control" name="course1" placeholder="Data Structures and Algorithms" value = "{{course1}}">
-                                        </div>
-                                    </div>
-                                </div-->
-                            
-                                {% for courseItem in courses_list %}
-                                <div class="{{courseItem.course_string}}">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label for="{{courseItem.course_string}}">{{courseItem.course_string}}</label>
-                                            <input type="text" class="form-control" name="{{courseItem.course_string}}" placeholder="Data Structures and Algorithms" value = "{{courseItem.Course}}">
-                                        </div>
-                                    </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="{{proItem.club_string}}">Club/Organization {{proItem.ind}}</label>
+                                    <input type="text" class="form-control" name="{{proItem.club_string}}"
+                                        placeholder="SWC" value="{{proItem.club}}">
                                 </div>
-                                {% endfor %}
-                            </div>
-                            <input type="button" class = "btn btn-success" value="Add More" onclick="add_more_courses()">
-                            <input type="button" class = "btn btn-success" value="Remove" onclick="remove_courses()">
-
-                            <script>
-                                var CourseFields= parseInt("{{coursesCount}}");
-                                function add_more_courses()
-                                {
-                                    CourseFields=CourseFields+1;
-                                    var parent= document.getElementById("Courses");
-                                    var div = document.createElement("div");
-                                    div.setAttribute("class","Course"+CourseFields);
-
-                                    var str = '<div class="form-group col-md-12">';
-                                    str=str+        '<label for="course' + CourseFields + '">Course' + CourseFields + '</label>';
-                                    str=str+        '<input type="text" class="form-control" name="course' + CourseFields + '" placeholder="Data Structures and Algorithms" value = "{{course';
-                                                                   str=str + CourseFields ;
-                                                                   str=str + '}}">';
-                                    str=str+   '</div>';
-                                    div.innerHTML =  str;
-
-                                    parent.appendChild(div);
-                                }
-                                function remove_courses()
-                                {
-                                    CourseFields=CourseFields-1;
-                                    var parent = document.getElementById("Courses");
-                                    parent.removeChild(parent.lastChild);
-                                }
-                            </script>
-
-                            <!---------------------------------- PORS ------------------------->    
-
-                            <div class="row">
-                                <div id="sPOR">
-                                    <div class="column-title">
-                                        <h2>Position Of Responsibility</h2>
-                                    </div>      
+                                <div class="form-group col-md-6">
+                                    <label for="{{proItem.github_string}}">Github Link {{proitem.ind}}</label>
+                                    <input type="text" class="form-control" name="{{proItem.github_string}}"
+                                        placeholder="http://github.com/sample_name" value="{{proItem.github}}">
                                 </div>
                             </div>
-
-                            <div id="PORS">
-                                <!--div class="POR1">
-                                    <div class="form-group col-md-12">
-                                        <label for="por1">POR1</label>
-                                        <input type="text" class="form-control" name="por1" placeholder="ex: Worked as club secretary of coding club,2020" value = "{{por1}}">
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label for="porDesc1">POR Description 1</label>
-                                        <textarea class="form-control" rows="3"  name="porDesc1">{{porDesc1}}</textarea> 
-                                    </div>
-                                </div-->
-
-                                {% for porItem in por_list %}
-                                    <div class="porItem.por_string">
-                                        <div class="form-group col-md-12">
-                                            <label for="porItem.por_string">POR{{porItem.ind}}</label>
-                                            <input type="text" class="form-control" name="{{porItem.por_string}}" placeholder="ex: Worked as club secretary of coding club,2020" value = "{{porItem.Por}}">
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="{{porItem.por_des_string}}">POR Description {{porItem.ind}}</label>
-                                            <textarea class="form-control" rows="3"  name="{{porItem.por_des_string}}">{{porItem.PorDesc}}</textarea> 
-                                        </div>
-                                    </div>
-                                {% endfor %}
-
-
-                            </div>
-
-                            <input type="button" class = "btn btn-success" value="Add More" onclick="add_more_pors()">
-                            <input type="button" class = "btn btn-success" value="Remove" onclick="remove_pors()">
-
-                            <script>
-                                var PORFields= parseInt("{{porCount}}");
-                                function add_more_pors()
-                                {
-                                    PORFields=PORFields+1;
-                                    var parent= document.getElementById("PORS");
-                                    var div = document.createElement("div");
-                                    div.setAttribute("class","POR"+PORFields);
-                                    var str = '<div class="form-group col-md-12">';
-                                    str=str+        '<label for="por' + PORFields + '">POR' + PORFields + '</label>';
-                                    str=str+        '<input type="text" class="form-control" name="por' + PORFields + '" placeholder="ex: Worked as club secretary of coding club,2020" value = "{{por' 
-                                                                        str=str+ PORFields ;
-                                                                        str=str+ '}}">';
-                                    str=str+  '</div>';
-                                    str=str+  '<div class="form-group col-md-12">';
-                                    str=str+        '<label for="porDesc' + PORFields + '">POR Description ' + PORFields + '</label>';
-                                    str=str+        '<textarea class="form-control" rows="3"  name="porDesc' + PORFields + '">{{porDesc';
-                                                                       str=str + PORFields ;
-                                                                       str=str + '}}</textarea> ';
-                                    str=str+  '</div>';
-                                    div.innerHTML=str;
-                                    parent.appendChild(div);
-                                }
-                                function remove_pors()
-                                {
-                                    PORFields=PORFields-1;
-                                    var parent = document.getElementById("PORS");
-                                    parent.removeChild(parent.lastChild);
-                                }
-                            </script>
-
-                            <!---------------------------------- Achievements n Extracurriculars ------------------------->
-
-                            <div class="row">
-                                <div id="sAchivements">
-                                    <div class="column-title">
-                                        <h2>Achivements and Extracurriculars</h2>
-                                    </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="{{proItem.des_string}}">Description</label><br>
+                                    <textarea class="form-control" rows="3"
+                                        name="{{proItem.des_string}}">{{proItem.des}}</textarea>
                                 </div>
                             </div>
+                            {% endfor %}
+                        </div>
 
-                            <div id="Achievements">
-                                <!--div class="Ach1">
-                                    <div class="form-row col-md-12">
-                                        <label for="ach1">Achivement or extras 1</label>
-                                        <input type="text" name = "ach1" class="form-control" value = "{{ach1}}">
-                                    </div>
-                                    <div class="form-row col-md-12">
-                                        <label for="achDes1">Description</label>
-                                        <textarea class="form-control" rows="3"  name="achDes1">{{achDes1}}</textarea> 
-                                    </div>
-                                </div-->
-                            
+                        <input type="button" class="btn btn-success" value="Add More" onclick="add_more_pro()">
+                        <input type="button" class="btn btn-success" value="Remove" onclick="remove_pro()">
 
-                                {% for achItem in ach_list %}
-                                <div class="{{achItem.ach_string}}">
-                                    <div class="form-row col-md-12">
-                                        <label for="{{achItem.ach_string}}">Achivement or extras {{achItem.ind}}</label>
-                                        <input type="text" name = "{{achItem.ach_string}}" class="form-control" value = "{{achItem.Ach}}">
-                                    </div>
-                                    <div class="form-row col-md-12">
-                                        <label for="{{achItem.ach_des_string}}">Description</label>
-                                        <textarea class="form-control" rows="3"  name="{{achItem.ach_des_string}}">{{achItem.AchDes}}</textarea> 
-                                    </div>
+                        <script>
+                            var ProFields = parseInt("{{projectsCount}}");
+                            function add_more_pro() {
+                                ProFields = ProFields + 1;
+                                console.log(ProFields, "LALLALA");
+                                var parent = document.getElementById("Project");
+                                var div = document.createElement("div");
+                                div.setAttribute("class", "Pro" + ProFields);
+
+                                var str = '<hr>'
+                                str = str + '<div class="form-row">';
+                                str = str + '<div class="form-group col-md-6">';
+                                str = str + '<label for = "ProTitle' + ProFields + '" >Project Title ' + ProFields + '</label>';
+                                str = str + '<input type="text" class="form-control" name="ProTitle' + ProFields + '" value = "{{ProTitle';
+                                str = str + ProFields;
+                                str = str + '}}">';
+                                str = str + '</div>';
+                                str = str + '<div class="form-group col-md-6">';
+                                str = str + '<label for = "ProDate' + ProFields + '">Finished /Ongoing</label>';
+                                str = str + '<input type="text" class="form-control" name="ProDate' + ProFields + '" placeholder="Feb 2021 / Ongoing" value = "{{ProDate1';
+                                str = str + ProFields;
+                                str = str + '}}">';
+                                str = str + '</div>';
+                                str = str + '<div class="form-group col-md-6">';
+                                str = str + '<label for = "ClubName' + ProFields + '" >Club/Organization ' + ProFields + '</label>';
+                                str = str + '<input type="text" class="form-control" name="ClubName' + ProFields + '" placeholder="SWC" value = "{{ClubName';
+                                str = str + ProFields;
+                                str = str + '}}">';
+                                str = str + '</div>';
+                                str = str + '<div class="form-group col-md-6">';
+                                str = str + '<label for = "GithubLink' + ProFields + '">Github Link ' + ProFields + '</label>';
+                                str = str + '<input type="text" class="form-control" name="GithubLink' + ProFields + '" placeholder="http://github.com/sample_name" value = "{{GithubLink';
+                                str = str + ProFields;
+                                str = str + '}}">';
+                                str = str + '</div>';
+                                str = str + '<div class="form-group col-md-12"> ';
+                                str = str + '<label for = ProDes' + ProFields + '>Description</label>';
+                                str = str + '<br>';
+                                str = str + '<textarea class="form-control" rows="3"  name="ProDes' + ProFields + '">{{ProDes';
+                                str = str + ProFields;
+                                str = str + '}}</textarea>';
+                                str = str + '</div>';
+                                str = str + '</div>';
+
+                                div.innerHTML = str;
+                                parent.appendChild(div);
+                            }
+                            function remove_pro() {
+                                ProFields = ProFields - 1;
+                                var parent = document.getElementById("Project");
+                                parent.removeChild(parent.lastChild);
+                            }
+                        </script>
+
+                        <!---------------------------------- Tech Skills ------------------------->
+
+                        <div class="row">
+                            <div id="sTechSkills">
+                                <div class="column-title">
+                                    <h2>Technical Skills</h2>
+                                    Add superscript * to mention elementary proficiency.
+                                    <hr>
                                 </div>
-                                {% endfor %}
                             </div>
-                            <input type="button" class = "btn btn-success" value="Add More" onclick="add_more_achievements()">
-                            <input type="button" class = "btn btn-success" value="Remove" onclick="remove_achievements()">
+                        </div>
 
-                            <!-- The function that adds or deletes  achivements -->
-                            <script>
-                                var AchFields= parseInt("{{achCount}}");
-                                function add_more_achievements()
-                                {
-                                    AchFields=AchFields+1;
-                                    var parent= document.getElementById("Achievements");
-                                    var div = document.createElement("div");
-                                    div.setAttribute("class","Ach"+AchFields);
-
-                                    var str =  '<div class="form-group col-md-12">';
-                                    str=str+        '<label for="ach' + AchFields + '">Achivement or extras 1</label>';
-                                    str=str+        '<input type="text" name = "ach' + AchFields + '" class="form-control" value = "{{ach';
-                                                         str=str + AchFields ;
-                                                         str=str + '}}">';
-                                    str=str+   '</div>';
-                                    str=str+   '<div class="form-group col-md-12">';
-                                    str=str+        '<label for="achDes' + AchFields + '">Description</label>';
-                                    str=str+        '<textarea class="form-control" rows="3"  name="achDes' + AchFields + '">{{achDes';
-                                                        str=str + AchFields;
-                                                        str=str + '}}</textarea>'; 
-                                    str=str+    '</div>';
-
-                                    div.innerHTML = str;
-                                    parent.appendChild(div);
-                                }
-                                function remove_achievements()
-                                {
-                                    AchFields=AchFields-1;
-                                    var parent = document.getElementById("Achievements");
-                                    parent.removeChild(parent.lastChild);
-                                }
-                            </script>
-
-                            <hr>
-
-                            <div class="centered">
-                                <input type="submit" class = "btn btn-success" id="submit" name= "submit">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="pLanguages">Programming Languages</label>
+                                <input type="text" class="form-control" name="pLanguages"
+                                    placeholder="c++ , java*, python^" value="{{pLanguages}}">
                             </div>
-                            
-                        </form>
+                            <div class="form-group col-md-4">
+                                <label for="webTechs">Web Technologies</label>
+                                <input type="text" class="form-control" name="webTechs"
+                                    placeholder="HTML, CSS*, JavaScript^" value="{{webTechs}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="dbms">Database Management</label>
+                                <input type="text" class="form-control" name="dbms" placeholder="mySQL^, Oracle, RDBMS"
+                                    value="{{dbms}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="os">Operating systems</label>
+                                <input type="text" class="form-control" name="os" placeholder="linux, Windows"
+                                    value="{{os}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="miscellaneous">Miscellaneous</label>
+                                <input type="text" class="form-control" name="miscellaneous"
+                                    placeholder="App Development, WebD, Machine Learning" value="{{miscellaneous}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="otherSkills">Others</label>
+                                <input type="text" class="form-control" name="otherSkills" placeholder="..."
+                                    value="{{otherSkills}}">
+                            </div>
+
+                        </div>
+
+                        <!---------------------------------- Key Courses ------------------------->
+
+                        <div class="row">
+                            <div id="sKeyCourses">
+                                <div class="column-title">
+                                    <h2>Key Courses Taken</h2>
+                                    superscript * for mentioning any ongoing courses
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% for courseItem in courses_list %}
+                        <div class="{{courseItem.course_string}}">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="{{courseItem.course_string}}">{{courseItem.course_string}}</label>
+                                    <input type="text" class="form-control" name="{{courseItem.course_string}}"
+                                        placeholder="Data Structures and Algorithms" value="{{courseItem.Course}}">
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                
+                <input type="button" class="btn btn-success" value="Add More" onclick="add_more_courses()">
+                <input type="button" class="btn btn-success" value="Remove" onclick="remove_courses()">
+
+                <script>
+                    var CourseFields = parseInt("{{coursesCount}}");
+                    function add_more_courses() {
+                        CourseFields = CourseFields + 1;
+                        var parent = document.getElementById("Courses");
+                        var div = document.createElement("div");
+                        div.setAttribute("class", "Course" + CourseFields);
+
+                        var str = '<div class="form-group col-md-12">';
+                        str = str + '<label for="course' + CourseFields + '">Course' + CourseFields + '</label>';
+                        str = str + '<input type="text" class="form-control" name="course' + CourseFields + '" placeholder="Data Structures and Algorithms" value = "{{course';
+                        str = str + CourseFields;
+                        str = str + '}}">';
+                        str = str + '</div>';
+                        div.innerHTML = str;
+
+                        parent.appendChild(div);
+                    }
+                    function remove_courses() {
+                        CourseFields = CourseFields - 1;
+                        var parent = document.getElementById("Courses");
+                        parent.removeChild(parent.lastChild);
+                    }
+                </script>
+
+                <!---------------------------------- PORS ------------------------->
+
+                <div class="row">
+                    <div id="sPOR">
+                        <div class="column-title">
+                            <h2>Position Of Responsibility</h2>
+                        </div>
+                    </div>
                 </div>
+
+                <div id="PORS">
+                    {% for porItem in por_list %}
+                    <div class="porItem.por_string">
+                        <div class="form-group col-md-12">
+                            <label for="porItem.por_string">POR{{porItem.ind}}</label>
+                            <input type="text" class="form-control" name="{{porItem.por_string}}"
+                                placeholder="ex: Worked as club secretary of coding club,2020" value="{{porItem.Por}}">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="{{porItem.por_des_string}}">POR Description {{porItem.ind}}</label>
+                            <textarea class="form-control" rows="3"
+                                name="{{porItem.por_des_string}}">{{porItem.PorDesc}}</textarea>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+
+                <input type="button" class="btn btn-success" value="Add More" onclick="add_more_pors()">
+                <input type="button" class="btn btn-success" value="Remove" onclick="remove_pors()">
+
+                <script>
+                    var PORFields = parseInt("{{porCount}}");
+                    function add_more_pors() {
+                        PORFields = PORFields + 1;
+                        var parent = document.getElementById("PORS");
+                        var div = document.createElement("div");
+                        div.setAttribute("class", "POR" + PORFields);
+                        var str = '<div class="form-group col-md-12">';
+                        str = str + '<label for="por' + PORFields + '">POR' + PORFields + '</label>';
+                        str = str + '<input type="text" class="form-control" name="por' + PORFields + '" placeholder="ex: Worked as club secretary of coding club,2020" value = "{{por'
+                        str = str + PORFields;
+                        str = str + '}}">';
+                        str = str + '</div>';
+                        str = str + '<div class="form-group col-md-12">';
+                        str = str + '<label for="porDesc' + PORFields + '">POR Description ' + PORFields + '</label>';
+                        str = str + '<textarea class="form-control" rows="3"  name="porDesc' + PORFields + '">{{porDesc';
+                        str = str + PORFields;
+                        str = str + '}}</textarea> ';
+                        str = str + '</div>';
+                        div.innerHTML = str;
+                        parent.appendChild(div);
+                    }
+                    function remove_pors() {
+                        PORFields = PORFields - 1;
+                        var parent = document.getElementById("PORS");
+                        parent.removeChild(parent.lastChild);
+                    }
+                </script>
+
+                <!---------------------------------- Achievements n Extracurriculars ------------------------->
+
+                <div class="row">
+                    <div id="sAchivements">
+                        <div class="column-title">
+                            <h2>Achivements and Extracurriculars</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="Achievements">
+                    {% for achItem in ach_list %}
+                    <div class="{{achItem.ach_string}}">
+                        <div class="form-row col-md-12">
+                            <label for="{{achItem.ach_string}}">Achivement or extras {{achItem.ind}}</label>
+                            <input type="text" name="{{achItem.ach_string}}" class="form-control"
+                                value="{{achItem.Ach}}">
+                        </div>
+                        <div class="form-row col-md-12">
+                            <label for="{{achItem.ach_des_string}}">Description</label>
+                            <textarea class="form-control" rows="3"
+                                name="{{achItem.ach_des_string}}">{{achItem.AchDes}}</textarea>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <input type="button" class="btn btn-success" value="Add More" onclick="add_more_achievements()">
+                <input type="button" class="btn btn-success" value="Remove" onclick="remove_achievements()">
+
+                <!-- The function that adds or deletes  achivements -->
+                <script>
+                    var AchFields = parseInt("{{achCount}}");
+                    function add_more_achievements() {
+                        AchFields = AchFields + 1;
+                        var parent = document.getElementById("Achievements");
+                        var div = document.createElement("div");
+                        div.setAttribute("class", "Ach" + AchFields);
+
+                        var str = '<div class="form-group col-md-12">';
+                        str = str + '<label for="ach' + AchFields + '">Achivement or extras 1</label>';
+                        str = str + '<input type="text" name = "ach' + AchFields + '" class="form-control"/>';
+                        str = str + '</div>';
+                        str = str + '<div class="form-group col-md-12">';
+                        str = str + '<label for="achDes' + AchFields + '">Description</label>';
+                        str = str + '<textarea class="form-control" rows="3"  name="achDes' + AchFields + '"></textarea>';
+                        str = str + '</div>';
+                        div.innerHTML = str;
+                        parent.appendChild(div);
+                    }
+                    function remove_achievements() {
+                        AchFields = AchFields - 1;
+                        var parent = document.getElementById("Achievements");
+                        parent.removeChild(parent.lastChild);
+                    }
+                </script>
+
+                <hr>
+
+                <div class="centered">
+                    <input type="submit" class="btn btn-success" id="submit" name="submit">
+                </div>
+
+                </form>
             </div>
-            </section>
-                    
-        </main>
+            </div>
+        </section>
 
-        <!-- Footer *************-->
-        <footer>
+    </main>
 
-        </footer>
-    </body>
+    <!-- Footer *************-->
+    <footer>
+    </footer>
+</body>
+
 </html>
