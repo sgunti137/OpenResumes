@@ -187,11 +187,6 @@ def index(request,pk):
         achievements=[]
         
         # edu_list = ['BTech','Seniory Secondary','Secondary']
-
-
-
-
-        
         education = [
                      ["M.Tech",md["mtechBoard"], md["mtechGrade"],md["mtechYear"]],
                      ["B.Tech",md["btechBoard"],md["btechGrade"],md["btechYear"]],
@@ -212,6 +207,7 @@ def index(request,pk):
            i=i+1
         
         #collecting projects data
+        #format ["title1","club1","desc1","link1","date1"]
         i=1
         while i:
            l =[]
@@ -224,10 +220,10 @@ def index(request,pk):
            
            if str1 in md.keys():
                l.append(md[str1])
-               l.append(md[str2])
                l.append(md[str3])
+               l.append(md[str5])
                l.append(md[str4])
-               l.append(md[str5])    
+               l.append(md[str2])    
                projects.append(l)
            else:
                break

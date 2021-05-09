@@ -313,35 +313,33 @@
                         <div id="Project">
 
                             {% for proItem in project_list %}
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="{{proItem.title_string}}">Project Title {{proItem.ind}}</label>
-                                    <input type="text" class="form-control" name="{{proItem.title_string}}"
-                                        value="{{proItem.title}}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="{{proItem.date_string}}">Finished /Ongoing</label>
-                                    <input type="text" class="form-control" name="{{proItem.date_string}}"
-                                        placeholder="Feb 2021 / Ongoing" value="{{proItem.date}}">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="{{proItem.club_string}}">Club/Organization {{proItem.ind}}</label>
-                                    <input type="text" class="form-control" name="{{proItem.club_string}}"
-                                        placeholder="SWC" value="{{proItem.club}}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="{{proItem.github_string}}">Github Link {{proitem.ind}}</label>
-                                    <input type="text" class="form-control" name="{{proItem.github_string}}"
-                                        placeholder="http://github.com/sample_name" value="{{proItem.github}}">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="{{proItem.des_string}}">Description</label><br>
-                                    <textarea class="form-control" rows="3"
-                                        name="{{proItem.des_string}}">{{proItem.des}}</textarea>
+                            <div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="{{proItem.title_string}}">Project Title {{proItem.ind}}</label>
+                                        <input type="text" class="form-control" name="{{proItem.title_string}}"
+                                            value="{{proItem.title}}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="{{proItem.date_string}}">Finished /Ongoing</label>
+                                        <input type="text" class="form-control" name="{{proItem.date_string}}"
+                                            placeholder="Feb 2021 / Ongoing" value="{{proItem.date}}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="{{proItem.club_string}}">Club/Organization {{proItem.ind}}</label>
+                                        <input type="text" class="form-control" name="{{proItem.club_string}}"
+                                            placeholder="SWC" value="{{proItem.club}}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="{{proItem.github_string}}">Github Link {{proitem.ind}}</label>
+                                        <input type="text" class="form-control" name="{{proItem.github_string}}"
+                                            placeholder="http://github.com/sample_name" value="{{proItem.github}}">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="{{proItem.des_string}}">Description</label><br>
+                                        <textarea class="form-control" rows="3"
+                                            name="{{proItem.des_string}}">{{proItem.des}}</textarea>
+                                    </div>
                                 </div>
                             </div>
                             {% endfor %}
@@ -359,38 +357,29 @@
                                 var div = document.createElement("div");
                                 div.setAttribute("class", "Pro" + ProFields);
 
-                                var str = '<hr>'
+                                var str = '<br>'
                                 str = str + '<div class="form-row">';
                                 str = str + '<div class="form-group col-md-6">';
-                                str = str + '<label for = "ProTitle' + ProFields + '" >Project Title ' + ProFields + '</label>';
-                                str = str + '<input type="text" class="form-control" name="ProTitle' + ProFields + '" value = "{{ProTitle';
-                                str = str + ProFields;
-                                str = str + '}}">';
+                                str = str + '<label for = "proTitle' + ProFields + '" >Project Title ' + ProFields + '</label>';
+                                str = str + '<input type="text" class="form-control" name="proTitle' + ProFields + '">';
                                 str = str + '</div>';
                                 str = str + '<div class="form-group col-md-6">';
-                                str = str + '<label for = "ProDate' + ProFields + '">Finished /Ongoing</label>';
-                                str = str + '<input type="text" class="form-control" name="ProDate' + ProFields + '" placeholder="Feb 2021 / Ongoing" value = "{{ProDate1';
-                                str = str + ProFields;
-                                str = str + '}}">';
+                                str = str + '<label for = "proDate' + ProFields + '">Finished /Ongoing</label>';
+                                str = str + '<input type="text" class="form-control" name="proDate' + ProFields + '" placeholder="Feb 2021 / Ongoing">';
                                 str = str + '</div>';
                                 str = str + '<div class="form-group col-md-6">';
-                                str = str + '<label for = "ClubName' + ProFields + '" >Club/Organization ' + ProFields + '</label>';
-                                str = str + '<input type="text" class="form-control" name="ClubName' + ProFields + '" placeholder="SWC" value = "{{ClubName';
-                                str = str + ProFields;
-                                str = str + '}}">';
+                                str = str + '<label for = "clubName' + ProFields + '" >Club/Organization ' + ProFields + '</label>';
+                                str = str + '<input type="text" class="form-control" name="clubName' + ProFields + '" placeholder="SWC">';
                                 str = str + '</div>';
                                 str = str + '<div class="form-group col-md-6">';
-                                str = str + '<label for = "GithubLink' + ProFields + '">Github Link ' + ProFields + '</label>';
-                                str = str + '<input type="text" class="form-control" name="GithubLink' + ProFields + '" placeholder="http://github.com/sample_name" value = "{{GithubLink';
-                                str = str + ProFields;
-                                str = str + '}}">';
+                                str = str + '<label for = "githubLink' + ProFields + '">Github Link ' + ProFields + '</label>';
+                                str = str + '<input type="text" class="form-control" name="githubLink' + ProFields + '" placeholder="http://github.com/sample_name">';
                                 str = str + '</div>';
                                 str = str + '<div class="form-group col-md-12"> ';
-                                str = str + '<label for = ProDes' + ProFields + '>Description</label>';
+                                str = str + '<label for = proDes' + ProFields + '>Description</label>';
                                 str = str + '<br>';
-                                str = str + '<textarea class="form-control" rows="3"  name="ProDes' + ProFields + '">{{ProDes';
+                                str = str + '<textarea class="form-control" rows="3"  name="proDes' + ProFields + '"></textarea>';
                                 str = str + ProFields;
-                                str = str + '}}</textarea>';
                                 str = str + '</div>';
                                 str = str + '</div>';
 
@@ -461,18 +450,19 @@
                                 </div>
                             </div>
                         </div>
-
-                        {% for courseItem in courses_list %}
-                        <div class="{{courseItem.course_string}}">
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="{{courseItem.course_string}}">{{courseItem.course_string}}</label>
-                                    <input type="text" class="form-control" name="{{courseItem.course_string}}"
-                                        placeholder="Data Structures and Algorithms" value="{{courseItem.Course}}">
+                        <div id = "Courses">
+                            {% for courseItem in courses_list %}
+                            <div class="{{courseItem.course_string}}">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="{{courseItem.course_string}}">{{courseItem.course_string}}</label>
+                                        <input type="text" class="form-control" name="{{courseItem.course_string}}"
+                                            placeholder="Data Structures and Algorithms" value="{{courseItem.Course}}">
+                                    </div>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
                 
                 <input type="button" class="btn btn-success" value="Add More" onclick="add_more_courses()">
                 <input type="button" class="btn btn-success" value="Remove" onclick="remove_courses()">
@@ -487,9 +477,7 @@
 
                         var str = '<div class="form-group col-md-12">';
                         str = str + '<label for="course' + CourseFields + '">Course' + CourseFields + '</label>';
-                        str = str + '<input type="text" class="form-control" name="course' + CourseFields + '" placeholder="Data Structures and Algorithms" value = "{{course';
-                        str = str + CourseFields;
-                        str = str + '}}">';
+                        str = str + '<input type="text" class="form-control" name="course' + CourseFields + '" placeholder="Data Structures and Algorithms">';
                         str = str + '</div>';
                         div.innerHTML = str;
 
