@@ -16,3 +16,6 @@ class User_resume_relation(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE)
     resumes = models.ManyToManyField(Resume)
 
+    def __str__(self):
+        return self.user.first_name
+

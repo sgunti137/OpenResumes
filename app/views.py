@@ -316,7 +316,12 @@ def home(request):
 
     us = User.objects.get(username = request.user)
     res_rel = us.user_resume_relation_set.first()
+    if res_rel is None:
+        res_rel = User_resume_relation()
+        res_rel.user = us
+        res_rel.save()
     resumes_list = list(Resume.objects.filter(user_resume_relation = res_rel))
+    print(resumes_list)
 
     home_dict = {"name":us.first_name}
     home_dict["Resumes"] = resumes_list
@@ -337,7 +342,7 @@ def home(request):
             resume_mod.save()
             resume_id = resume_mod.id
 
-            
+            #setting the object attributes
             
             new_data_file_name = 'datafile_'+str(resume_id)+'.txt'
             new_pdf_file_name = 'latexFile_'+str(resume_id)+'.pdf'
