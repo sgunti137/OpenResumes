@@ -28,8 +28,27 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
     writefile.write(r"\textbf{\huge "+name+r"}\\")
     writefile.write("\n")
 
-    for i in range(87,91):
+    calculation_list = {"left":[ 
+                                len('Roll No. 190101037'),
+                                len(stream + ' - '+branch),
+                                len(college),
+                                len(minor),
+                            ],
+                            "right":[
+                                len(email),
+                                len(mobileno),
+                                len(iitgmail),
+                                len(linkedin),
+                            ]
+                        }
+    hskip_value = hskip_measure(calculation_list)
+
+    writefile.write(r"\begin{tabular*}{\textwidth}{l@{\hskip" + str(hskip_value) +r"cm}r}")
+
+    for i in range(88,91):
         writefile.write(lines[i])
+    
+    
 
     if (minor!=""):
         writefile.write(r"{Roll No. "+rollno+r"}&\href{mailto:"+email+r"}{ "+email+r"}\\")
@@ -44,6 +63,7 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
         # writefile.write(r"{Minor in "+minor+r"}&{}")
     #else
     else:
+        
         writefile.write(r"{Roll No. "+rollno+r"}&\href{mailto:"+email+r"}{ "+email+r"}\\")
         writefile.write("\n")
         writefile.write(r"{"+stream +" - "+ branch + r"}& Mobile : "+mobileno+r"\\")
@@ -262,7 +282,22 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
     for i in range(252,256):
         writefile.write(lines[i])
 
+def hskip_measure(calculation_list):
+    max1 = -1
+    max2 = -2
+    letter_per_cm = 5.77
+    length_for_text = 15.75
+    total_letters_allowed = 90
+    for val in calculation_list["left"]:
+        max1 = max(max1, val)
+    for val in calculation_list["right"]:
+        max2 = max(max2, val)
+    total_nos = max1+max2
+    total_length = round(total_nos/letter_per_cm,2)
 
+    return length_for_text - total_length
+    
+    
 
 """
 createTextFile(name="Nikitha",rollno="190102052",stream="Btech",branch="ECE",minor="CSE",college="IITG",

@@ -276,7 +276,7 @@ def index(request,pk):
                
 
         #generating the LaTex file  
-        createTextFile(latex_file_name = str(resume_mod.latexFile), name = md['name'], rollno=str(md['roll']), stream = md['stream'],branch=md['programme'],minor=md['minor'],college="IITG",
+        createTextFile(latex_file_name = str(resume_mod.latexFile), name = md['name'], rollno=str(md['roll']), stream = md['stream'],branch=md['programme'],minor=md['minor'],college="IIT Guwahati",
             email= md['email'],iitgmail=md['webmail'],mobileno= str(md['mobile']),
             linkedin= md['linkedIn'],
             education=education,
