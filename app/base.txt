@@ -80,7 +80,7 @@
 
 \parbox{2.3cm}{
 
-\includegraphics[width=2.25cm,clip]{iitg_logo.jpg}
+\includegraphics[width=2.25cm,clip]{app/iitg_logo.jpg}
 
 }
 \parbox{\dimexpr\linewidth-2.3cm\relax}{
