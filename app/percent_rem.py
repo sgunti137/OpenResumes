@@ -3,10 +3,12 @@ def percentReplacerDict(md):
     for i in keys:
         if(i!='csrfmiddlewaretoken'):
             md[i] = md[i].replace("%",r"\%")
+            md[i] = md[i].replace("_",r"\_")
     return(md)
 
 def percentReplacerString(string):
     string=string.replace('%',r'\%')
+    string  = string.replace('_',r'\_')
     return(string)
 
 

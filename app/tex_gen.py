@@ -1,7 +1,7 @@
 from openresume.settings import BASE_DIR,MEDIA_ROOT,STATIC_DIR
 from pathlib import Path
-from percent_rem import percentReplacerString
-from percent_rem import percentReplacerDict
+from .percent_rem import percentReplacerString
+from .percent_rem import percentReplacerDict
 import os
 
 LATEX_ROOT = os.path.join(STATIC_DIR,'latex')
@@ -64,6 +64,8 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
             for i in range(len(sublist)):
                 # sublist[i]=percentReplacerString(sublist[i])
                 sublist[i]=sublist[i].replace('%',r'\%')
+                sublist[i]=sublist[i].replace('_',r'\_')
+
             writefile.write(r"\hline "+sublist[0] +r"& "+sublist[1]+ r"& "+sublist[2] +r"& "+sublist[3] +r"\\")
             writefile.write("\n")
    
@@ -112,11 +114,12 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
     #Projects Dynamic code
     #projects=[["title1","club1","desc1","link1","date1"],["title2","club2","desc2","link2","date2"],["title3","club3","desc3","link3","date3"],["title4","club4","desc4","link4","date4"]]
     for sublist in projects:
+        sublist_3_str = percentReplacerString(sublist[3])
         for i in range(len(sublist)):
             if(i!=3):
                 sublist[i]=percentReplacerString(sublist[i])
         if(sublist[0]!="" and sublist[1]!="" and sublist[2]!="" and sublist[3]!="" and sublist[4]!=""):
-            writefile.write(r"\resumeSubheading{"+sublist[0]+r"}{"+sublist[4]+r"}{"+sublist[1]+r"}{\href{"+sublist[3]+r"}{\textit{\small "+sublist[3]+r"   }}}")
+            writefile.write(r"\resumeSubheading{"+sublist[0]+r"}{"+sublist[4]+r"}{"+sublist[1]+r"}{\href{"+sublist[3]+r"}{\textit{\small "+sublist_3_str+r"   }}}")
             writefile.write("\n")
             writefile.write(r"\begin{itemize}")
             writefile.write("\n")

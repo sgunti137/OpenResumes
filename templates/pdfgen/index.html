@@ -25,9 +25,9 @@
         crossorigin="anonymous"></script>
 
     <!-- Latest compiled JavaScript library -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -56,23 +56,22 @@
 
 
         </div>
-        <!--
-            <div id = "headerImg">
-                <img src="images/saho.png">
-                <h2 id ="image-text">
-                    openResumes
-                </h2>
-            </div>-->
     </header>
 
     <!-- main content of the html page ************-->
     <main>
-
-        <div id="pdf1" class="col-12 p-5">
-            <embed src="{% static pdf_string %}" type="application/pdf" width="100%" height="100%">&nbsp;</embed>
+        <div class="row">
+            <div id="pdf1" class="col-6 p-5">
+                <embed src="{% static 'pdfs/latexFile.pdf' %}" type="application/pdf" width="100%" height="100%">&nbsp;</embed>
+            </div>
+            <div id="pdf2" class = "col-6 p-5">
+                <embed src="{% static pdf_string %}" type="application/pdf" width="100%" height="100%" alt = "Oops! start making your first resume, to be shown here..">&nbsp;</embed>
+            </div>
         </div>
-
-        <h4> To fill the previously entered data, instead filling the boring form agian from start, choose the .txt
+        <div class="col-6">
+        Sample Resume that guides you through your resume building journey<hr>
+        </div>
+        <!--h4> To fill the previously entered data, instead filling the boring form agian from start, choose the .txt
             file.</h4>
 
         <div class="centered">
@@ -93,10 +92,10 @@
                 }
                 fr.readAsText(this.files[0]);
             })
-        </script>
+        </script-->
 
         <br>
-        <a href='{% url "django_auth_adfs:logout" %}'>Logout</a></a>
+        <a href='{% url "django_auth_adfs:logout" %}'>Logout</a>
 
         <section class="container">
             <div class="container-fluid">
@@ -379,7 +378,6 @@
                                 str = str + '<label for = proDes' + ProFields + '>Description</label>';
                                 str = str + '<br>';
                                 str = str + '<textarea class="form-control" rows="3"  name="proDes' + ProFields + '"></textarea>';
-                                str = str + ProFields;
                                 str = str + '</div>';
                                 str = str + '</div>';
 
@@ -531,15 +529,11 @@
                         div.setAttribute("class", "POR" + PORFields);
                         var str = '<div class="form-group col-md-12">';
                         str = str + '<label for="por' + PORFields + '">POR' + PORFields + '</label>';
-                        str = str + '<input type="text" class="form-control" name="por' + PORFields + '" placeholder="ex: Worked as club secretary of coding club,2020" value = "{{por'
-                        str = str + PORFields;
-                        str = str + '}}">';
+                        str = str + '<input type="text" class="form-control" name="por' + PORFields + '" placeholder="ex: Worked as club secretary of coding club,2020">';
                         str = str + '</div>';
                         str = str + '<div class="form-group col-md-12">';
                         str = str + '<label for="porDesc' + PORFields + '">POR Description ' + PORFields + '</label>';
-                        str = str + '<textarea class="form-control" rows="3"  name="porDesc' + PORFields + '">{{porDesc';
-                        str = str + PORFields;
-                        str = str + '}}</textarea> ';
+                        str = str + '<textarea class="form-control" rows="3"  name="porDesc' + PORFields + '"></textarea>';
                         str = str + '</div>';
                         div.innerHTML = str;
                         parent.appendChild(div);
@@ -583,6 +577,7 @@
                 <!-- The function that adds or deletes  achivements -->
                 <script>
                     var AchFields = parseInt("{{achCount}}");
+                    
                     function add_more_achievements() {
                         AchFields = AchFields + 1;
                         var parent = document.getElementById("Achievements");
@@ -590,7 +585,7 @@
                         div.setAttribute("class", "Ach" + AchFields);
 
                         var str = '<div class="form-group col-md-12">';
-                        str = str + '<label for="ach' + AchFields + '">Achivement or extras 1</label>';
+                        str = str + '<label for="ach' + AchFields + '">Achivement or extras '+ AchFields +'</label>';
                         str = str + '<input type="text" name = "ach' + AchFields + '" class="form-control"/>';
                         str = str + '</div>';
                         str = str + '<div class="form-group col-md-12">';

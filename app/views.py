@@ -186,14 +186,17 @@ def index(request,pk):
         por=[]
         achievements=[]
         
-        # edu_list = ['BTech','Seniory Secondary','Secondary']
+        # edu_list = ['MTech', 'BTech','Seniory Secondary','Secondary']
         education = [
                      ["M.Tech",md["mtechBoard"], md["mtechGrade"],md["mtechYear"]],
                      ["B.Tech",md["btechBoard"],md["btechGrade"],md["btechYear"]],
                      ["Secondary senior",md["ssBoard"],md["ssGrade"],md["ssYear"]],
                      ["Secondary",md["sBoard"],md["sGrade"],md["sYear"]],
                     ]
+        if(md["mtechBoard"]=="" and md["mtechYear"]=="" and md["mtechGrade"]==""):
+            education.pop(0)
 
+        
         #collecting internships data     
         i=1
         while i:
