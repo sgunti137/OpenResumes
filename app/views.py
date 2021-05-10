@@ -349,10 +349,30 @@ def home(request):
 
     if request.method == 'POST':
         requestDir = request.POST
+        
+        if requestDir["delete_flag"]=='true':
+            delete_resume_id = int(requestDir['delete_resume_id'])
+            del_res = Resume.objects.get(id = delete_resume_id)
+
+            delete_data_file = str(del_res.rFile)
+            delete_pdf_file = str(del_res.pdfFile)
+            delete_latex_file = str(del_res.latexFile)
+
+            delete_data_file = 'media/data/'+delete_data_file
+            delete_pdf_file = 'static/pdfs/'+delete_pdf_file
+            delete_latex_file = 'static/latex/'+delete_latex_file
+
+            del_res.delete()
+
+            os.remove(delete_data_file)
+            os.remove(delete_pdf_file)
+            os.remove(delete_latex_file)
+            return redirect('/')
+
+
         if requestDir["newResume"]=="":
-            res_id = requestDir['resume_id']
-            redirect_url = '/index/'+str(res_id)+'/'
-            return redirect(redirect_url)
+            print("form submitted successfully..")
+            return redirect('/')
         else:
             #creating a new instance and setting the parameters when ever a user request for new resume generation..
             resume_mod = Resume()
