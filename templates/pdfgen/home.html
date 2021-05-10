@@ -8,7 +8,7 @@
             {{name}}-Home
         </title>
         <meta charset ="utf-8">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+        
         <!-- Bootstrap CSS library -->
     <link rel="stylesheet" href=
     "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -48,14 +48,15 @@
             }
         </script>
     </head>
-    <body>
+    <body style=" background-color: darkslategray;">
        
         <!-- main content of the html page ************-->
         <main>
+            <br>
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-11">
-                    <h2>OpenResumes</h2>
+                    <h2 style = "color: antiquewhite;">OpenResumes</h2>
                 </div>
             </div>
             <br>
@@ -78,23 +79,18 @@
             
            
             <div class="row">
-                <div class="col-md-1">
-
-                </div>
-               
-                    
+                <div class="col-md-1"></div>
                 <div class="col-md-4">
                     {% for resume in Resumes %}
-                    <a class = "btn btn-link" href = "index/{{resume.id}}">{{resume}}</a>
+                    <a class = "btn btn-link" style="color: antiquewhite; font-size: larger;" href = "index/{{resume.id}}">{{resume}}</a>
                     <br><br>
+                    
                     {% endfor %}
                 </div>
                 <div class="col-md-4">
                     {% for resume in Resumes %}
                         <button type = "button" class="btn btn-danger" onclick = "request_delete_resume('{{resume.id}}','{{resume}}')">Delete</button><br><br>
                     {% endfor %}
-                    <!--button type = "button" class="btn btn-default" onclick = "request_delete_resume()">D</button-->
-                    <!--button type= "button" onclick="request_delete_resume()"><img src="{% static 'images/trash.png' %}" alt="delete_resume"></button-->
                 <br>  
                 </div>
             </div>
@@ -102,11 +98,11 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-md-8">
-                    <hr>
+                    <hr style = "color: antiquewhite;">
                     <br><br><br>
                     <form method="POST" action = '.'>{% csrf_token %}
                         <div class="row">
-                            <label for = "newResume">New one? </label>
+                            <label for = "newResume" style="color: antiquewhite;">New one?</label>
                             <div class="col-3">
                                 <input type = "text" class = "form-control" name = "newResume" placeholder="name of the new resume">
                             </div>

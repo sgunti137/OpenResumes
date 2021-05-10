@@ -316,6 +316,7 @@ def results(request,pk):
     res_rel = us.user_resume_relation_set.first()
     resume_list = list(Resume.objects.filter(user_resume_relation = res_rel))
 
+    
     if resume_mod not in resume_list:
         return render(request,'pdfgen/wrongIndex.html')
 

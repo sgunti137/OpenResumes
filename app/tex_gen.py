@@ -46,11 +46,11 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
     else:
         writefile.write(r"{Roll No. "+rollno+r"}&\href{mailto:"+email+r"}{ "+email+r"}\\")
         writefile.write("\n")
-        writefile.write(r"{"+stream+r"}& Mobile : "+mobileno+r"\\")
+        writefile.write(r"{"+stream +" - "+ branch + r"}& Mobile : "+mobileno+r"\\")
         writefile.write("\n")
-        writefile.write(r"{"+branch+r"}&\href{mailto:"+iitgmail+r"}{ "+iitgmail+r"}\\")
+        writefile.write(r"{"+ college +r"}&\href{mailto:"+iitgmail+r"}{ "+iitgmail+r"}\\")
         writefile.write("\n")
-        writefile.write(r"{"+college+"} & \href{"+linkedin+r"/}{"+linkedin+r"}")
+        writefile.write(r"{"+"} & \href{"+linkedin+r"/}{"+linkedin+r"}")
         writefile.write("\n")
 
     #write some static code
