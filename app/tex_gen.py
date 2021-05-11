@@ -53,17 +53,14 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
     if (minor!=""):
         writefile.write(r"{Roll No. "+rollno+r"}&\href{mailto:"+email+r"}{ "+email+r"}\\")
         writefile.write("\n")
-        writefile.write(r"{"+stream+r"}& Mobile : "+mobileno+r"\\")
+        writefile.write(r"{"+stream +" - "+ branch + r"}& Mobile : "+mobileno+r"\\")
         writefile.write("\n")
-        writefile.write(r"{"+branch+r"}&\href{mailto:"+iitgmail+r"}{ "+iitgmail+r"}\\")
+        writefile.write(r"{Minor in "+minor+r"}&\href{mailto:"+iitgmail+r"}{ "+iitgmail+r"}\\")
         writefile.write("\n")
-        writefile.write(r"{Minor in "+minor+r"} & \href{"+linkedin+r"/}{"+linkedin+r"}\\")
+        writefile.write(r"{"+ college +r"} & \href{"+linkedin+r"/}{"+linkedin+r"}\\")
         writefile.write("\n")
-        writefile.write(r"{"+college+r"}&{}")
-        # writefile.write(r"{Minor in "+minor+r"}&{}")
     #else
     else:
-        
         writefile.write(r"{Roll No. "+rollno+r"}&\href{mailto:"+email+r"}{ "+email+r"}\\")
         writefile.write("\n")
         writefile.write(r"{"+stream +" - "+ branch + r"}& Mobile : "+mobileno+r"\\")
@@ -120,7 +117,7 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
 
 
     #write some static code
-    for i in range(119,126):
+    for i in range(119,125):
         writefile.write(lines[i])
 
     proFlag = False
@@ -129,6 +126,7 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
             proFlag = True
             break
     if(proFlag):
+        writefile.write(lines[125])
         writefile.write(lines[126])
         writefile.write(lines[127])
     #Projects Dynamic code
@@ -156,7 +154,7 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
     if(proFlag):
         writefile.write(lines[152])
 
-    for i in range(153,162):
+    for i in range(153,161):
         writefile.write(lines[i])
 
     tsFlag = False
@@ -166,37 +164,42 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
             break
 
     if(tsFlag):
+        writefile.write(lines[161])
         writefile.write(lines[162])
         writefile.write(lines[163])
-    #Technical Skills Dynamic code
-    #techskills=["pllang","webtech","dbms","os","miscell","otherskills"]
-    for i in range(len(techskills)):
-        techskills[i]=percentReplacerString(techskills[i])
-    if(techskills[0]!=""):
-        writefile.write(r"\resumeSubItem{Programming Languages}{"+techskills[0]+r"}")
-        writefile.write("\n")
-    if(techskills[1]!=""):
-        writefile.write(r"\resumeSubItem{Web Technologies}{"+techskills[1]+r"}")
-        writefile.write("\n")
-    if(techskills[2]!=""):
-        writefile.write(r"\resumeSubItem{DBMS}{"+techskills[2]+r"}")
-        writefile.write("\n")
-    if(techskills[3]!=""):
-        writefile.write(r"\resumeSubItem{OS}{"+techskills[3]+r"}")
-        writefile.write("\n")
-    if(techskills[4]!=""):
-        writefile.write(r"\resumeSubItem{Miscelleneous}{"+techskills[4]+r"}")
-        writefile.write("\n")
-    if(techskills[5]!=""):
-        writefile.write(r"\resumeSubItem{Other Skills}{"+techskills[5]+r"}")
-        writefile.write("\n")
+        #Technical Skills Dynamic code
+        #techskills=["pllang","webtech","dbms","os","miscell","otherskills"]
+        for key in techskills.keys():
+            if(techskills[key]!=""):
+                writefile.write(r"\resumeSubItem{"+ key +r"}{" +techskills[key] + r"}")
+                writefile.write("\n")
+        """
+        for i in range(len(techskills)):
+            techskills[i]=percentReplacerString(techskills[i])
+        if(techskills[0]!=""):
+            writefile.write(r"\resumeSubItem{Programming Languages}{"+techskills[0]+r"}")
+            writefile.write("\n")
+        if(techskills[1]!=""):
+            writefile.write(r"\resumeSubItem{Web Technologies}{"+techskills[1]+r"}")
+            writefile.write("\n")
+        if(techskills[2]!=""):
+            writefile.write(r"\resumeSubItem{DBMS}{"+techskills[2]+r"}")
+            writefile.write("\n")
+        if(techskills[3]!=""):
+            writefile.write(r"\resumeSubItem{OS}{"+techskills[3]+r"}")
+            writefile.write("\n")
+        if(techskills[4]!=""):
+            writefile.write(r"\resumeSubItem{Miscelleneous}{"+techskills[4]+r"}")
+            writefile.write("\n")
+        if(techskills[5]!=""):
+            writefile.write(r"\resumeSubItem{Other Skills}{"+techskills[5]+r"}")
+            writefile.write("\n")
+        """
+
+        #write some static code
+        for i in range(170,174):
+            writefile.write(lines[i])
     
-    #write some static code
-    for i in range(170,173):
-        writefile.write(lines[i])
-    
-    if(tsFlag):
-        writefile.write(lines[173])
 
     for i in range(174,186):
         writefile.write(lines[i])
@@ -218,7 +221,7 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
             writefile.write("\n")
     
     #write some static code
-    for i in range(194,206):
+    for i in range(194,205):
         writefile.write(lines[i])
 
 
@@ -229,6 +232,7 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
             break
 
     if(porFlag):
+        writefile.write(lines[205])
         writefile.write(lines[206])
         writefile.write(lines[207])
     #POR Dynamic code
@@ -255,7 +259,7 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
         writefile.write(lines[232])
         writefile.write(lines[233])
     
-    for i in range(234,242):
+    for i in range(234,241):
         writefile.write(lines[i])
 
     achFlag = False
@@ -264,6 +268,7 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
             achFlag = True
             break
     if(achFlag):
+        writefile.write(lines[241])
         writefile.write(lines[242])
     writefile.write(lines[243])
     #Achievements Dynamic code

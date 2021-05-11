@@ -62,7 +62,7 @@
     <main>
         <div class="row">
             <div id="pdf1" class="col-6 p-5">
-                <embed src="{% static 'pdfs/latexFile.pdf' %}" type="application/pdf" width="100%" height="100%">&nbsp;</embed>
+                <embed src="{% static 'data/display_resume.pdf' %}" type="application/pdf" width="100%" height="100%">&nbsp;</embed>
             </div>
             <div id="pdf2" class = "col-6 p-5">
                 <embed src="{% static pdf_string %}" type="application/pdf" width="100%" height="100%" alt = "Oops! start making your first resume, to be shown here..">&nbsp;</embed>
@@ -121,11 +121,11 @@
 
                             <div class="form-group col-md-4">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" name="name" value="{{name}}">
+                                <input type="text" class="form-control" name="name" value="{{name}}" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="roll">Roll No.</label>
-                                <input type="text" class="form-control" name="roll" value="{{roll}}">
+                                <input type="text" class="form-control" name="roll" value="{{roll}}" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="mobile">Phone Number</label>
@@ -147,7 +147,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="minor">Minor</label>
-                                <input type="text" class="form-control" name="minor" placeholder="Minor in Mathematics"
+                                <input type="text" class="form-control" name="minor" placeholder="Mathematics"
                                     value="{{minor}}">
                             </div>
                             <div class="form-group col-md-4">
@@ -318,7 +318,7 @@
                         <div id="Project">
 
                             {% for proItem in project_list %}
-                            <div>
+                            <div class="{{proItem.title_string}}">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="{{proItem.title_string}}">Project Title {{proItem.ind}}</label>
@@ -357,10 +357,10 @@
                             var ProFields = parseInt("{{projectsCount}}");
                             function add_more_pro() {
                                 ProFields = ProFields + 1;
-                                console.log(ProFields, "LALLALA");
+                                //console.log(ProFields, "LALLALA");
                                 var parent = document.getElementById("Project");
                                 var div = document.createElement("div");
-                                div.setAttribute("class", "Pro" + ProFields);
+                                div.setAttribute("class", "proTitle" + ProFields);
 
                                 var str = '<br>'
                                 str = str + '<div class="form-row">';

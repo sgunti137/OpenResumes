@@ -235,7 +235,7 @@ def index(request,pk):
            str5 = 'proDes' + str(i)
            
            if str1 in md.keys():
-               projects.append([md[str1], md[str2], md[str3], md[str4], md[str5]])
+               projects.append([md[str1], md[str3], md[str5], md[str4], md[str2]])
            else:
                break
            i=i+1
@@ -273,6 +273,16 @@ def index(request,pk):
            else:
                break
            i=i+1
+
+        #collecting technical skills
+        techskills = {
+            "Programming Languages": md['pLanguages'],
+            "Web Technogies": md['webTechs'],
+            "DBMS": md['dbms'],
+            "OS": md['os'],
+            "Miscellaneous": md['miscellaneous'],
+            "Other skills": md['otherSkills'],
+        }
                
 
         #generating the LaTex file  
@@ -282,7 +292,7 @@ def index(request,pk):
             education=education,
             internships=internships,
             projects=projects,
-            techskills=[md['pLanguages'],md['webTechs'],md['dbms'],md['os'],md['miscellaneous'],md['otherSkills']],
+            techskills=techskills,
             keyCourses=course,
             por=por,
             achievements=achievements)
