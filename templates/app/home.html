@@ -1,0 +1,269 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Tailwind CSS -->
+    <link href="https://unpkg.com/tailwindcss@^2.1.1/dist/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Pacifico');
+        @import url('https://fonts.googleapis.com/css?family=Product+Sans');
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+        sub {
+            vertical-align: sub;
+            font-size: small;
+        }
+        .dropdown:focus-within .dropdown-menu {
+            opacity:1;
+            transform: translate(0) scale(1);
+            visibility: visible;
+        }
+        .ex {
+            /* background-clip: text;
+            text-fill-color: transparent;
+            background: conic-gradient(from 105.59deg at 1.12% 53.34%, #FF5200 -0.59deg, #72147E 0.44deg, #FF5200 359.41deg, #72147E 360.44deg); */
+            /* Create the gradient. */
+            /* #72147E, 100% */
+            /* #FF5200, 100% */
+        
+            /* Create the gradient. */
+            background-image:   linear-gradient(
+                                15deg,
+                                #72147E ,
+                                #FF5200  
+                                );
+            font-weight: 400;
+            background-size: 100%;
+            background-repeat: repeat;
+        
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+    <script>
+        delete_resume = function(id_arg,name_arg){
+            if(confirm('Are you sure about deleting '+name_arg +' permanently?')){
+                    document.getElementById("delete_resume_id").value = id_arg;
+                    document.getElementById("delete_flag").value = 'true';
+                    document.getElementById("submit").click();
+                }
+        }
+        pop_up_create_resume = function(){
+            name_field = document.getElementById("name_taking_form");
+            name_field.style = "visibility: visible;";
+        }
+        create_new_resume = function(){
+            
+            if(validate_name(document.getElementById("temp_name").value)){
+                document.getElementById("newResume").value = document.getElementById("temp_name").value;
+                document.getElementById("submit").click();
+            }else{
+                alert("Enter a valid name containing (a-z, 0-9, '_')");
+            }
+        }
+        stop_new_resume = function(){
+            name_field = document.getElementById("name_taking_form");
+            name_field.style = "visibility: hidden;";
+        }
+        validate_name = function(str){
+           var code, i;
+           if(str.length==0){
+               return false;
+           }
+           for(i=0; i<str.length;i++){
+               code = str.charCodeAt(i);
+               if(!(code > 47 && code < 58) &&!(code > 64 && code < 91) && !(code > 96 && code < 123) && code!=95 && code!=32 && code!=45){
+                   return false;
+               }
+           }
+           return true;
+        }
+    </script>
+</head>
+    <body>
+        <div class="max-w-max  items-center  grid grid-cols-1 divide-y divide-blue-5 m-2 bg-white">
+            <div class="flex flex-row justify-between w-screen px-3 py-2">
+                <p class="ex" style="font-family:'Pacifico'; font-size:30px ">OpenResumes</p>
+                <p class="absolute px-2 inset-12 text-xs text-gray-500" style="color: #ADA3A5; padding-top: 5px;font-family: 'Product Sans';">by</p>
+                <p class="absolute px-6 inset-12 text-xs font-bold text-gray-500" style="color: #ADA3A5; padding-top: 5px; font-family: 'Product Sans';">SWC</p>
+                <div class="flex items-center  rounded-md hover:bg-gray-100 focus:ring-1 px-6 py-2">
+                    <a href="{% url 'django_auth_adfs:logout' %}" class="font-extrabold text-xs text-gray-900">
+                        <svg class="h-8 w-8 text-gray-600 hover:text-black" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                            <path d="M7 12h14l-3 -3m0 6l3 -3" />
+                        </svg>
+                        <p class="text-xs text-gray-500" style="padding-top: 0px; font-family: 'Open Sans';">Logout</p>
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex w-full justify-between  m-4 px-1 py-4">
+
+                <p class="text-base not-italic font-bold leading-5 tracking-normal text-left py-4" style="font-family: 'Open Sans';">Created by me</p>
+                <div class="flex flex-wrap content-between vertical-align w-3/4  ">
+                    <!-- Individual cards -->
+                    {% for resume in Resumes %}
+                        <div class=" flex pt-6 pr-6 relative inline-block text-left dropdown">
+                            <span class="rounded-md shadow-sm ">
+                                <button class="bg-gray-100 rounded inline-flex justify-between items-center w-full px-1 py-2 pr-4 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" 
+                                        type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                                    <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path opacity="0.4" d="M25.1617 12.6961C24.5597 12.6961 23.7623 12.6828 22.7695 12.6828C20.3483 12.6828 18.3574 10.6788 18.3574 8.23478V3.94678C18.3574 3.60944 18.0881 3.33478 17.754 3.33478H10.7015C7.41021 3.33478 4.74998 6.03611 4.74998 9.34678V23.7134C4.74998 27.1868 7.53695 30.0014 10.9761 30.0014H21.4784C24.7578 30.0014 27.4167 27.3174 27.4167 24.0041V13.2961C27.4167 12.9574 27.1486 12.6841 26.8133 12.6854C26.2496 12.6894 25.5736 12.6961 25.1617 12.6961Z" fill="#FF9766"/>
+                                        <path opacity="0.4" d="M21.5287 4.09119C21.13 3.67652 20.434 3.96186 20.434 4.53652V8.05252C20.434 9.52719 21.6487 10.7405 23.1233 10.7405C24.0527 10.7512 25.3433 10.7539 26.4393 10.7512C27.0007 10.7499 27.286 10.0792 26.8967 9.67386C25.49 8.21119 22.9713 5.58986 21.5287 4.09119Z" fill="#FF5200"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0485 15.8516H16.5619C17.1099 15.8516 17.5552 15.4076 17.5552 14.8596C17.5552 14.3116 17.1099 13.8662 16.5619 13.8662H12.0485C11.5005 13.8662 11.0565 14.3116 11.0565 14.8596C11.0565 15.4076 11.5005 15.8516 12.0485 15.8516ZM12.0486 22.5105H19.3073C19.8553 22.5105 20.3006 22.0665 20.3006 21.5185C20.3006 20.9705 19.8553 20.5252 19.3073 20.5252H12.0486C11.5006 20.5252 11.0566 20.9705 11.0566 21.5185C11.0566 22.0665 11.5006 22.5105 12.0486 22.5105Z" fill="#FF5200"/>
+                                    </svg>
+                                    <div class="flex-column px-3">
+                                        <span class="flex text-lg not-italic font-semibold leading-6 tracking-normal text-left">{{resume}}</span>
+                                        <span class="static left-0 bottom-0 not-italic font-normal text-sm leading-5 text-gray-500 flex-none order-1 flex-grow-0">12th January 2021</span>
+                                    </div>
+                                    <svg class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </span>
+                            <div class="z-20 opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-left  scale-95">
+                                <div class="absolute right-0 w-32 top-12  mt-2 origin-top-left bg-gray-100 border border-yellow-100 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                                    <div class="py-1" style="font-family: 'Open Sans';">
+                                        <a href="index/{{resume.id}}" tabindex="0" class="text-gray-700 flex justify-between px-4 py-2 text-sm leading-5 text-left"  role="menuitem" style="color: darkolivegreen;">Edit</a>
+                                        <a href="static/pdfs/{{resume.pdfFile}}" download tabindex="1" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
+                                            pdf
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="gray">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                            </svg>
+                                        </a>
+                                        <a href="static/latex/{{resume.latexFile}}" download tabindex="2" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
+                                            LaTex
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="gray">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                            </svg>
+                                        </a>
+                                        <span role="menuitem" tabindex="-1" class="flex justify-between px-4 py-2 text-sm leading-5 text-left text-gray-700 cursor-not-allowed opacity-50" aria-disabled="true">Share (soon)</span>
+                                    </div>
+                                    <div class="py-1" style="font-family: 'Open Sans';">
+                                        <button type = "button" onclick="delete_resume('{{resume.id}}','{{resume}}')" tabindex="3" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left"  role="menuitem" style="color: red;">
+                                            Delete
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="red">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %} 
+
+                    <!-- Individual card starts 
+                    <div class=" flex pt-6 pr-6 relative inline-block text-left dropdown">
+                        <span class="rounded-md shadow-sm ">
+                            <button class="bg-gray-100 rounded inline-flex justify-between items-center w-full px-1 py-2 pr-4 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" 
+                                    type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                                <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4" d="M25.1617 12.6961C24.5597 12.6961 23.7623 12.6828 22.7695 12.6828C20.3483 12.6828 18.3574 10.6788 18.3574 8.23478V3.94678C18.3574 3.60944 18.0881 3.33478 17.754 3.33478H10.7015C7.41021 3.33478 4.74998 6.03611 4.74998 9.34678V23.7134C4.74998 27.1868 7.53695 30.0014 10.9761 30.0014H21.4784C24.7578 30.0014 27.4167 27.3174 27.4167 24.0041V13.2961C27.4167 12.9574 27.1486 12.6841 26.8133 12.6854C26.2496 12.6894 25.5736 12.6961 25.1617 12.6961Z" fill="#FF9766"/>
+                                    <path opacity="0.4" d="M21.5287 4.09119C21.13 3.67652 20.434 3.96186 20.434 4.53652V8.05252C20.434 9.52719 21.6487 10.7405 23.1233 10.7405C24.0527 10.7512 25.3433 10.7539 26.4393 10.7512C27.0007 10.7499 27.286 10.0792 26.8967 9.67386C25.49 8.21119 22.9713 5.58986 21.5287 4.09119Z" fill="#FF5200"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0485 15.8516H16.5619C17.1099 15.8516 17.5552 15.4076 17.5552 14.8596C17.5552 14.3116 17.1099 13.8662 16.5619 13.8662H12.0485C11.5005 13.8662 11.0565 14.3116 11.0565 14.8596C11.0565 15.4076 11.5005 15.8516 12.0485 15.8516ZM12.0486 22.5105H19.3073C19.8553 22.5105 20.3006 22.0665 20.3006 21.5185C20.3006 20.9705 19.8553 20.5252 19.3073 20.5252H12.0486C11.5006 20.5252 11.0566 20.9705 11.0566 21.5185C11.0566 22.0665 11.5006 22.5105 12.0486 22.5105Z" fill="#FF5200"/>
+                                </svg>
+                                <div class="flex-column px-3">
+                                    <span class="flex text-lg not-italic font-semibold leading-6 tracking-normal text-left">{{resume}}</span>
+                                    <span class="static left-0 bottom-0 not-italic font-normal text-sm leading-5 text-gray-500 flex-none order-1 flex-grow-0">12th January 2021</span>
+                                </div>
+                                <svg class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
+                                    </path>
+                                </svg>
+                            </button>
+                        </span>
+                        <div class="z-20 opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-left  scale-95">
+                            <div class="absolute right-0 w-32 top-12  mt-2 origin-top-left bg-gray-100 border border-yellow-100 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                                <div class="py-1" style="font-family: 'Open Sans';">
+                                    <a href="index/{{resume.id}}" tabindex="0" class="text-gray-700 flex justify-between px-4 py-2 text-sm leading-5 text-left"  role="menuitem" style="color: darkolivegreen;">Edit</a>
+                                    <a href="{% static 'pdfs/{{resume.pdfFile}}' %}" download tabindex="1" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
+                                        pdf
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="gray">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                        </svg>
+                                    </a>
+                                    <a href="{% static 'latex/{{resume.latexFile}}' %}" download tabindex="2" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
+                                        LaTex
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="gray">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                        </svg>
+                                    </a>
+                                    <span role="menuitem" tabindex="-1" class="flex justify-between px-4 py-2 text-sm leading-5 text-left text-gray-700 cursor-not-allowed opacity-50" aria-disabled="true">Share (soon)</span>
+                                </div>
+                                <div class="py-1" style="font-family: 'Open Sans';">
+                                    <button type = "button" onclick="myFunc('{{resume.id}}','{{resume}}')" tabindex="3" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left"  role="menuitem" style="color: red;">
+                                        Delete
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="red">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     Individual card end-->  
+                </div>
+                
+
+                <!-- Crete New Resume -->
+                <p class="text-base not-italic font-bold leading-5 tracking-normal text-left pt-12" style="font-family: 'Open Sans';">Create a new resume</p>
+
+                <div class="flex flex-wrap content-between vertical-align w-3/4 py-3 ">
+                    <!-- Individual card -->
+                    <div class=" flex pt-6 pr-6 relative inline-block text-left">
+                        <span class="rounded-md shadow-sm ">
+                            <button class="bg-gray-100 rounded inline-flex justify-between items-center w-full px-1 py-2 pr-4 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out  border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" 
+                                    type="button" onclick="pop_up_create_resume()" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                                    <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path opacity="0.4" d="M21.1617 9.69611C20.5597 9.69611 19.7623 9.68278 18.7695 9.68278C16.3482 9.68278 14.3574 7.67878 14.3574 5.23478V0.946778C14.3574 0.609444 14.0867 0.334778 13.754 0.334778H6.70147C3.41019 0.334778 0.749969 3.03611 0.749969 6.34678V20.7134C0.749969 24.1868 3.53693 27.0014 6.97608 27.0014H17.477C20.7577 27.0014 23.4166 24.3174 23.4166 21.0041V10.2961C23.4166 9.95745 23.1473 9.68411 22.812 9.68544C22.2496 9.68944 21.5723 9.69611 21.1617 9.69611Z" fill="#72147E"/>
+                                        <path opacity="0.4" d="M17.5287 1.09119C17.1301 0.676523 16.4341 0.961856 16.4341 1.53652V5.05252C16.4341 6.52719 17.6487 7.74052 19.1221 7.74052C20.0527 7.75119 21.3434 7.75386 22.4394 7.75119C23.0007 7.74986 23.2861 7.07919 22.8967 6.67386C21.4901 5.21119 18.9714 2.58986 17.5287 1.09119Z" fill="#72147E"/>
+                                        <path d="M15.2397 13.9832H12.9357V11.6805C12.9357 11.1325 12.4917 10.6872 11.9437 10.6872C11.3957 10.6872 10.9504 11.1325 10.9504 11.6805V13.9832H8.6477C8.0997 13.9832 7.6557 14.4285 7.6557 14.9765C7.6557 15.5245 8.0997 15.9699 8.6477 15.9699H10.9504V18.2712C10.9504 18.8192 11.3957 19.2645 11.9437 19.2645C12.4917 19.2645 12.9357 18.8192 12.9357 18.2712V15.9699H15.2397C15.7877 15.9699 16.233 15.5245 16.233 14.9765C16.233 14.4285 15.7877 13.9832 15.2397 13.9832Z" fill="#72147E"/>
+                                    </svg>    
+                                <div class="flex-column px-3">
+                                    <span class="flex text-lg not-italic font-semibold leading-6 tracking-normal text-left">Start Blank</span>
+                                    <span class="static left-0 bottom-0 not-italic font-normal text-sm leading-5 text-gray-500 flex-none order-1 flex-grow-0">Creates a new resume</span>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </button>
+                        </span>
+                        
+                    </div>
+                    
+                    <form class="w-full max-w-sm" id = "name_taking_form" name = "name_taking_form" action = '.' style="visibility: hidden;">
+                        <div class="flex pt-10 pr-6 relative items-center bg-transparent border-b border-purple-500 py-2">
+                        <input id = "temp_name" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Resume name" aria-label="Full name">
+                        
+                        <button class="bg-purple-500 hover:bg-purple-900 text-white  py-1 px-2 rounded"
+                        type = "button" onclick="create_new_resume()">
+                            Create
+                        </button>
+                        <button  class="bg-gray-50  text-gray-500 hover:bg-gray-200 py-1 px-2 rounded" 
+                        type="button" onclick = "stop_new_resume()">
+                            Cancel
+                        </button>
+                        </div>
+                    </form>
+                
+                    
+                    <!-- Individual card end-->
+                </div>
+                
+            </div>
+        </div>
+        <form id = "home_request_form" method="POST" action = '.'>{% csrf_token %} 
+            <input type="hidden" id = "delete_resume_id" name="delete_resume_id">
+            <input type="hidden" id = "delete_flag" name = "delete_flag" value = "false">
+            <input type="hidden" id = "newResume" name = "newResume">
+            <input type = "submit" id = "submit" name = "submit" style = "visibility: hidden;">
+        </form>
+    </body>
+</body>
+</html>

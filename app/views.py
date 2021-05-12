@@ -354,12 +354,17 @@ def home(request):
 
     home_dict = {"name":us.first_name}
     home_dict["Resumes"] = resumes_list
+
+
+
     
     # if len(resumes_list)==0:
     #     return redirect('index/')
 
     if request.method == 'POST':
         requestDir = request.POST
+
+        print(requestDir)
         
         if requestDir["delete_flag"]=='true':
             delete_resume_id = int(requestDir['delete_resume_id'])
@@ -415,5 +420,5 @@ def home(request):
             print(redirect_url)
             return redirect(redirect_url)
 
-    return render(request,'pdfgen/home.html',context = home_dict)
+    return render(request,'app/home.html',context = home_dict)
 
