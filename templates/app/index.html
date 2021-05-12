@@ -1,0 +1,64 @@
+<!Doctype html>
+
+<html lang="en">
+<head>
+    <title>
+        OpenResumes
+    </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Tailwind CSS -->
+    <link href="https://unpkg.com/tailwindcss@^2.1.1/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}"  type="image/x-icon"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Pacifico');
+        @import url('https://fonts.googleapis.com/css?family=Product+Sans');
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+        .ex {
+            /* background-clip: text;
+            text-fill-color: transparent;
+            background: conic-gradient(from 105.59deg at 1.12% 53.34%, #FF5200 -0.59deg, #72147E 0.44deg, #FF5200 359.41deg, #72147E 360.44deg); */
+            /* Create the gradient. */
+            /* #72147E, 100% */
+            /* #FF5200, 100% */
+        
+            /* Create the gradient. */
+            background-image:   linear-gradient(
+                                15deg,
+                                #72147E ,
+                                #FF5200  
+                                );
+            font-weight: 400;
+            background-size: 100%;
+            background-repeat: repeat;
+        
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+    <body>
+        <div class="max-w-max  items-center  grid grid-cols-1 divide-y divide-blue-5 m-2 bg-white">
+            <div class="flex flex-row justify-between w-screen px-3 py-2">
+                <p class="ex" style="font-family:'Pacifico'; font-size:30px ">OpenResumes</p>
+                <p class="absolute px-2 inset-12 text-xs my-1.5 mx-2 text-gray-500" style="color: #ADA3A5; font-family: 'Product Sans';">by</p>
+                <p class="absolute px-6 inset-12 text-xs font-bold my-1.5 mx-2 text-gray-500" style="color: #ADA3A5; font-family: 'Product Sans';">SWC</p>
+                <div class="flex items-center  rounded-md hover:bg-gray-100 focus:ring-1 px-6 py-2">
+                    <a href="{% url 'django_auth_adfs:logout' %}" class="font-extrabold text-xs text-gray-900">
+                        <svg class="h-8 w-8 text-gray-600 hover:text-black" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                            <path d="M7 12h14l-3 -3m0 6l3 -3" />
+                        </svg>
+                        <p class="text-xs text-gray-500" style="padding-top: 0px; font-family: 'Open Sans';">Logout</p>
+                    </a>
+                </div>
+            </div>
+            <hr>
+            
+            <!--  -->
+
+    </body>
+</html>

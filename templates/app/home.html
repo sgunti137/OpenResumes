@@ -5,6 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- icon -->
+    <title>
+        OpenResumes
+    </title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}"  type="image/x-icon"/>
     <!-- Tailwind CSS -->
     <link href="https://unpkg.com/tailwindcss@^2.1.1/dist/tailwind.min.css" rel="stylesheet">
     
@@ -88,8 +93,8 @@
         <div class="max-w-max  items-center  grid grid-cols-1 divide-y divide-blue-5 m-2 bg-white">
             <div class="flex flex-row justify-between w-screen px-3 py-2">
                 <p class="ex" style="font-family:'Pacifico'; font-size:30px ">OpenResumes</p>
-                <p class="absolute px-2 inset-12 text-xs text-gray-500" style="color: #ADA3A5; padding-top: 5px;font-family: 'Product Sans';">by</p>
-                <p class="absolute px-6 inset-12 text-xs font-bold text-gray-500" style="color: #ADA3A5; padding-top: 5px; font-family: 'Product Sans';">SWC</p>
+                <p class="absolute px-2 inset-12 text-xs my-1.5 mx-2 text-gray-500" style="color: #ADA3A5; font-family: 'Product Sans';">by</p>
+                <p class="absolute px-6 inset-12 text-xs font-bold my-1.5 mx-2 text-gray-500" style="color: #ADA3A5; font-family: 'Product Sans';">SWC</p>
                 <div class="flex items-center  rounded-md hover:bg-gray-100 focus:ring-1 px-6 py-2">
                     <a href="{% url 'django_auth_adfs:logout' %}" class="font-extrabold text-xs text-gray-900">
                         <svg class="h-8 w-8 text-gray-600 hover:text-black" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -109,7 +114,7 @@
                     {% for resume in Resumes %}
                         <div class=" flex pt-6 pr-6 relative inline-block text-left dropdown">
                             <span class="rounded-md shadow-sm ">
-                                <button class="bg-gray-100 rounded inline-flex justify-between items-center w-full px-1 py-2 pr-4 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" 
+                                <button class="bg-gray-100 rounded inline-flex justify-between items-center w-auto pl-2 py-2 pr-5 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" 
                                         type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
                                     <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path opacity="0.4" d="M25.1617 12.6961C24.5597 12.6961 23.7623 12.6828 22.7695 12.6828C20.3483 12.6828 18.3574 10.6788 18.3574 8.23478V3.94678C18.3574 3.60944 18.0881 3.33478 17.754 3.33478H10.7015C7.41021 3.33478 4.74998 6.03611 4.74998 9.34678V23.7134C4.74998 27.1868 7.53695 30.0014 10.9761 30.0014H21.4784C24.7578 30.0014 27.4167 27.3174 27.4167 24.0041V13.2961C27.4167 12.9574 27.1486 12.6841 26.8133 12.6854C26.2496 12.6894 25.5736 12.6961 25.1617 12.6961Z" fill="#FF9766"/>
@@ -218,14 +223,14 @@
                     <!-- Individual card -->
                     <div class=" flex pt-6 pr-6 relative inline-block text-left">
                         <span class="rounded-md shadow-sm ">
-                            <button class="bg-gray-100 rounded inline-flex justify-between items-center w-full px-1 py-2 pr-4 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out  border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" 
+                            <button class="bg-gray-100 rounded inline-flex justify-between items-center w-full pl-3 py-2 pr-5 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out  border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" 
                                     type="button" onclick="pop_up_create_resume()" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
                                     <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path opacity="0.4" d="M21.1617 9.69611C20.5597 9.69611 19.7623 9.68278 18.7695 9.68278C16.3482 9.68278 14.3574 7.67878 14.3574 5.23478V0.946778C14.3574 0.609444 14.0867 0.334778 13.754 0.334778H6.70147C3.41019 0.334778 0.749969 3.03611 0.749969 6.34678V20.7134C0.749969 24.1868 3.53693 27.0014 6.97608 27.0014H17.477C20.7577 27.0014 23.4166 24.3174 23.4166 21.0041V10.2961C23.4166 9.95745 23.1473 9.68411 22.812 9.68544C22.2496 9.68944 21.5723 9.69611 21.1617 9.69611Z" fill="#72147E"/>
                                         <path opacity="0.4" d="M17.5287 1.09119C17.1301 0.676523 16.4341 0.961856 16.4341 1.53652V5.05252C16.4341 6.52719 17.6487 7.74052 19.1221 7.74052C20.0527 7.75119 21.3434 7.75386 22.4394 7.75119C23.0007 7.74986 23.2861 7.07919 22.8967 6.67386C21.4901 5.21119 18.9714 2.58986 17.5287 1.09119Z" fill="#72147E"/>
                                         <path d="M15.2397 13.9832H12.9357V11.6805C12.9357 11.1325 12.4917 10.6872 11.9437 10.6872C11.3957 10.6872 10.9504 11.1325 10.9504 11.6805V13.9832H8.6477C8.0997 13.9832 7.6557 14.4285 7.6557 14.9765C7.6557 15.5245 8.0997 15.9699 8.6477 15.9699H10.9504V18.2712C10.9504 18.8192 11.3957 19.2645 11.9437 19.2645C12.4917 19.2645 12.9357 18.8192 12.9357 18.2712V15.9699H15.2397C15.7877 15.9699 16.233 15.5245 16.233 14.9765C16.233 14.4285 15.7877 13.9832 15.2397 13.9832Z" fill="#72147E"/>
                                     </svg>    
-                                <div class="flex-column px-3">
+                                <div class="flex-column px-4">
                                     <span class="flex text-lg not-italic font-semibold leading-6 tracking-normal text-left">Start Blank</span>
                                     <span class="static left-0 bottom-0 not-italic font-normal text-sm leading-5 text-gray-500 flex-none order-1 flex-grow-0">Creates a new resume</span>
                                 </div>
@@ -237,7 +242,7 @@
                         
                     </div>
                     
-                    <form class="w-full max-w-sm" id = "name_taking_form" name = "name_taking_form" action = '.' style="visibility: hidden;">
+                    <form class="w-full max-w-sm " id = "name_taking_form" name = "name_taking_form" action = '.' style="visibility: hidden;">
                         <div class="flex pt-10 pr-6 relative items-center bg-transparent border-b border-purple-500 py-2">
                         <input id = "temp_name" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Resume name" aria-label="Full name">
                         
@@ -265,5 +270,4 @@
             <input type = "submit" id = "submit" name = "submit" style = "visibility: hidden;">
         </form>
     </body>
-</body>
 </html>
