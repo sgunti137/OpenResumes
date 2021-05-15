@@ -37,13 +37,16 @@ client_id = 'e4cfa449-5da4-465b-b7d5-b95f56246469'
 tenant_id = '850aa78d-94e1-4bc6-9cf3-8c11b530701c'
 client_secret = 'fDYVBo_VkE0_OmK1~dh64YAQiR~rP3J5Qd'
 
+# client_id = '4161b707-2585-441d-8220-d4622181d291'
+# tenant_id = '850aa78d-94e1-4bc6-9cf3-8c11b530701c'
+# client_secret = 'd1jEA8li319-9oq8--3c84Pm~_~Qpr3YAO'
 AUTH_ADFS = {
     'AUDIENCE': client_id,
     'CLIENT_ID': client_id,
     'CLIENT_SECRET': client_secret,
-    'CLAIM_MAPPING': {'first_name': 'given_name',
-                      'last_name': 'family_name',
-                      'email': 'upn'},
+    'CLAIM_MAPPING': {  'first_name': 'given_name',
+                        'last_name': 'family_name',
+                        'email': 'upn'},
     'GROUPS_CLAIM': 'roles',
     'MIRROR_GROUPS': True,
     'USERNAME_CLAIM': 'upn',
@@ -106,7 +109,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },    
-       
+        
     },
 ]
 
