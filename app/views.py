@@ -422,4 +422,33 @@ def home(request):
             return redirect(redirect_url)
 
     return render(request,'app/home.html',context = home_dict)
+def send(request):
+    toh=request.POST['to']
+    print(toh)
+    mail_content = '''
+    '''
+    sender_address = 'resumegenerator112@gmail.com'
+    sender_pass = 'Resumegenerator123'
+    receiver_address = toh
+    message = MIMEMultipart()
+    message['From'] = sender_address
+    message['To'] = receiver_address
+    message['Subject'] = 'Hi bro Nuv thoppp!!!!!!!'
+    message.attach(MIMEText(mail_content, 'plain'))
+    attach_file_name ='static/pdfs/'+ Resume.objects.get(id=request.POST['pk']).pdfFile
+    print
+    attach_file = open(attach_file_name, 'rb') 
+    payload = MIMEBase('application', 'octate-stream')
+    payload.set_payload((attach_file).read())
+    encoders.encode_base64(payload) 
+    payload.add_header('Content-Decomposition', 'attachment', filename=attach_file_name)
+    message.attach(payload)
+    session = smtplib.SMTP('smtp.gmail.com', 587)
+    session.starttls() 
+    session.login(sender_address, sender_pass) 
+    text = message.as_string()
+    session.sendmail(sender_address, receiver_address, text)
+    session.quit()
+    print('Mail Sent')
+    return redirect('home')
 
