@@ -799,6 +799,134 @@
 
                             </script>
                     <!-- Key Courses End -->
+                    
+                    <!-- PORs Start -->
+                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white">
+                        <svg class=" flex " width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5575 8.01919C10.7485 8.01919 10.9405 8.09219 11.0865 8.23819L14.5735 11.7082C14.7145 11.8492 14.7935 12.0402 14.7935 12.2402C14.7935 12.4392 14.7145 12.6302 14.5735 12.7712L11.0865 16.2432C10.7935 16.5352 10.3195 16.5352 10.0265 16.2412C9.73448 15.9472 9.73548 15.4722 10.0285 15.1802L12.9815 12.2402L10.0285 9.30019C9.73548 9.00819 9.73448 8.53419 10.0265 8.24019C10.1725 8.09219 10.3655 8.01919 10.5575 8.01919Z" fill="#242426"/>
+                            </svg>
+                            <div class="text-base not-italic font-bold leading-5 tracking-normal text-left">Position of Responsibilities</div>
+                    </button>
+                    <div class="my-3 p-8  border rounded-xl border-gray-300 bg-white hidden overflow-hidden  ">
+                        <!--form id="Por_form_"-->
+                            <!-- <span class="text-base not-italic font-normal leading-5 tracking-normal text-left">Fill the data of your Position of Responsibilities</span> -->
+                            <div id="Por_" class="my-6 p-3 mr-20">
+                                
+                                {% for porItem in por_list %}
+                                <div id = "{{poritem.por_string}}">
+                                    <div class="mb-8 flex flex-col "> 
+                                        <label for="porItem.por_string">POR{{porItem.ind}}</label>
+                                        <input type="text"  name="{{porItem.por_string}}" id="{{porItem.por_string}}"placeholder="ex: Worked as club secretary of coding club,2020" value="{{porItem.Por}}"
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                    </div> 
+                                    <div class="mb-8 flex flex-col  ">
+                                        <label for="{{porItem.por_des_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            POR Description {{porItem.ind}}
+                                        </label>
+                                        <textarea name="{{poritem.por_des_string}}" id="{{poritem.por_des_string}}" rows="3"
+                                            class="border-b-2 border-solid border-gray-300 focus:border-red-300  focus:outline-red-300 focus:border-b-2 hover:border-b-2 text-left">
+                                            {{porItem.PorDesc}}
+                                        </textarea>
+                                    </div>
+                                    
+                                </div>
+
+                                {% endfor %}
+                                
+                            </div>
+                        <!--/form-->
+                        <div class="sm:mb-8 sm:flex sm:flex-row sm:justify-center">
+                            <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" style="background: #FF5200"; 
+                            type="button" onclick="add_more_por()">
+                                Add More
+                            </button>
+                            <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-blue-100 focus:ring-offset-2 focus:outline-none" 
+                            type="button" onclick="remove_por()">
+                                Remove
+                            </button>
+                        </div>
+                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" type="button" onclick="myFunction()">
+                            Save
+                        </button>
+                    </div>
+                    <!-- script for adding more Position of Responsibilities, delete operation.. -->
+                    <script>
+                        
+                        var PORFields = parseInt("{{porCount}}");
+                        function add_more_por() {
+                            PORFields = PORFields + 1;
+                            var parent = document.getElementById("Por_");
+                            var div = document.createElement("div");
+                            div.setAttribute("id", "Por" + PORFields);
+
+                            /*
+                            <div id = "Por1" class="my-6 p-3 mr-20">
+                                    <div class="mb-8 flex flex-col ">
+                                        <label for="por1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            POR 1
+                                        </label>
+                                        <input type="text" name="por1_" id="por1_" 
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                    </div>  
+                                    <div class="mb-8 flex flex-col">
+                                        <label for="porDes_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            POR Description 1
+                                        </label>
+                                        <input type="text" name="porDes_" id="porDes_" 
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                    </div>
+                                    <br>  
+                                </div>*/
+                            var PORStr = '<div id = "Por'+ PORFields +'">';
+                                PORStr += '<div class="mb-8 flex flex-col ">';
+                                PORStr += '<label for="por'+ PORFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                PORStr += 'POR '+ PORFields;
+                                PORStr += '</label>';
+                                PORStr += '<input type="text" name="por'+ PORFields +'" id="por'+ PORFields + '"';
+                                PORStr += 'class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                PORStr += '</div>';
+                                PORStr += '<div class="mb-8 flex flex-col">';
+                                PORStr += '<label for="por'+ PORFields +'des" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                PORStr += 'Description '+PORFields;
+                                PORStr += '</label>';
+                                PORStr += '<textarea name="por'+ PORFields +'" id="por'+ PORFields +'" rows="3"';
+                                PORStr += 'class="border-b-1 border-solid border-gray-300 focus:border-red-300  focus:outline-none focus:border-b-1 hover:border-b-1 text-left">';
+                                PORStr += '</textarea>';
+                                PORStr += '</div>';
+                                PORStr += '<hr>';
+                                PORStr += '</div>';
+                            /*
+                            var str = '<div class="form-row">';
+                            str = str + '<div class="form-group col-md-12">';
+                            str = str + '<label for="por' + PORFields + '">Company name ' + PORFields + '</label>';
+                            str = str + '<input type="text" class="form-control" name="por' + PORFields + '" placeholder="Amazon">';
+                            str = str + '</div>';
+                            str = str + '<div class="form-group col-md-12">';
+                            str = str + '<label for="porDes' + PORFields + '">Description ' + PORFields + '</label>';
+                            str = str + '<textarea class="form-control" rows="3"  name="porDes' + PORFields + '"></textarea>';
+                            str = str + '</div>';
+                            str = str + '</div>';*/
+
+                            div.innerHTML = PORStr;
+                            parent.appendChild(div);
+                        }
+                        function remove_por() {
+                            
+                            var parent = document.getElementById("Por_");
+                            /*
+                            if(PORFields>0 && por_flag){
+                                parent.removeChild(parent.lastChild);
+                                parent.removeChild(parent.lastChild);
+                            }
+                            else{
+                                parent.removeChild(parent.lastChild);
+                            }*/
+                            parent.removeChild(parent.lastChild);
+                            PORFields -= 1;
+                            if(PORFields==0)por_flag = false;
+                        }
+                    </script>
+                    <!-- PORs End -->
 
 
                     
