@@ -58,7 +58,7 @@
 
     </script>
 </head>
-    <body class="mx-2">
+    <body class="mx-2 sm:mr-20">
         <!-- Header part -->
 
         <div class="relative items-center bg-white">
@@ -240,7 +240,6 @@
                                     </div>
                                 </div>
                                 <br>
-                                <br>
                                 <div class="mb-8 flex flex-col ">
                                     <label for="btechBoard_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                         B. Tech Instituion
@@ -265,7 +264,6 @@
                                     </div>
                                 </div>
                                 <br>
-                                <br>
                                 <div class="mb-8 flex flex-col ">
                                     <label for="ssBoard_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                         Senior Secondary Board
@@ -289,7 +287,6 @@
                                             class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                 </div>
-                                <br>
                                 <br>
                                 <div class="mb-8 flex flex-col ">
                                     <label for="sBoard_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
@@ -351,7 +348,7 @@
                                             Description {{expitem.ind}}
                                         </label>
                                         <textarea name="{{expitem.exp_des_string}}" id="{{expitem.exp_des_string}}" rows="3"
-                                            class="border-b-1 border-solid border-gray-300 focus:border-red-300  focus:outline-none focus:border-b-1 hover:border-b-1 text-left">
+                                            class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">
                                         {{expitem.ExpDes}}
                                         </textarea>
                                     </div>
@@ -363,16 +360,16 @@
                             </div>
                         <!--/form-->
                         <div class="sm:mb-8 sm:flex sm:flex-row sm:justify-center">
-                            <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" style="background: #FF5200"; 
+                            <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white   focus:outline-none bg-red-500 "  ; 
                             type="button" onclick="add_more_exp()">
                                 Add More
                             </button>
-                            <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-blue-100 focus:ring-offset-2 focus:outline-none" 
+                            <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700  rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:ring-none focus:outline-none" 
                             type="button" onclick="remove_exp()">
                                 Remove
                             </button>
                         </div>
-                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" type="button" onclick="myFunction()">
+                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" type="button" onclick="myFunction()">
                             Save
                         </button>
                     </div>
@@ -419,10 +416,10 @@
                                 expStr += 'Description '+ExpFields;
                                 expStr += '</label>';
                                 expStr += '<textarea name="exp'+ ExpFields +'" id="exp'+ ExpFields +'" rows="3"';
-                                expStr += 'class="border-b-1 border-solid border-gray-300 focus:border-red-300  focus:outline-none focus:border-b-1 hover:border-b-1 text-left">';
+                                expStr += 'class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">';
                                 expStr += '</textarea>';
                                 expStr += '</div>';
-                                expStr += '<hr>';
+                                expStr += '<br>';
                                 expStr += '</div>';
                             /*
                             var str = '<div class="form-row">';
@@ -509,33 +506,30 @@
                                         <label for="{{proItem.des_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Description {{proitem.ind}}
                                         </label>
-                                        <input type="text" name="{{proItem.des_string}}" id="{{proItem.des_string}}" value="{{proItem.des}}" 
+                                        <textarea  name="{{proItem.des_string}}" id="{{proItem.des_string}}" 
                                             class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                            {{proItem.des}}
+                                        </textarea>
                                     </div>
-                                    <br>
                                     <br>
                                 </div>
 
                                 {% endfor %}
-
-
-
-
                                                                 
                             </div>
                             <div class="sm:mb-8 sm:flex sm:flex-row sm:justify-center">
-                                <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" style="background: #FF5200";
+                                <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" style="background: #FF5200";
                                  type="button" onclick="add_more_pro()">
                                     Add More
                                 </button>
-                                <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-blue-100 focus:ring-offset-2 focus:outline-none"
+                                <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none"
                                  type="button" onclick="remove_pro()">
                                     Remove
                                 </button>
                             </div>
 
 
-                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" type="button" onclick="myFunction()">
+                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" type="button" onclick="myFunction()">
                                 Save
                             </button>
 
@@ -580,10 +574,10 @@
                                         <label for="pdesc1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Description 1
                                         </label>
-                                        <input type="text" name="pdesc1_" id="pdesc1_" 
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <textarea name="proDesc'+ ProFields +'_" id="proDesc'+ ProFields +'_" rows="3"
+                                            class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">;
+                                        </textarea>
                                     </div>
-                                    <br>
                                     <br>
                                       
                                 */
@@ -625,10 +619,11 @@
                                     str+= '</div>';
                                     str+= '<div class="mb-8 flex flex-col ">';
                                     str+= '<label for="proDes'+ ProFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Description '+ProFields+'</label>';
-                                    str+= '<input type="text" name="proDesc'+ ProFields +'_" id="proDesc'+ ProFields +'_" ';
-                                    str+= 'class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                    str += '<textarea name="proDesc'+ ProFields +'_" id="proDesc'+ ProFields +'_" rows="3"';
+                                    str += 'class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">';
+                                    str += '</textarea>';
                                     str+= '</div>';
-                                    str+= '<br><br>';
+                                    str+= '<br>';
                                     str+='</div>';
 
                                 div.innerHTML = str;
@@ -708,7 +703,7 @@
                                 </div>
                             </div>
                             
-                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" type="button" onclick="myFunction()">
+                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" type="button" onclick="myFunction()">
                                 Save
                             </button>
                             
@@ -745,16 +740,16 @@
 
 
                             <div class="sm:mb-8 sm:flex sm:flex-row sm:justify-center">
-                                <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" style="background: #FF5200";
+                                <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" style="background: #FF5200";
                                  type="button" onclick="add_more_courses()">
                                     Add More
                                 </button>
-                                <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-blue-100 focus:ring-offset-2 focus:outline-none" 
+                                <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" 
                                 type="button" onclick="remove_courses()">
                                     Remove
                                 </button>
                             </div>
-                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" type="button" onclick="myFunction()">
+                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" type="button" onclick="myFunction()">
                                 Save
                             </button>
 
@@ -824,7 +819,7 @@
                                             POR Description {{porItem.ind}}
                                         </label>
                                         <textarea name="{{poritem.por_des_string}}" id="{{poritem.por_des_string}}" rows="3"
-                                            class="border-b-2 border-solid border-gray-300 focus:border-red-300  focus:outline-red-300 focus:border-b-2 hover:border-b-2 text-left">
+                                            class="class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">">
                                             {{porItem.PorDesc}}
                                         </textarea>
                                     </div>
@@ -836,16 +831,16 @@
                             </div>
                         <!--/form-->
                         <div class="sm:mb-8 sm:flex sm:flex-row sm:justify-center">
-                            <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" style="background: #FF5200"; 
+                            <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" style="background: #FF5200"; 
                             type="button" onclick="add_more_por()">
                                 Add More
                             </button>
-                            <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-blue-100 focus:ring-offset-2 focus:outline-none" 
+                            <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" 
                             type="button" onclick="remove_por()">
                                 Remove
                             </button>
                         </div>
-                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" type="button" onclick="myFunction()">
+                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" type="button" onclick="myFunction()">
                             Save
                         </button>
                     </div>
@@ -889,12 +884,14 @@
                                 PORStr += '<label for="por'+ PORFields +'des" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
                                 PORStr += 'Description '+PORFields;
                                 PORStr += '</label>';
-                                PORStr += '<textarea name="por'+ PORFields +'" id="por'+ PORFields +'" rows="3"';
-                                PORStr += 'class="border-b-1 border-solid border-gray-300 focus:border-red-300  focus:outline-none focus:border-b-1 hover:border-b-1 text-left">';
+                                PORStr += '<textarea name="por'+ PORFields +'_" id="por'+ PORFields +'_" rows="3"';
+                                PORStr += 'class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">';
                                 PORStr += '</textarea>';
                                 PORStr += '</div>';
-                                PORStr += '<hr>';
+                                PORStr += '<br>';
                                 PORStr += '</div>';
+
+                                
                             /*
                             var str = '<div class="form-row">';
                             str = str + '<div class="form-group col-md-12">';
@@ -927,21 +924,8 @@
                         }
                     </script>
                     <!-- PORs End -->
-
-
-                    
-
-                    <button class="accordion flex flex-row items-start bg-white cursor-pointer py-1 w-full text-left text-sm">
-                        <svg class=" flex " width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10.5575 8.01919C10.7485 8.01919 10.9405 8.09219 11.0865 8.23819L14.5735 11.7082C14.7145 11.8492 14.7935 12.0402 14.7935 12.2402C14.7935 12.4392 14.7145 12.6302 14.5735 12.7712L11.0865 16.2432C10.7935 16.5352 10.3195 16.5352 10.0265 16.2412C9.73448 15.9472 9.73548 15.4722 10.0285 15.1802L12.9815 12.2402L10.0285 9.30019C9.73548 9.00819 9.73448 8.53419 10.0265 8.24019C10.1725 8.09219 10.3655 8.01919 10.5575 8.01919Z" fill="#242426"/>
-                        </svg>
-                        <span class="text-base not-italic font-bold leading-5 tracking-normal text-left">Position of Responsibilities</span>
-                    </button>
-                    <div class="panel">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-
-                    <button class="accordion flex flex-row items-start bg-white  py-1 w-full text-left text-sm">
+                    <!-- Achievements -->
+                    <button class="accordion flex flex-row items-start bg-white  py-1 w-full text-left text-sm focus:outline-none">
                         <svg class=" flex " width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.5575 8.01919C10.7485 8.01919 10.9405 8.09219 11.0865 8.23819L14.5735 11.7082C14.7145 11.8492 14.7935 12.0402 14.7935 12.2402C14.7935 12.4392 14.7145 12.6302 14.5735 12.7712L11.0865 16.2432C10.7935 16.5352 10.3195 16.5352 10.0265 16.2412C9.73448 15.9472 9.73548 15.4722 10.0285 15.1802L12.9815 12.2402L10.0285 9.30019C9.73548 9.00819 9.73448 8.53419 10.0265 8.24019C10.1725 8.09219 10.3655 8.01919 10.5575 8.01919Z" fill="#242426"/>
                         </svg>
@@ -967,8 +951,8 @@
                                             Description {{achItem.ind}}
                                         </label>
                                         <textarea name="{{achItem.ach_des_string}}" id="{{achItem.ach_des_string}}" rows="3"
-                                            class="border-b-1 border-solid border-gray-300 focus:border-red-300  focus:outline-none focus:border-b-1 hover:border-b-1 text-left">
-                                            {{achItem.AchDes}}
+                                            class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">
+                                        {{achItem.AchDes}}
                                         </textarea>
                                     </div>
                                     <hr>  
@@ -979,16 +963,16 @@
                             </div>
                         <!--/form-->
                         <div class="sm:mb-8 sm:flex sm:flex-row sm:justify-center">
-                            <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" style="background: #FF5200"; 
+                            <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" style="background: #FF5200"; 
                             type="button" onclick="add_more_achievements()">
                                 Add More
                             </button>
-                            <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-blue-100 focus:ring-offset-2 focus:outline-none" 
+                            <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" 
                             type="button" onclick="remove_achievements()">
                                 Remove
                             </button>
                         </div>
-                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" type="button" onclick="myFunction()">
+                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" type="button" onclick="myFunction()">
                             Save
                         </button>  
                     </div>
@@ -1013,14 +997,12 @@
                                 str+='Description '+AchFields;
                                 str+='</label>';
                                 str+='<textarea name="achDes'+ AchFields+'_" id="achDes'+ AchFields +'_" rows="3"';
-                                str+=  'class="border-b-1 border-solid border-gray-300 focus:border-red-300  focus:outline-none focus:border-b-1 hover:border-b-1 text-left">';
+                                str+='class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">';
                                 str+='</textarea>';
                                 str+='</div>';
-                                str+='<hr>';
+                                str+='<br>';
                                 str+='</div>';
                                 
-
-                            
 
                             div.innerHTML = str;
                             parent.appendChild(div);
@@ -1036,12 +1018,12 @@
                     </script>
                     
                 </div>
-                
-                <button class="ml-32 sm:ml-64 lg:ml-64 xl:mr-0 flex flex-col p-3  w-40 h-12 bg-pink-700 box-border rounded items-center " type="button" onclick="myFunction()">
+                <!-- Achievements End-->
+                <button class="ml-32 sm:ml-64 lg:ml-64 xl:mr-0 flex flex-col p-3  w-40 h-12 bg-pink-700 box-border rounded items-center transition duration-500 ease-in-out hover:bg-pink-900 transform hover:-translate-y-1 hover:scale-110 " type="button" onclick="myFunction()">
                     Compile
                 </button>
                 </div>
-            <div class="bg-gray-500 text-center place-self-center w-full py-80 text-bold text-lg p-6 ml-6 max-h-96 rounded" style="font-family: 'Pacifico';">
+            <div class="bg-gray-500 text-center place-self-center w-full py-80 text-bold text-lg p-6 mx-20 max-h-96 rounded" style="font-family: 'Pacifico';">
                Your Resume will Compile hear 
             </div>
             
