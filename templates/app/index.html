@@ -753,6 +753,44 @@
 
                         <!-- </form> -->
                     </div>
+                    <script>
+                                /*
+                                <div id="course1_" class="mb-8 flex flex-col ">
+                                    <label for="course1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        Course 1 
+                                    </label>
+                                    <input type="text" name="course1_" id="course1_" 
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                </div>
+                                */
+
+                               // var CourseFields = parseInt("{{coursesCount}}");
+                               var CourseFields = 1;
+
+                                function add_more_courses() {
+                                    CourseFields = CourseFields + 1;
+                                    var parent = document.getElementById("Courses_");
+                                    var div = document.createElement("div");
+                                    div.setAttribute("id", "course" + CourseFields + "_");
+
+                                    var str = '<div class="mb-8 flex flex-col ">';
+                                        str += '<label for="course'+ CourseFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Course '+CourseFields+'</label>';
+                                        str += '<input type="text" name="course'+ CourseFields +'" id="course'+ CourseFields +'" ';
+                                        str += ' class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                        str += '</div>';
+
+                                    div.innerHTML = str;
+
+                                    parent.appendChild(div);
+                                }
+                                function remove_courses() {
+                                    
+                                    var parent = document.getElementById("Courses_");
+                                    parent.removeChild(parent.lastChild);
+                                    CourseFields = CourseFields - 1;
+                                }
+
+                            </script>
                     <!-- Key Courses End -->
 
 
