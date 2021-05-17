@@ -727,15 +727,22 @@
                         <!-- <form> -->
                             <span class="text-base not-italic font-normal leading-5 tracking-normal text-left">Fill the data of your key courses taken and use superscript * to mention the ongoing course </span>
                             <div id="Courses_" class="my-6 p-3 mr-20">
-                                
-                                <div id="course1_">
-                                    <div class="mb-8 flex flex-col">
-                                        <label for="course1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black"> Course 1 </label>
-                                        <input type="text" name="course1_" id="course1_"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+
+                                {% for courseItem in courses_list %}
+
+                                    <div id="{{courseItem.course_string}}">
+                                        <div class="mb-8 flex flex-col">
+                                            <label for="{{courseItem.course_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">{{courseItem.course_string}}</label>
+                                            <input type="text" name="{{courseItem.course_string}}" id="{{courseItem.course_string}}" value="{{courseItem.Course}}"
+                                                class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        </div>
                                     </div>
-                                </div>
+                                {% endfor %}
+                                
+                                
                             </div>
+
+
 
                             <div class="sm:mb-8 sm:flex sm:flex-row sm:justify-center">
                                 <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" style="background: #FF5200";
@@ -764,8 +771,8 @@
                                 </div>
                                 */
 
-                               // var CourseFields = parseInt("{{coursesCount}}");
-                               var CourseFields = 1;
+                                var CourseFields = parseInt("{{coursesCount}}");
+                               //var CourseFields = 1;
 
                                 function add_more_courses() {
                                     CourseFields = CourseFields + 1;

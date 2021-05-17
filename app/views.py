@@ -166,7 +166,7 @@ def index(request,pk):
     # filling por_list with values of format -> courseObj()
     for i in range(coursesCount):
         course_string = "course" + str(i+1)
-        courses_list.append(courseObj(course_string,my_dict[course_string]))
+        courses_list.append(courseObj(course_string+"_",my_dict[course_string]))
     my_dict["courses_list"] = courses_list
 
     
