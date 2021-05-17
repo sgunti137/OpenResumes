@@ -663,7 +663,7 @@
                                         <label for="pLanguages_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Programming Languages
                                         </label>
-                                        <input type="text" name="pLanguages_" id="pLanguages_" placeholder="c++ , java*, python^"
+                                        <input type="text" name="pLanguages_" id="pLanguages_" placeholder="c++ , java*, python" value="{{pLanguages}}"
                                             class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                     <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
@@ -724,40 +724,34 @@
                             <div class="text-base not-italic font-bold leading-5 tracking-normal text-left">Key Courses </div>
                     </button>
                     <div class="my-3 p-8  border rounded-xl border-gray-300 bg-white hidden overflow-hidden  ">
-                        <form>
+                        <!-- <form> -->
                             <span class="text-base not-italic font-normal leading-5 tracking-normal text-left">Fill the data of your key courses taken and use superscript * to mention the ongoing course </span>
-                            <div class="my-6 p-3 mr-20">
+                            <div id="Courses_" class="my-6 p-3 mr-20">
                                 
-                                <div class="mb-8 flex flex-col ">
-                                    <label for="course1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                        Course 1 
-                                    </label>
-                                    <input type="text" name="course1_" id="course1_" 
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                <div id="course1_">
+                                    <div class="mb-8 flex flex-col">
+                                        <label for="course1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black"> Course 1 </label>
+                                        <input type="text" name="course1_" id="course1_"
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                    </div>
                                 </div>
-                                
-                                <div class="mb-8 flex flex-col ">
-                                    <label for="course2_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                        Course 2
-                                    </label>
-                                    <input type="text" name="course2_" id="course2_" 
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                </div>
-
                             </div>
+
                             <div class="sm:mb-8 sm:flex sm:flex-row sm:justify-center">
-                                <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" style="background: #FF5200"; type="button" onclick="myFunction()">
+                                <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" style="background: #FF5200";
+                                 type="button" onclick="add_more_courses()">
                                     Add More
                                 </button>
-                                <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-blue-100 focus:ring-offset-2 focus:outline-none" type="button" onclick="myFunction()">
+                                <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-blue-100 focus:ring-offset-2 focus:outline-none" 
+                                type="button" onclick="remove_courses()">
                                     Remove
                                 </button>
                             </div>
                             <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" type="button" onclick="myFunction()">
                                 Save
                             </button>
-                            
-                        </form>
+
+                        <!-- </form> -->
                     </div>
                     <!-- Key Courses End -->
 
