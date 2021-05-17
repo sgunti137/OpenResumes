@@ -324,7 +324,138 @@
                     </div>
                     <!-- Education End -->
 
-                    
+                    <!-- Experience Start -->
+                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white">
+                        <svg class=" flex " width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5575 8.01919C10.7485 8.01919 10.9405 8.09219 11.0865 8.23819L14.5735 11.7082C14.7145 11.8492 14.7935 12.0402 14.7935 12.2402C14.7935 12.4392 14.7145 12.6302 14.5735 12.7712L11.0865 16.2432C10.7935 16.5352 10.3195 16.5352 10.0265 16.2412C9.73448 15.9472 9.73548 15.4722 10.0285 15.1802L12.9815 12.2402L10.0285 9.30019C9.73548 9.00819 9.73448 8.53419 10.0265 8.24019C10.1725 8.09219 10.3655 8.01919 10.5575 8.01919Z" fill="#242426"/>
+                            </svg>
+                            <div class="text-base not-italic font-bold leading-5 tracking-normal text-left">Experience / Internship</div>
+                    </button>
+                    <div class="my-3 p-8  border rounded-xl border-gray-300 bg-white hidden overflow-hidden  ">
+                        <!--form id="Experience_form_"-->
+                            <!-- <span class="text-base not-italic font-normal leading-5 tracking-normal text-left">Fill the data of your Interns and Experiences</span> -->
+                            <div id="Experience_" class="my-6 p-3 mr-20">
+                                
+                                {% for expitem in exp_list %}
+                                <div id = "{{expitem.exp_string}}">
+                                    <div class="mb-8 flex flex-col ">
+                                        <label for="{{expitem.exp_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            Company Name {{expitem.ind}}
+                                        </label>
+                                        <input type="text" name="{{expitem.exp_string}}" id="{{expitem.exp_string}}"
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2"
+                                            value = "{{expitem.Exp}}">
+                                    </div>  
+                                    <div class="mb-8 flex flex-col  ">
+                                        <label for="{{expitem.exp_des_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            Description {{expitem.ind}}
+                                        </label>
+                                        <textarea name="{{expitem.exp_des_string}}" id="{{expitem.exp_des_string}}" rows="3"
+                                            class="border-b-1 border-solid border-gray-300 focus:border-red-300  focus:outline-none focus:border-b-1 hover:border-b-1 text-left">
+                                        {{expitem.ExpDes}}
+                                        </textarea>
+                                    </div>
+                                    <hr>  
+                                </div>
+
+                                {% endfor %}
+                                
+                            </div>
+                        <!--/form-->
+                        <div class="sm:mb-8 sm:flex sm:flex-row sm:justify-center">
+                            <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" style="background: #FF5200"; 
+                            type="button" onclick="add_more_exp()">
+                                Add More
+                            </button>
+                            <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-blue-100 focus:ring-offset-2 focus:outline-none" 
+                            type="button" onclick="remove_exp()">
+                                Remove
+                            </button>
+                        </div>
+                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" type="button" onclick="myFunction()">
+                            Save
+                        </button>
+                    </div>
+                    <!-- script for adding more experiences and internships, delete operation.. -->
+                    <script>
+                        var ExpFields = parseInt("{{expCount}}");
+                        var exp_flag = true;
+                        //var ExpFields = 1;
+                        function add_more_exp() {
+                            ExpFields = ExpFields + 1;
+                            var parent = document.getElementById("Experience_");
+                            var div = document.createElement("div");
+                            div.setAttribute("id", "Exp" + ExpFields);
+
+
+                            /*
+                            <div id = "Exp1" class="my-6 p-3 mr-20">
+                                    <div class="mb-8 flex flex-col ">
+                                        <label for="exp1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            Company Name 1
+                                        </label>
+                                        <input type="text" name="exp1_" id="exp1_" 
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                    </div>  
+                                    <div class="mb-8 flex flex-col">
+                                        <label for="exp1_des_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            Description 1
+                                        </label>
+                                        <input type="text" name="exp1_des_" id="exp1_des_" 
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                    </div>
+                                    <br>  
+                                </div>*/
+                            var expStr = '<div id = "Exp'+ ExpFields +'">';
+                                expStr += '<div class="mb-8 flex flex-col ">';
+                                expStr += '<label for="exp'+ ExpFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                expStr += 'Company Name '+ ExpFields;
+                                expStr += '</label>';
+                                expStr += '<input type="text" name="exp'+ ExpFields +'" id="exp'+ ExpFields + '"';
+                                expStr += 'class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                expStr += '</div>';
+                                expStr += '<div class="mb-8 flex flex-col">';
+                                expStr += '<label for="exp'+ ExpFields +'des" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                expStr += 'Description '+ExpFields;
+                                expStr += '</label>';
+                                expStr += '<textarea name="exp'+ ExpFields +'" id="exp'+ ExpFields +'" rows="3"';
+                                expStr += 'class="border-b-1 border-solid border-gray-300 focus:border-red-300  focus:outline-none focus:border-b-1 hover:border-b-1 text-left">';
+                                expStr += '</textarea>';
+                                expStr += '</div>';
+                                expStr += '<hr>';
+                                expStr += '</div>';
+                            /*
+                            var str = '<div class="form-row">';
+                            str = str + '<div class="form-group col-md-12">';
+                            str = str + '<label for="exp' + ExpFields + '">Company name ' + ExpFields + '</label>';
+                            str = str + '<input type="text" class="form-control" name="exp' + ExpFields + '" placeholder="Amazon">';
+                            str = str + '</div>';
+                            str = str + '<div class="form-group col-md-12">';
+                            str = str + '<label for="expDes' + ExpFields + '">Description ' + ExpFields + '</label>';
+                            str = str + '<textarea class="form-control" rows="3"  name="expDes' + ExpFields + '"></textarea>';
+                            str = str + '</div>';
+                            str = str + '</div>';*/
+
+                            div.innerHTML = expStr;
+                            parent.appendChild(div);
+                        }
+                        function remove_exp() {
+                            
+                            var parent = document.getElementById("Experience_");
+                            /*
+                            if(ExpFields>0 && exp_flag){
+                                parent.removeChild(parent.lastChild);
+                                parent.removeChild(parent.lastChild);
+                            }
+                            else{
+                                parent.removeChild(parent.lastChild);
+                            }*/
+                            parent.removeChild(parent.lastChild);
+                            ExpFields -= 1;
+                            if(ExpFields==0)exp_flag = false;
+                        }
+                    </script>
+                    <!-- Experience End -->
 
                     <!-- Projects Start -->
                     <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white">
