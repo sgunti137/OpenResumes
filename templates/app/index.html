@@ -819,9 +819,93 @@
                         </svg>
                         <span class="text-base not-italic font-bold leading-5 tracking-normal text-left">Achievements</span>
                     </button>
-                    <div class="panel">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <div class="my-3 p-8  border rounded-xl border-gray-300 bg-white hidden overflow-hidden  ">
+                        <!--form id="Experience_form_"-->
+                            <!-- <span class="text-base not-italic font-normal leading-5 tracking-normal text-left">Fill the data of your Interns and Experiences</span> -->
+                            <div id="Achievements_" class="my-6 p-3 mr-20">
+                                
+                                {% for achItem in ach_list %}
+                                <div id = "{{achItem.ach_string}}">
+                                    <div class="mb-8 flex flex-col ">
+                                        <label for="{{achItem.ach_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            Achievement {{achItem.ind}}
+                                        </label>
+                                        <input type="text" name="{{expitem.exp_string}}" id="{{expitem.exp_string}}"
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2"
+                                            value = "{{achItem.Ach}}">
+                                    </div>  
+                                    <div class="mb-8 flex flex-col">
+                                        <label for="{{achItem.ach_des_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            Description {{achItem.ind}}
+                                        </label>
+                                        <textarea name="{{achItem.ach_des_string}}" id="{{achItem.ach_des_string}}" rows="3"
+                                            class="border-b-1 border-solid border-gray-300 focus:border-red-300  focus:outline-none focus:border-b-1 hover:border-b-1 text-left">
+                                            {{achItem.AchDes}}
+                                        </textarea>
+                                    </div>
+                                    <hr>  
+                                </div>
+
+                                {% endfor %}
+                                
+                            </div>
+                        <!--/form-->
+                        <div class="sm:mb-8 sm:flex sm:flex-row sm:justify-center">
+                            <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" style="background: #FF5200"; 
+                            type="button" onclick="add_more_achievements()">
+                                Add More
+                            </button>
+                            <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-blue-100 focus:ring-offset-2 focus:outline-none" 
+                            type="button" onclick="remove_achievements()">
+                                Remove
+                            </button>
+                        </div>
+                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white focus:ring-4 focus:ring-green-100 focus:ring-offset-2 focus:outline-none" type="button" onclick="myFunction()">
+                            Save
+                        </button>  
                     </div>
+                    <script>
+                        var AchFields = parseInt("{{achCount}}");
+                        
+                        function add_more_achievements() {
+                            AchFields = AchFields + 1;
+                            var parent = document.getElementById("Achievements_");
+                            var div = document.createElement("div");
+                            div.setAttribute("id", "ach" + AchFields+"_");
+
+                            var str = '<div class="mb-8 flex flex-col ">';
+                                str+='<label for="ach'+ AchFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                str+='Achievement '+AchFields;
+                                str+='</label>';
+                                str+='<input type="text" name="ach'+ AchFields+'_" id="ach'+ AchFields +'_"';
+                                str+=' class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                str+='</div>';
+                                str+='<div class="mb-8 flex flex-col">';
+                                str+='<label for="achDes'+ AchFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                str+='Description '+AchFields;
+                                str+='</label>';
+                                str+='<textarea name="achDes'+ AchFields+'_" id="achDes'+ AchFields +'_" rows="3"';
+                                str+=  'class="border-b-1 border-solid border-gray-300 focus:border-red-300  focus:outline-none focus:border-b-1 hover:border-b-1 text-left">';
+                                str+='</textarea>';
+                                str+='</div>';
+                                str+='<hr>';
+                                str+='</div>';
+                                
+
+                            
+
+                            div.innerHTML = str;
+                            parent.appendChild(div);
+                        }
+                        function remove_achievements()  {
+                            
+                            var parent = document.getElementById("Achievements_");
+                           
+                            parent.removeChild(parent.lastChild);
+                            AchFields -= 1;
+                            
+                        }
+                    </script>
                     
                 </div>
                 

@@ -127,6 +127,7 @@ def index(request,pk):
     my_dict["achCount"] = achCount
     my_dict["expCount"] = expCount
 
+    #print("achCount = ", achCount)
     
     #initializing the lists of section fields to be sent
     project_list = []
@@ -159,7 +160,7 @@ def index(request,pk):
     for i in range(achCount):
         ach_string = "ach" + str(i+1)
         ach_des_string = "achDes" + str(i+1)
-        ach_list.append(achObj(ach_string,ach_des_string,i+1,my_dict[ach_string],my_dict[ach_des_string]))
+        ach_list.append(achObj(ach_string+"_",ach_des_string+"_",i+1,my_dict[ach_string],my_dict[ach_des_string]))
     my_dict["ach_list"] = ach_list
 
     
