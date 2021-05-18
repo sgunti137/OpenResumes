@@ -144,7 +144,7 @@ def index(request,pk):
         github_string = "githubLink" + str(i+1)
         des_string = "proDes" + str(i+1)
 
-        project_list.append(projectObj(title_string + "_", date_string+"_", club_string+"_", github_string+"_", des_string+"_", my_dict[title_string], my_dict[date_string], my_dict[club_string], my_dict[github_string], my_dict[des_string],i+1))
+        project_list.append(projectObj(title_string , date_string, club_string, github_string, des_string, my_dict[title_string], my_dict[date_string], my_dict[club_string], my_dict[github_string], my_dict[des_string],i+1))
     my_dict["project_list"] = project_list
     
 
@@ -160,14 +160,14 @@ def index(request,pk):
     for i in range(achCount):
         ach_string = "ach" + str(i+1)
         ach_des_string = "achDes" + str(i+1)
-        ach_list.append(achObj(ach_string+"_",ach_des_string+"_",i+1,my_dict[ach_string],my_dict[ach_des_string]))
+        ach_list.append(achObj(ach_string,ach_des_string,i+1,my_dict[ach_string],my_dict[ach_des_string]))
     my_dict["ach_list"] = ach_list
 
     
     # filling por_list with values of format -> courseObj()
     for i in range(coursesCount):
         course_string = "course" + str(i+1)
-        courses_list.append(courseObj(course_string+"_",my_dict[course_string]))
+        courses_list.append(courseObj(course_string,my_dict[course_string]))
     my_dict["courses_list"] = courses_list
 
     
@@ -175,7 +175,7 @@ def index(request,pk):
     for i in range(expCount):
         exp_string = "exp" + str(i+1)
         exp_des_string = "expDes" + str(i+1)
-        exp_list.append(expObj(exp_string + "_",exp_des_string + "_", i+1,my_dict[exp_string],my_dict[exp_des_string]))
+        exp_list.append(expObj(exp_string ,exp_des_string , i+1,my_dict[exp_string],my_dict[exp_des_string]))
     my_dict["exp_list"] = exp_list
 
 
@@ -192,6 +192,13 @@ def index(request,pk):
 
         #input dictionary
         md = request.POST
+
+        if md['save_flag']=="true":
+
+            data_generator(md,resume_file_name)
+            return redirect('/index/'+str(pk)+'/')
+        
+        
         
         print(md) 
         
@@ -312,7 +319,7 @@ def index(request,pk):
         os.remove(plain_name + '.out')
         os.remove(plain_name + '.log')
         
-        return redirect('/results/'+str(pk)+'/')
+        return redirect('/index/'+str(pk)+'/')
        
     return render(request,'app/index.html',context = my_dict)
 
@@ -422,6 +429,8 @@ def home(request):
             return redirect(redirect_url)
 
     return render(request,'app/home.html',context = home_dict)
+
+"""
 def send(request):
     toh=request.POST['to']
     print(toh)
@@ -451,4 +460,4 @@ def send(request):
     session.quit()
     print('Mail Sent')
     return redirect('home')
-
+"""

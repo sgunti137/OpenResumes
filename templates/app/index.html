@@ -39,6 +39,68 @@
             transition: 0.4s;            
         }
 
+        .form_container{
+            background-color: #fdfdfd;
+            height: 100%;
+            width: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 28px rgba(123,151,158,.25);
+            border: 1px solid #d6dee1;
+            padding: 1rem;
+            overflow: scroll;
+        }
+
+        .txt_area_container {
+            background-color: #fdfdfd;
+            height: 100%;
+            width: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 28px rgba(123,151,158,.25);
+            border: 1px solid #d6dee1;
+            padding: 1rem;
+            overflow: scroll;
+            }
+
+        /* custom scrollbar */
+            ::-webkit-scrollbar {
+            width: 20px;
+            }
+
+            ::-webkit-scrollbar-track {
+            background-color: transparent;
+            }
+
+            ::-webkit-scrollbar-thumb {
+            background-color: #d6dee1;
+            border-radius: 20px;
+            border: 6px solid transparent;
+            background-clip: content-box;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+            background-color: #a8bbbf;
+            }
+
+            .left_form{
+                overflow-y: scroll;
+                height: 700px;
+                width: 100%;
+                /* background-color: #ADA3A5; */
+                -webkit-overflow-scrolling: touch;
+                -ms-overflow-style: none;
+                border-color: #a8bbbf;
+            }
+            
+            .right_embed{
+                overflow-y: scroll;
+                height: 700px;
+                width: 100%;
+                -webkit-overflow-scrolling: touch;
+                -ms-overflow-style: none;
+            }
+
+            
+
         
 
         .panel {
@@ -54,11 +116,20 @@
             alert("ddff");
             }
 
+        function save_data(){
+
+            document.getElementById("save_flag").value = 'true';
+            document.getElementById("submit").click();
+        }
+
+        function compile_data(){
+            document.getElementById("submit").click();
+        }
 
 
     </script>
 </head>
-    <body class="mx-2 sm:mr-20">
+    <body>
         <!-- Header part -->
 
         <div class="relative items-center bg-white">
@@ -84,9 +155,11 @@
         
 
         <!-- body starts -->
+        <form id="index_form" name="index_form" action="." method="POST">
+        {% csrf_token %}
 
-        <div class="relative grid lg:grid-cols-2 text-white my-3 divide-x divide-white">
-            <div class="relative bg-white p-6 h-full rounded">
+        <div class="grid grid-cols-2 grid-rows-1 text-white my-3 divide-x-2 custom-scrollbar">
+            <div class="left_form relative bg-white p-6 h-full rounded">
 
                 <!-- top card starts -->
                 <div class=" flex pt-0 px-0  relative inline-block text-left">
@@ -111,10 +184,11 @@
                 </div>
                 <!-- top card ends -->
                 <div class="relative flex-column mt-12 ml-6 mb-12  text-black font-bold" style="font-family: Open Sans;">
-                    <div class="mb-3 not-italic font-bold text-lg  leading-6 text-gray-900 flex-none order-none flex-grow">Sections</div>
-
+                    <div class="mb-3 leading-6 text-pink-700 flex-none order-none flex-grow" style="font-size: 40px; font-family: Open Sans;">Sections</div>
+                    <hr>
                     <!-- General Start -->
-                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white">
+                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white"
+                    type="button" >
                         <svg class=" flex " width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.5575 8.01919C10.7485 8.01919 10.9405 8.09219 11.0865 8.23819L14.5735 11.7082C14.7145 11.8492 14.7935 12.0402 14.7935 12.2402C14.7935 12.4392 14.7145 12.6302 14.5735 12.7712L11.0865 16.2432C10.7935 16.5352 10.3195 16.5352 10.0265 16.2412C9.73448 15.9472 9.73548 15.4722 10.0285 15.1802L12.9815 12.2402L10.0285 9.30019C9.73548 9.00819 9.73448 8.53419 10.0265 8.24019C10.1725 8.09219 10.3655 8.01919 10.5575 8.01919Z" fill="#242426"/>
                             </svg>
@@ -125,78 +199,79 @@
                             <!-- <span class="text-base not-italic font-normal leading-5 tracking-normal text-left">Fill in the data for profile</span> -->
                             <div class="my-6 p-3 mr-20">
                                 <div class="mb-8 flex flex-col ">
-                                    <label for="name_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                    <label for="name" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                         Name
                                     </label>
-                                    <input type="text" name="name_" id="name_" placeholder="Your Full Name" required
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2" value="{{name}}">
+                                    <input type="text" name="name" id="name" placeholder="Your Full Name" required
+                                    class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2" value="{{name}}">
                                 </div>
                                 <div class="sm:mb-8 sm:flex sm:flex-row ">
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="stream_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="stream" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Stream
                                         </label>
-                                        <input type="text" name="stream_" id="stream_" placeholder="B Tech / M Tech / Phd" value="{{stream}}" required 
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="stream" id="stream" placeholder="B Tech / M Tech / Phd" value="{{stream}}" required 
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                     <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                        <label for="roll_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="roll" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Roll No.
                                         </label>
-                                        <input type="text" name="roll_" id="roll_" required value="{{roll}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="roll" id="roll" required value="{{roll}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                 </div>
                                 <div class="sm:mb-8 sm:flex sm:flex-row ">
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="programme_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="programme" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Programme
                                         </label>
-                                        <input type="text" name="programme_" id="programme_" placeholder="Computer Science and Engineering" required value="{{programme}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="programme" id="programme" placeholder="Computer Science and Engineering" required value="{{programme}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                     <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2">
-                                        <label for="minor_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="minor" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Minor
                                         </label>
-                                        <input type="text" name="minor_" id="minor_" placeholder="Mathematics" value="{{minor}}"            
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="minor" id="minor" placeholder="Mathematics" value="{{minor}}"            
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>  
                                 </div>  
                                 <div class="sm:mb-8 sm:flex sm:flex-row ">
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                       <label for="webmail_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                       <label for="webmail" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Outlook Email ID
                                         </label>
-                                        <input type="text" name="webmail_" id="webmail_" placeholder="someone@iitg.ac.in" value="{{webmail}}" required
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="webmail" id="webmail" placeholder="someone@iitg.ac.in" value="{{webmail}}" required
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="email_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="email" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Alternate Mail
                                         </label>
-                                        <input type="text" name="email_" id="email_" value="{{email}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="email" id="email" value="{{email}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                 </div>
                                 <div class="sm:mb-8 flex sm:flex-row ">
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="mobile_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="mobile" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Phone Number
                                         </label>
-                                        <input type="text" name="mobile_" id="mobile_" value="{{mobile}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="mobile" id="mobile" value="{{mobile}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="linkedIn_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="linkedIn" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             LinkedIn
                                         </label>
-                                        <input type="text" name="linkedIn_" id="linkedIn_" value="{{linkedIn}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="linkedIn" id="linkedIn" value="{{linkedIn}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                 </div>
                             </div>
-                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white" type="button" onclick="myFunction()">
+                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white"
+                             type="button" onclick="save_data()">
                                 Save
                             </button>
                             
@@ -205,7 +280,8 @@
                     <!-- General End -->
 
                     <!-- Education Start -->
-                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white">
+                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white"
+                    type="button" >
                         <svg class=" flex " width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.5575 8.01919C10.7485 8.01919 10.9405 8.09219 11.0865 8.23819L14.5735 11.7082C14.7145 11.8492 14.7935 12.0402 14.7935 12.2402C14.7935 12.4392 14.7145 12.6302 14.5735 12.7712L11.0865 16.2432C10.7935 16.5352 10.3195 16.5352 10.0265 16.2412C9.73448 15.9472 9.73548 15.4722 10.0285 15.1802L12.9815 12.2402L10.0285 9.30019C9.73548 9.00819 9.73448 8.53419 10.0265 8.24019C10.1725 8.09219 10.3655 8.01919 10.5575 8.01919Z" fill="#242426"/>
                             </svg>
@@ -217,103 +293,103 @@
                             <!-- <span class="text-base not-italic font-normal leading-5 tracking-normal text-left">Fill the data of your Education</span> -->
                             <div class="my-6 p-3 mr-20">
                                 <div class="mb-8 flex flex-col ">
-                                    <label for="mtechBoard_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                    <label for="mtechBoard" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                         M. Tech Instituion(optional)
                                     </label>
-                                    <input type="text" name="mtechBoard_" id="mtechBoard_" placeholder="IITG" value="{{mtechBoard}}"
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                    <input type="text" name="mtechBoard" id="mtechBoard" placeholder="IITG" value="{{mtechBoard}}"
+                                    class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                 </div>
                                 <div class="sm:mb-8 sm:flex sm:flex-row ">
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="mtechGrade_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="mtechGrade" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Grade/Percentage
                                         </label>
-                                        <input type="text" name="mtechGrade_" id="mtechGrade_" value="{{mtechGrade}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="mtechGrade" id="mtechGrade" value="{{mtechGrade}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                     <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                        <label for="mtechYear_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="mtechYear" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Pass out year
                                         </label>
-                                        <input type="text" name="mtechYear_" id="mtechYear_" value="{{mtechYear}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="mtechYear" id="mtechYear" value="{{mtechYear}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                 </div>
                                 <br>
                                 <div class="mb-8 flex flex-col ">
-                                    <label for="btechBoard_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                    <label for="btechBoard" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                         B. Tech Instituion
                                     </label>
-                                    <input type="text" name="btechBoard_" id="btechBoard_" placeholder="IITG" value="{{btechBoard}}" 
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                    <input type="text" name="btechBoard" id="btechBoard" placeholder="IITG" value="{{btechBoard}}" 
+                                    class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                 </div>
                                 <div class="sm:mb-8 sm:flex sm:flex-row ">
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="btechGrade_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="btechGrade" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Grade/Percentage
                                         </label>
-                                        <input type="text" name="btechGrade_" id="btechGrade_" value="{{btechGrade}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="btechGrade" id="btechGrade" value="{{btechGrade}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                     <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                        <label for="btechYear_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="btechYear" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Pass out year
                                         </label>
-                                        <input type="text" name="btechYear_" id="btechYear_" placeholder="2023(expected)" value="{{btechYear}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="btechYear" id="btechYear" placeholder="2023(expected)" value="{{btechYear}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                 </div>
                                 <br>
                                 <div class="mb-8 flex flex-col ">
-                                    <label for="ssBoard_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                    <label for="ssBoard" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                         Senior Secondary Board
                                     </label>
-                                    <input type="text" name="ssBoard_" id="ssBoard_" value="{{ssBoard}}"
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                    <input type="text" name="ssBoard" id="ssBoard" value="{{ssBoard}}"
+                                    class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                 </div>
                                 <div class="sm:mb-8 sm:flex sm:flex-row ">
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="ssGrade_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="ssGrade" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Grade/Percentage
                                         </label>
-                                        <input type="text" name="ssGrade_" id="ssGrade_" value="{{ssGrade}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="ssGrade" id="ssGrade" value="{{ssGrade}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                     <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                        <label for="ssYear_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="ssYear" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Passed out year
                                         </label>
-                                        <input type="text" name="ssYear_" id="ssYear_" value="{{ssYear}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="ssYear" id="ssYear" value="{{ssYear}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                 </div>
                                 <br>
                                 <div class="mb-8 flex flex-col ">
-                                    <label for="sBoard_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                    <label for="sBoard" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                         Secondary Board
                                     </label>
-                                    <input type="text" name="sBoard_" id="sBoard_" value="{{sBoard}}"
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                    <input type="text" name="sBoard" id="sBoard" value="{{sBoard}}"
+                                    class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                 </div>
                                 <div class="sm:mb-8 sm:flex sm:flex-row ">
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="sGrade_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="sGrade" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Grade/Percentage
                                         </label>
-                                        <input type="text" name="sGrade_" id="sGrade_" value="{{sGrade}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="sGrade" id="sGrade" value="{{sGrade}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                     <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                        <label for="sYear_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="sYear" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Passed out year
                                         </label>
-                                        <input type="text" name="sYear_" id="sYear_" value="{{sYear}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="sYear" id="sYear" value="{{sYear}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                 </div>
                             </div>
                             <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white" 
-                            type="button" onclick="myFunction()">
+                            type="button" onclick="save_data()">
                                 Save
                             </button>
                             
@@ -322,7 +398,8 @@
                     <!-- Education End -->
 
                     <!-- Experience Start -->
-                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white">
+                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white"
+                    type="button">
                         <svg class=" flex " width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.5575 8.01919C10.7485 8.01919 10.9405 8.09219 11.0865 8.23819L14.5735 11.7082C14.7145 11.8492 14.7935 12.0402 14.7935 12.2402C14.7935 12.4392 14.7145 12.6302 14.5735 12.7712L11.0865 16.2432C10.7935 16.5352 10.3195 16.5352 10.0265 16.2412C9.73448 15.9472 9.73548 15.4722 10.0285 15.1802L12.9815 12.2402L10.0285 9.30019C9.73548 9.00819 9.73448 8.53419 10.0265 8.24019C10.1725 8.09219 10.3655 8.01919 10.5575 8.01919Z" fill="#242426"/>
                             </svg>
@@ -340,7 +417,7 @@
                                             Company Name {{expitem.ind}}
                                         </label>
                                         <input type="text" name="{{expitem.exp_string}}" id="{{expitem.exp_string}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2"
                                             value = "{{expitem.Exp}}">
                                     </div>  
                                     <div class="mb-8 flex flex-col  ">
@@ -348,7 +425,7 @@
                                             Description {{expitem.ind}}
                                         </label>
                                         <textarea name="{{expitem.exp_des_string}}" id="{{expitem.exp_des_string}}" rows="3"
-                                            class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">
+                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">
                                         {{expitem.ExpDes}}
                                         </textarea>
                                     </div>
@@ -369,7 +446,8 @@
                                 Remove
                             </button>
                         </div>
-                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" type="button" onclick="myFunction()">
+                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none"
+                         type="button" onclick="save_data()">
                             Save
                         </button>
                     </div>
@@ -405,18 +483,18 @@
                                 </div>*/
                             var expStr = '<div id = "Exp'+ ExpFields +'">';
                                 expStr += '<div class="mb-8 flex flex-col ">';
-                                expStr += '<label for="exp'+ ExpFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                expStr += '<label for="exp'+ ExpFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
                                 expStr += 'Company Name '+ ExpFields;
                                 expStr += '</label>';
                                 expStr += '<input type="text" name="exp'+ ExpFields +'" id="exp'+ ExpFields + '"';
-                                expStr += 'class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                expStr += 'class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                 expStr += '</div>';
                                 expStr += '<div class="mb-8 flex flex-col">';
-                                expStr += '<label for="exp'+ ExpFields +'des" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                expStr += '<label for="expDes'+ ExpFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
                                 expStr += 'Description '+ExpFields;
                                 expStr += '</label>';
-                                expStr += '<textarea name="exp'+ ExpFields +'" id="exp'+ ExpFields +'" rows="3"';
-                                expStr += 'class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">';
+                                expStr += '<textarea name="expDes'+ ExpFields +'" id="expDes'+ ExpFields +'" rows="3"';
+                                expStr += 'class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">';
                                 expStr += '</textarea>';
                                 expStr += '</div>';
                                 expStr += '<br>';
@@ -455,7 +533,8 @@
                     <!-- Experience End -->
 
                     <!-- Projects Start -->
-                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white">
+                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white"
+                    type="button">
                         <svg class=" flex " width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.5575 8.01919C10.7485 8.01919 10.9405 8.09219 11.0865 8.23819L14.5735 11.7082C14.7145 11.8492 14.7935 12.0402 14.7935 12.2402C14.7935 12.4392 14.7145 12.6302 14.5735 12.7712L11.0865 16.2432C10.7935 16.5352 10.3195 16.5352 10.0265 16.2412C9.73448 15.9472 9.73548 15.4722 10.0285 15.1802L12.9815 12.2402L10.0285 9.30019C9.73548 9.00819 9.73448 8.53419 10.0265 8.24019C10.1725 8.09219 10.3655 8.01919 10.5575 8.01919Z" fill="#242426"/>
                             </svg>
@@ -476,14 +555,14 @@
                                                 Project Title {{proitem.ind}}
                                             </label>
                                             <input type="text" name="{{proItem.title_string}}" id="{{proItem.title_string}}" value="{{proItem.title}}" 
-                                                class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                         <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
                                             <label for="{{proItem.date_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                                 Finished / Ongoing
                                             </label>
                                             <input type="text" name="{{proItem.date_string}}" id="{{proItem.date_string}}" value="{{proItem.date}}"
-                                                class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                     </div>
                                     <div class="sm:mb-8 sm:flex sm:flex-row ">
@@ -492,14 +571,14 @@
                                                 Club / Organization {{proItem.ind}}
                                             </label>
                                             <input type="text" name="{{proItem.club_string}}" id="{{proItem.club_string}}" value="{{proItem.club}}"
-                                                class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                         <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
                                             <label for="{{proItem.github_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                                 Github Link {{proitem.ind}}
                                             </label>
                                             <input type="text" name="{{proItem.github_string}}" id="{{proItem.github_string}}" placeholder="http://github.com/sample_name" value="{{proItem.github}}"
-                                                class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                     </div>
                                     <div class="mb-8 flex flex-col ">
@@ -507,7 +586,7 @@
                                             Description {{proitem.ind}}
                                         </label>
                                         <textarea  name="{{proItem.des_string}}" id="{{proItem.des_string}}" 
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">
                                             {{proItem.des}}
                                         </textarea>
                                     </div>
@@ -529,7 +608,8 @@
                             </div>
 
 
-                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" type="button" onclick="myFunction()">
+                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none"
+                             type="button" onclick="save_data()">
                                 Save
                             </button>
 
@@ -593,34 +673,34 @@
                                 var str = '<div id="proTitle'+ ProFields +'">';
                                     str += '<div class="sm:mb-8 sm:flex sm:flex-row ">';
                                     str+='<div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">';
-                                    str+='<label for="proTitle'+ ProFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                    str+='<label for="proTitle'+ ProFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
                                     str+='Project Title '+ProFields;
                                     str+='</label>';
-                                    str+='<input type="text" name="proTitle'+ ProFields +'_" id="proTitle'+ ProFields +'_" ';
-                                    str+='class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                    str+='<input type="text" name="proTitle'+ ProFields +'" id="proTitle'+ ProFields +'" ';
+                                    str+='class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                     str+='</div>';
                                     str+='<div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">';
-                                    str+='<label for="proDate'+ ProFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black"> Finished / Ongoing </label>';
-                                    str+='<input type="text" name="proDate'+ ProFields +'_" id="proDate'+ ProFields +'_"';
-                                    str+=' class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                    str+='<label for="proDate'+ ProFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black"> Finished / Ongoing </label>';
+                                    str+='<input type="text" name="proDate'+ ProFields +'" id="proDate'+ ProFields +'"';
+                                    str+=' class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                     str+='</div>';
                                     str+='</div>';
                                     str+= '<div class="sm:mb-8 sm:flex sm:flex-row ">';
                                     str+= '<div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">';
-                                    str+= '<label for="clubName'+ProFields+'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Club / Organization '+ProFields+'</label>';
-                                    str+= '<input type="text" name="clubName'+ ProFields +'_" id="clubName'+ProFields+'_" placeholder="SWC"';
-                                    str+= 'class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                    str+= '<label for="clubName'+ProFields+'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Club / Organization '+ProFields+'</label>';
+                                    str+= '<input type="text" name="clubName'+ ProFields +'" id="clubName'+ProFields+'" placeholder="SWC"';
+                                    str+= 'class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                     str+= '</div>';
                                     str+= '<div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">';
-                                    str+= '<label for="githubLink'+ ProFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black"> Github Link '+ProFields+'</label>';
-                                    str+= '<input type="text" name="githubLink'+ ProFields +'_" id="githubLink'+ ProFields +'_" placeholder="http://github.com/sample_name"';
-                                    str+= 'class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                    str+= '<label for="githubLink'+ ProFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black"> Github Link '+ProFields+'</label>';
+                                    str+= '<input type="text" name="githubLink'+ ProFields +'" id="githubLink'+ ProFields +'" placeholder="http://github.com/sample_name"';
+                                    str+= 'class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                     str+= '</div>';
                                     str+= '</div>';
                                     str+= '<div class="mb-8 flex flex-col ">';
-                                    str+= '<label for="proDes'+ ProFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Description '+ProFields+'</label>';
-                                    str += '<textarea name="proDesc'+ ProFields +'_" id="proDesc'+ ProFields +'_" rows="3"';
-                                    str += 'class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">';
+                                    str+= '<label for="proDes'+ ProFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Description '+ProFields+'</label>';
+                                    str += '<textarea name="proDes'+ ProFields +'" id="proDes'+ ProFields +'" rows="3"';
+                                    str += '    class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">';
                                     str += '</textarea>';
                                     str+= '</div>';
                                     str+= '<br>';
@@ -643,76 +723,79 @@
 
 
                                         <!-- Technical Skills Start -->
-                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white">
+                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white"
+                    type="button">
                         <svg class=" flex " width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.5575 8.01919C10.7485 8.01919 10.9405 8.09219 11.0865 8.23819L14.5735 11.7082C14.7145 11.8492 14.7935 12.0402 14.7935 12.2402C14.7935 12.4392 14.7145 12.6302 14.5735 12.7712L11.0865 16.2432C10.7935 16.5352 10.3195 16.5352 10.0265 16.2412C9.73448 15.9472 9.73548 15.4722 10.0285 15.1802L12.9815 12.2402L10.0285 9.30019C9.73548 9.00819 9.73448 8.53419 10.0265 8.24019C10.1725 8.09219 10.3655 8.01919 10.5575 8.01919Z" fill="#242426"/>
                             </svg>
                             <div class="text-base not-italic font-bold leading-5 tracking-normal text-left">Technical Skills</div>
                     </button>
                     <div class="my-3 p-8  border rounded-xl border-gray-300 bg-white hidden overflow-hidden  ">
-                        <form>
+                        <!-- <form> -->
                             <span class="text-base not-italic font-normal leading-5 tracking-normal text-left">Fill the data of your Technical Skills and use superscript * to mention elementary proficiency </span>
                             <div class="my-6 p-3 mr-20">
                                 <div class="sm:mb-8 sm:flex sm:flex-row ">
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2"> 
-                                        <label for="pLanguages_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black" >
+                                        <label for="pLanguages" class="mb-2 text-gray-800 text-opacity-80 hover:text-black" >
                                             Programming Languages
                                         </label>
-                                        <input type="text" name="pLanguages_" id="pLanguages_" placeholder="c++ , java*, python^" value="{{pLanguages}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="pLanguages" id="pLanguages" placeholder="c++ , java*, python^" value="{{pLanguages}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                     <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                        <label for="webTechs_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black" >
+                                        <label for="webTechs" class="mb-2 text-gray-800 text-opacity-80 hover:text-black" >
                                             Web Technologies
                                         </label>
-                                        <input type="text" name="webTechs_" id="webTechs_" placeholder="HTML, CSS*, JavaScript" value="{{webTechs}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="webTechs" id="webTechs" placeholder="HTML, CSS*, JavaScript" value="{{webTechs}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                 </div>
                                 <div class="sm:mb-8 sm:flex sm:flex-row ">
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="dbms_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="dbms" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Database Management
                                         </label>
-                                        <input type="text" name="dbms_" id="dbms_" placeholder="mySQL^, Oracle, RDBMS"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2"  value="{{dbms}}">
+                                        <input type="text" name="dbms" id="dbms" placeholder="mySQL^, Oracle, RDBMS"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2"  value="{{dbms}}">
                                     </div>
                                     <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                        <label for="os_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black" >
+                                        <label for="os" class="mb-2 text-gray-800 text-opacity-80 hover:text-black" >
                                             Operating systems
                                         </label>
-                                        <input type="text" name="os_" id="os_" placeholder="http://github.com/sample_name"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2" value="{{os}}">
+                                        <input type="text" name="os" id="os" placeholder="http://github.com/sample_name"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2" value="{{os}}">
                                     </div>
                                 </div>
                                 <div class="sm:mb-8 sm:flex sm:flex-row ">
                                     <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="miscellaneous_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="miscellaneous" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Miscellaneous
                                         </label>
-                                        <input type="text" name="miscellaneous_" id="miscellaneous_" placeholder="mySQL^, Oracle, RDBMS" value="{{miscellaneous}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="miscellaneous" id="miscellaneous" placeholder="mySQL^, Oracle, RDBMS" value="{{miscellaneous}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                     <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                        <label for="otherSkills_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="otherSkills" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Others
                                         </label>
-                                        <input type="text" name="otherSkills_" id="otherSkills_" placeholder="http://github.com/sample_name" value="{{otherSkills}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="otherSkills" id="otherSkills" placeholder="http://github.com/sample_name" value="{{otherSkills}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                 </div>
                             </div>
                             
-                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" type="button" onclick="myFunction()">
+                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none"
+                             type="button" onclick="save_data()">
                                 Save
                             </button>
                             
-                        </form>
+                        <!-- </form> -->
                     </div>
                     <!-- Technical Skills End -->
                     
                      <!-- Key Courses  Start -->
-                     <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white">
+                     <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white"
+                     type="button">
                         <svg class=" flex " width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.5575 8.01919C10.7485 8.01919 10.9405 8.09219 11.0865 8.23819L14.5735 11.7082C14.7145 11.8492 14.7935 12.0402 14.7935 12.2402C14.7935 12.4392 14.7145 12.6302 14.5735 12.7712L11.0865 16.2432C10.7935 16.5352 10.3195 16.5352 10.0265 16.2412C9.73448 15.9472 9.73548 15.4722 10.0285 15.1802L12.9815 12.2402L10.0285 9.30019C9.73548 9.00819 9.73448 8.53419 10.0265 8.24019C10.1725 8.09219 10.3655 8.01919 10.5575 8.01919Z" fill="#242426"/>
                             </svg>
@@ -729,7 +812,7 @@
                                         <div class="mb-8 flex flex-col">
                                             <label for="{{courseItem.course_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">{{courseItem.course_string}}</label>
                                             <input type="text" name="{{courseItem.course_string}}" id="{{courseItem.course_string}}" value="{{courseItem.Course}}"
-                                                class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                            class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -749,7 +832,8 @@
                                     Remove
                                 </button>
                             </div>
-                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" type="button" onclick="myFunction()">
+                            <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none"
+                             type="button" onclick="save_data()">
                                 Save
                             </button>
 
@@ -776,9 +860,9 @@
                                     div.setAttribute("id", "course" + CourseFields + "_");
 
                                     var str = '<div class="mb-8 flex flex-col ">';
-                                        str += '<label for="course'+ CourseFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Course '+CourseFields+'</label>';
+                                        str += '<label for="course'+ CourseFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Course '+CourseFields+'</label>';
                                         str += '<input type="text" name="course'+ CourseFields +'" id="course'+ CourseFields +'" ';
-                                        str += ' class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                        str += ' class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                         str += '</div>';
 
                                     div.innerHTML = str;
@@ -796,7 +880,8 @@
                     <!-- Key Courses End -->
                     
                     <!-- PORs Start -->
-                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white">
+                    <button class=" accordion flex flex-row  items-center bg-white hover:bg-white border-none cursor-pointer  py-1 w-full text-left text-sm focus:outline-none focus:bg-white"
+                    type="button">
                         <svg class=" flex " width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.5575 8.01919C10.7485 8.01919 10.9405 8.09219 11.0865 8.23819L14.5735 11.7082C14.7145 11.8492 14.7935 12.0402 14.7935 12.2402C14.7935 12.4392 14.7145 12.6302 14.5735 12.7712L11.0865 16.2432C10.7935 16.5352 10.3195 16.5352 10.0265 16.2412C9.73448 15.9472 9.73548 15.4722 10.0285 15.1802L12.9815 12.2402L10.0285 9.30019C9.73548 9.00819 9.73448 8.53419 10.0265 8.24019C10.1725 8.09219 10.3655 8.01919 10.5575 8.01919Z" fill="#242426"/>
                             </svg>
@@ -810,16 +895,16 @@
                                 {% for porItem in por_list %}
                                 <div id = "{{poritem.por_string}}">
                                     <div class="mb-8 flex flex-col "> 
-                                        <label for="porItem.por_string">POR{{porItem.ind}}</label>
-                                        <input type="text"  name="{{porItem.por_string}}" id="{{porItem.por_string}}"placeholder="ex: Worked as club secretary of coding club,2020" value="{{porItem.Por}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <label for="{{porItem.por_string}}">Position of Responsibility {{porItem.ind}}</label>
+                                        <input type="text"  name="{{porItem.por_string}}" id="{{porItem.por_string}}" value="{{porItem.Por}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div> 
                                     <div class="mb-8 flex flex-col  ">
-                                        <label for="{{porItem.por_des_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="{{porItem.por_des_string}}" class="mb-2 text-black">
                                             POR Description {{porItem.ind}}
                                         </label>
-                                        <textarea name="{{poritem.por_des_string}}" id="{{poritem.por_des_string}}" rows="3"
-                                            class="class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">">
+                                        <textarea name="{{porItem.por_des_string}}" id="{{porItem.por_des_string}}" rows="3"
+                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">
                                             {{porItem.PorDesc}}
                                         </textarea>
                                     </div>
@@ -840,7 +925,8 @@
                                 Remove
                             </button>
                         </div>
-                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" type="button" onclick="myFunction()">
+                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none"
+                         type="button" onclick="save_data()">
                             Save
                         </button>
                     </div>
@@ -852,7 +938,7 @@
                             PORFields = PORFields + 1;
                             var parent = document.getElementById("Por_");
                             var div = document.createElement("div");
-                            div.setAttribute("id", "Por" + PORFields);
+                            div.setAttribute("id", "por" + PORFields + "_");
 
                             /*
                             <div id = "Por1" class="my-6 p-3 mr-20">
@@ -871,7 +957,10 @@
                                             class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div>
                                     <br>  
-                                </div>*/
+                                </div>
+                                
+
+                                
                             var PORStr = '<div id = "Por'+ PORFields +'">';
                                 PORStr += '<div class="mb-8 flex flex-col ">';
                                 PORStr += '<label for="por'+ PORFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
@@ -890,21 +979,31 @@
                                 PORStr += '</div>';
                                 PORStr += '<br>';
                                 PORStr += '</div>';
+                                
+                                
+                            */
 
                                 
-                            /*
-                            var str = '<div class="form-row">';
-                            str = str + '<div class="form-group col-md-12">';
-                            str = str + '<label for="por' + PORFields + '">Company name ' + PORFields + '</label>';
-                            str = str + '<input type="text" class="form-control" name="por' + PORFields + '" placeholder="Amazon">';
-                            str = str + '</div>';
-                            str = str + '<div class="form-group col-md-12">';
-                            str = str + '<label for="porDes' + PORFields + '">Description ' + PORFields + '</label>';
-                            str = str + '<textarea class="form-control" rows="3"  name="porDes' + PORFields + '"></textarea>';
-                            str = str + '</div>';
-                            str = str + '</div>';*/
+                            
+                            var str = '<div id = "por'+ PORFields +'_">';
+                                str += '<div class="mb-8 flex flex-col ">';
+                                str += '<label for="por'+ PORFields +'">';
+                                str += 'Position of Responsibility '+PORFields ;
+                                str += '</label>';
+                                str += '<input type="text"  name="por'+ PORFields +'" id="por'+ PORFields +'"';
+                                str += '  class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                str += '</div>';
+                                str += '<div class="mb-8 flex flex-col">';
+                                str += '<label for="porDesc'+ PORFields +'" class="mb-2 text-black">';
+                                str += 'POR Description '+PORFields;
+                                str += '</label>';
+                                str += '<textarea name="porDesc'+ PORFields +'" id="porDesc'+ PORFields +'" rows="3"';
+                                str += '    class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">';
+                                str += '</textarea>';
+                                str += '</div>';
+                                str += '</div>';
 
-                            div.innerHTML = PORStr;
+                            div.innerHTML = str;
                             parent.appendChild(div);
                         }
                         function remove_por() {
@@ -925,7 +1024,8 @@
                     </script>
                     <!-- PORs End -->
                     <!-- Achievements -->
-                    <button class="accordion flex flex-row items-start bg-white  py-1 w-full text-left text-sm focus:outline-none">
+                    <button class="accordion flex flex-row items-start bg-white  py-1 w-full text-left text-sm focus:outline-none"
+                    type="button">
                         <svg class=" flex " width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.5575 8.01919C10.7485 8.01919 10.9405 8.09219 11.0865 8.23819L14.5735 11.7082C14.7145 11.8492 14.7935 12.0402 14.7935 12.2402C14.7935 12.4392 14.7145 12.6302 14.5735 12.7712L11.0865 16.2432C10.7935 16.5352 10.3195 16.5352 10.0265 16.2412C9.73448 15.9472 9.73548 15.4722 10.0285 15.1802L12.9815 12.2402L10.0285 9.30019C9.73548 9.00819 9.73448 8.53419 10.0265 8.24019C10.1725 8.09219 10.3655 8.01919 10.5575 8.01919Z" fill="#242426"/>
                         </svg>
@@ -942,8 +1042,8 @@
                                         <label for="{{achItem.ach_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Achievement {{achItem.ind}}
                                         </label>
-                                        <input type="text" name="{{expitem.exp_string}}" id="{{expitem.exp_string}}"
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2"
+                                        <input type="text" name="{{achItem.ach_string}}" id="{{achItem.ach_string}}"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2"
                                             value = "{{achItem.Ach}}">
                                     </div>  
                                     <div class="mb-8 flex flex-col">
@@ -951,7 +1051,7 @@
                                             Description {{achItem.ind}}
                                         </label>
                                         <textarea name="{{achItem.ach_des_string}}" id="{{achItem.ach_des_string}}" rows="3"
-                                            class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">
+                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">
                                         {{achItem.AchDes}}
                                         </textarea>
                                     </div>
@@ -972,7 +1072,8 @@
                                 Remove
                             </button>
                         </div>
-                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none" type="button" onclick="myFunction()">
+                        <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none"
+                         type="button" onclick="save_data()">
                             Save
                         </button>  
                     </div>
@@ -986,18 +1087,18 @@
                             div.setAttribute("id", "ach" + AchFields+"_");
 
                             var str = '<div class="mb-8 flex flex-col ">';
-                                str+='<label for="ach'+ AchFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                str+='<label for="ach'+ AchFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
                                 str+='Achievement '+AchFields;
                                 str+='</label>';
-                                str+='<input type="text" name="ach'+ AchFields+'_" id="ach'+ AchFields +'_"';
-                                str+=' class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                str+='<input type="text" name="ach'+ AchFields+'" id="ach'+ AchFields +'"';
+                                str+=' class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                 str+='</div>';
                                 str+='<div class="mb-8 flex flex-col">';
-                                str+='<label for="achDes'+ AchFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                str+='<label for="achDes'+ AchFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
                                 str+='Description '+AchFields;
                                 str+='</label>';
-                                str+='<textarea name="achDes'+ AchFields+'_" id="achDes'+ AchFields +'_" rows="3"';
-                                str+='class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">';
+                                str+='<textarea name="achDes'+ AchFields+'" id="achDes'+ AchFields +'" rows="3"';
+                                str+='  class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">';
                                 str+='</textarea>';
                                 str+='</div>';
                                 str+='<br>';
@@ -1019,15 +1120,26 @@
                     
                 </div>
                 <!-- Achievements End-->
-                <button class="ml-32 sm:ml-64 lg:ml-64 xl:mr-0 flex flex-col p-3  w-40 h-12 bg-pink-700 box-border rounded items-center transition duration-500 ease-in-out hover:bg-pink-900 transform hover:-translate-y-1 hover:scale-110 " type="button" onclick="myFunction()">
+                <button class="ml-32 sm:ml-64 lg:ml-64 xl:mr-0 flex flex-col p-3  w-40 h-12 bg-pink-700 box-border rounded items-center transition duration-500 ease-in-out hover:bg-pink-900 transform hover:-translate-y-1 hover:scale-110 "
+                 type="button" onclick="compile_data()">
                     Compile
                 </button>
-                </div>
-            <div class="bg-gray-500 text-center place-self-center w-full py-80 text-bold text-lg p-6 mx-20 max-h-96 rounded" style="font-family: 'Pacifico';">
-               Your Resume will Compile hear 
+            </div>
+
+            <div class="right_embed text-black rounded" style="font-family: 'Pacifico';">
+                <embed src="{% static pdf_string %}" type="application/pdf"
+                class="custom-scrollbar" width="100%" height="100%" alt = "Oops! start making your first resume, to be shown here..">
+                </embed>
             </div>
             
         </div>
+
+        <input type="hidden" id="save_flag" name="save_flag" value="false">
+        <input type="submit" id="submit" name="submit" style="visibility: hidden;">
+
+        </form>
+
+        
       
         <!-- body ends -->
             

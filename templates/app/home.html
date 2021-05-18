@@ -147,7 +147,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                             </svg>
                                         </a>
-                                         <a onclick="myfunct('{{resume.id}}')" tabindex="0" class="text-gray-700 flex justify-between px-4 py-2 text-sm leading-5 text-left"  role="menuitem" style="color: darkolivegreen;">share</a>
+                                        <span role="menuitem" tabindex="-1" class="flex justify-between px-4 py-2 text-sm leading-5 text-left text-gray-700 cursor-not-allowed opacity-50" aria-disabled="true">Share (soon)</span>
                                     </div>
                                     <div class="py-1" style="font-family: 'Open Sans';">
                                         <button type = "button" onclick="delete_resume('{{resume.id}}','{{resume}}')" tabindex="3" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left"  role="menuitem" style="color: red;">
@@ -270,17 +270,18 @@
             <input type = "submit" id = "submit" name = "submit" style = "visibility: hidden;">
         </form>
     </body>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
 
     <script>
+        /*
         function myfunct(pk){
         var to = prompt("enter your name","");
         console.log(to);
         console.log(pk);
-         var URL="{% url 'send'  %}"
+         var URL=""
          console.log(URL);
          var data={'to':to,'pk':pk , 'csrfmiddlewaretoken': '{{ csrf_token }}'}
         $.post(URL,data);
-        }
+        }*/
     </script>
 </html>
