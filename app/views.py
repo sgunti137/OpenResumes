@@ -181,6 +181,10 @@ def index(request,pk):
 
     # the name of the pdf to be passed for displaying in the top-> initialization and added to my_dict
     pdf_string = 'pdfs/' + str(resume_mod.pdfFile)
+
+    if os.path.getsize('static/'+pdf_string)==0:
+        pdf_string = 'data/display_resume.pdf'
+        
     my_dict['pdf_string'] = pdf_string
 
     

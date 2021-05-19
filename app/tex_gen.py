@@ -154,16 +154,17 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
     if(proFlag):
         writefile.write(lines[152])
 
-    for i in range(153,161):
+    for i in range(153,160):
         writefile.write(lines[i])
 
     tsFlag = False
-    for i in techskills:
-        if i!="":
+    for i in techskills.keys():
+        if(techskills[i]!=""):
             tsFlag = True
             break
 
     if(tsFlag):
+        writefile.write(lines[160])
         writefile.write(lines[161])
         writefile.write(lines[162])
         writefile.write(lines[163])
@@ -273,6 +274,7 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
     writefile.write(lines[243])
     #Achievements Dynamic code
     #achievements=[["title1","desc1"],["title2","desc2"],["title3","desc3"],["title4","desc4"],["title5","desc5"],["title6","desc6"]]
+   
     for sublist in achievements:
         for i in range(len(sublist)):
             sublist[i]=percentReplacerString(sublist[i])
