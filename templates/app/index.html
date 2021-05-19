@@ -57,7 +57,7 @@
             border-radius: 6px;
             box-shadow: 0 4px 28px rgba(123,151,158,.25);
             border: 1px solid #d6dee1;
-            padding: 1rem;
+            padding: 1rem; 
             overflow: scroll;
             }
 
@@ -413,21 +413,19 @@
                                 {% for expitem in exp_list %}
                                 <div id = "{{expitem.exp_string}}">
                                     <div class="mb-8 flex flex-col ">
-                                        <label for="{{expitem.exp_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="exp" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Company Name {{expitem.ind}}
                                         </label>
-                                        <input type="text" name="{{expitem.exp_string}}" id="{{expitem.exp_string}}"
+                                        <input type="text" name="exp"
                                         class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2"
                                             value = "{{expitem.Exp}}">
                                     </div>  
                                     <div class="mb-8 flex flex-col  ">
-                                        <label for="{{expitem.exp_des_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="expDes" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Description {{expitem.ind}}
                                         </label>
-                                        <textarea name="{{expitem.exp_des_string}}" id="{{expitem.exp_des_string}}" rows="3"
-                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">
-                                        {{expitem.ExpDes}}
-                                        </textarea>
+                                        <textarea name="expDes" rows="3"
+                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">{{expitem.ExpDes}}</textarea>
                                     </div>
                                     <hr>  
                                 </div>
@@ -462,69 +460,31 @@
                             var div = document.createElement("div");
                             div.setAttribute("id", "Exp" + ExpFields);
 
-
-                            /*
-                            <div id = "Exp1" class="my-6 p-3 mr-20">
-                                    <div class="mb-8 flex flex-col ">
-                                        <label for="exp1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            Company Name 1
-                                        </label>
-                                        <input type="text" name="exp1_" id="exp1_" 
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                    </div>  
-                                    <div class="mb-8 flex flex-col">
-                                        <label for="exp1_des_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            Description 1
-                                        </label>
-                                        <input type="text" name="exp1_des_" id="exp1_des_" 
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                    </div>
-                                    <br>  
-                                </div>*/
                             var expStr = '<div id = "Exp'+ ExpFields +'">';
                                 expStr += '<div class="mb-8 flex flex-col ">';
-                                expStr += '<label for="exp'+ ExpFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
-                                expStr += 'Company Name '+ ExpFields;
+                                expStr += '<label for="exp" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                expStr += 'Company Name ';
                                 expStr += '</label>';
-                                expStr += '<input type="text" name="exp'+ ExpFields +'" id="exp'+ ExpFields + '"';
+                                expStr += '<input type="text" name="exp" ';
                                 expStr += 'class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                 expStr += '</div>';
                                 expStr += '<div class="mb-8 flex flex-col">';
-                                expStr += '<label for="expDes'+ ExpFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
-                                expStr += 'Description '+ExpFields;
+                                expStr += '<label for="expDes" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                expStr += 'Description ';
                                 expStr += '</label>';
-                                expStr += '<textarea name="expDes'+ ExpFields +'" id="expDes'+ ExpFields +'" rows="3"';
+                                expStr += '<textarea name="expDes"  rows="3"';
                                 expStr += 'class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">';
                                 expStr += '</textarea>';
                                 expStr += '</div>';
                                 expStr += '<br>';
                                 expStr += '</div>';
-                            /*
-                            var str = '<div class="form-row">';
-                            str = str + '<div class="form-group col-md-12">';
-                            str = str + '<label for="exp' + ExpFields + '">Company name ' + ExpFields + '</label>';
-                            str = str + '<input type="text" class="form-control" name="exp' + ExpFields + '" placeholder="Amazon">';
-                            str = str + '</div>';
-                            str = str + '<div class="form-group col-md-12">';
-                            str = str + '<label for="expDes' + ExpFields + '">Description ' + ExpFields + '</label>';
-                            str = str + '<textarea class="form-control" rows="3"  name="expDes' + ExpFields + '"></textarea>';
-                            str = str + '</div>';
-                            str = str + '</div>';*/
-
+                        
                             div.innerHTML = expStr;
                             parent.appendChild(div);
                         }
                         function remove_exp() {
                             
                             var parent = document.getElementById("Experience_");
-                            /*
-                            if(ExpFields>0 && exp_flag){
-                                parent.removeChild(parent.lastChild);
-                                parent.removeChild(parent.lastChild);
-                            }
-                            else{
-                                parent.removeChild(parent.lastChild);
-                            }*/
                             parent.removeChild(parent.lastChild);
                             ExpFields -= 1;
                             if(ExpFields==0)exp_flag = false;
@@ -551,44 +511,42 @@
                                 <div id="{{proItem.title_string}}">
                                     <div class="sm:mb-8 sm:flex sm:flex-row ">
                                         <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                            <label for="{{proItem.title_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            <label for="proTitle" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                                 Project Title {{proitem.ind}}
                                             </label>
-                                            <input type="text" name="{{proItem.title_string}}" id="{{proItem.title_string}}" value="{{proItem.title}}" 
+                                            <input type="text" name="proTitle" value="{{proItem.title}}" 
                                             class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                         <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                            <label for="{{proItem.date_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            <label for="proDate" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                                 Finished / Ongoing
                                             </label>
-                                            <input type="text" name="{{proItem.date_string}}" id="{{proItem.date_string}}" value="{{proItem.date}}"
+                                            <input type="text" name="proDate" value="{{proItem.date}}"
                                             class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                     </div>
                                     <div class="sm:mb-8 sm:flex sm:flex-row ">
                                         <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                            <label for="{{proItem.club_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            <label for="clubName" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                                 Club / Organization {{proItem.ind}}
                                             </label>
-                                            <input type="text" name="{{proItem.club_string}}" id="{{proItem.club_string}}" value="{{proItem.club}}"
+                                            <input type="text" name="clubName" value="{{proItem.club}}"
                                             class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                         <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                            <label for="{{proItem.github_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            <label for="githubLink" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                                 Github Link {{proitem.ind}}
                                             </label>
-                                            <input type="text" name="{{proItem.github_string}}" id="{{proItem.github_string}}" placeholder="http://github.com/sample_name" value="{{proItem.github}}"
+                                            <input type="text" name="githubLink" placeholder="http://github.com/sample_name" value="{{proItem.github}}"
                                             class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                     </div>
                                     <div class="mb-8 flex flex-col ">
-                                        <label for="{{proItem.des_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                        <label for="proDes" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Description {{proitem.ind}}
                                         </label>
-                                        <textarea  name="{{proItem.des_string}}" id="{{proItem.des_string}}" 
-                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">
-                                            {{proItem.des}}
-                                        </textarea>
+                                        <textarea  name="proDes" 
+                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">{{proItem.des}}</textarea>
                                     </div>
                                     <br>
                                 </div>
@@ -614,53 +572,7 @@
                             </button>
 
                             <script>
-                                //  var ProFields = parseInt("{{projectsCount}}");
-
-                                /*
-                                
-                                    <div class="sm:mb-8 sm:flex sm:flex-row ">
-                                        <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                            <label for="ptitle1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                                Project Title 1
-                                            </label>
-                                            <input type="text" name="ptitle1_" id="ptitle1_" 
-                                                class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                        </div>
-                                        <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                            <label for="pdate1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                                Finished / Ongoing
-                                            </label>
-                                            <input type="text" name="pdate1_" id="pdate1_" placeholder="Feb 2021 / Ongoing"
-                                                class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                        </div>
-                                    </div>
-                                    <div class="sm:mb-8 sm:flex sm:flex-row ">
-                                        <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                            <label for="pclub1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                                Club / Organization 1
-                                            </label>
-                                            <input type="text" name="pclub1_" id="pclub1_" placeholder="SWC"
-                                                class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                        </div>
-                                        <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                            <label for="pgithub1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                                Github Link 1
-                                            </label>
-                                            <input type="text" name="pgithub1_" id="pgithub1_" placeholder="http://github.com/sample_name"
-                                                class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                        </div>
-                                    </div>
-                                    <div class="mb-8 flex flex-col ">
-                                        <label for="pdesc1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            Description 1
-                                        </label>
-                                        <textarea name="proDesc'+ ProFields +'_" id="proDesc'+ ProFields +'_" rows="3"
-                                            class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">;
-                                        </textarea>
-                                    </div>
-                                    <br>
-                                      
-                                */
+           
                             var ProFields = parseInt("{{projectsCount}}");
 
                             function add_more_pro() {
@@ -673,33 +585,33 @@
                                 var str = '<div id="proTitle'+ ProFields +'">';
                                     str += '<div class="sm:mb-8 sm:flex sm:flex-row ">';
                                     str+='<div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">';
-                                    str+='<label for="proTitle'+ ProFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
-                                    str+='Project Title '+ProFields;
+                                    str+='<label for="proTitle" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                    str+='New Project Title';
                                     str+='</label>';
-                                    str+='<input type="text" name="proTitle'+ ProFields +'" id="proTitle'+ ProFields +'" ';
+                                    str+='<input type="text" name="proTitle"';
                                     str+='class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                     str+='</div>';
                                     str+='<div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">';
-                                    str+='<label for="proDate'+ ProFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black"> Finished / Ongoing </label>';
-                                    str+='<input type="text" name="proDate'+ ProFields +'" id="proDate'+ ProFields +'"';
+                                    str+='<label for="proDate" class="mb-2 text-gray-800 text-opacity-80 hover:text-black"> Finished / Ongoing </label>';
+                                    str+='<input type="text" name="proDate"';
                                     str+=' class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                     str+='</div>';
                                     str+='</div>';
                                     str+= '<div class="sm:mb-8 sm:flex sm:flex-row ">';
                                     str+= '<div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">';
-                                    str+= '<label for="clubName'+ProFields+'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Club / Organization '+ProFields+'</label>';
-                                    str+= '<input type="text" name="clubName'+ ProFields +'" id="clubName'+ProFields+'" placeholder="SWC"';
+                                    str+= '<label for="clubName" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Club / Organization</label>';
+                                    str+= '<input type="text" name="clubName"  placeholder="SWC"';
                                     str+= 'class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                     str+= '</div>';
                                     str+= '<div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">';
-                                    str+= '<label for="githubLink'+ ProFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black"> Github Link '+ProFields+'</label>';
-                                    str+= '<input type="text" name="githubLink'+ ProFields +'" id="githubLink'+ ProFields +'" placeholder="http://github.com/sample_name"';
+                                    str+= '<label for="githubLink" class="mb-2 text-gray-800 text-opacity-80 hover:text-black"> Github Link</label>';
+                                    str+= '<input type="text" name="githubLink" placeholder="http://github.com/sample_name"';
                                     str+= 'class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                     str+= '</div>';
                                     str+= '</div>';
                                     str+= '<div class="mb-8 flex flex-col ">';
-                                    str+= '<label for="proDes'+ ProFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Description '+ProFields+'</label>';
-                                    str += '<textarea name="proDes'+ ProFields +'" id="proDes'+ ProFields +'" rows="3"';
+                                    str+= '<label for="proDes" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Description</label>';
+                                    str += '<textarea name="proDes" rows="3"';
                                     str += '    class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">';
                                     str += '</textarea>';
                                     str+= '</div>';
@@ -810,8 +722,8 @@
 
                                     <div id="{{courseItem.course_string}}">
                                         <div class="mb-8 flex flex-col">
-                                            <label for="{{courseItem.course_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">{{courseItem.course_string}}</label>
-                                            <input type="text" name="{{courseItem.course_string}}" id="{{courseItem.course_string}}" value="{{courseItem.Course}}"
+                                            <label for="course" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">{{courseItem.course_string}}</label>
+                                            <input type="text" name="course" value="{{courseItem.Course}}"
                                             class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                     </div>
@@ -840,16 +752,7 @@
                         <!-- </form> -->
                     </div>
                     <script>
-                                /*
-                                <div id="course1_" class="mb-8 flex flex-col ">
-                                    <label for="course1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                        Course 1 
-                                    </label>
-                                    <input type="text" name="course1_" id="course1_" 
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                </div>
-                                */
-
+                               
                                 var CourseFields = parseInt("{{coursesCount}}");
                                //var CourseFields = 1;
 
@@ -860,8 +763,8 @@
                                     div.setAttribute("id", "course" + CourseFields + "_");
 
                                     var str = '<div class="mb-8 flex flex-col ">';
-                                        str += '<label for="course'+ CourseFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Course '+CourseFields+'</label>';
-                                        str += '<input type="text" name="course'+ CourseFields +'" id="course'+ CourseFields +'" ';
+                                        str += '<label for="course" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">New Course</label>';
+                                        str += '<input type="text" name="course"';
                                         str += ' class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                         str += '</div>';
 
@@ -896,17 +799,15 @@
                                 <div id = "{{poritem.por_string}}">
                                     <div class="mb-8 flex flex-col "> 
                                         <label for="{{porItem.por_string}}">Position of Responsibility {{porItem.ind}}</label>
-                                        <input type="text"  name="{{porItem.por_string}}" id="{{porItem.por_string}}" value="{{porItem.Por}}"
+                                        <input type="text"  name="por" value="{{porItem.Por}}"
                                         class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div> 
                                     <div class="mb-8 flex flex-col  ">
                                         <label for="{{porItem.por_des_string}}" class="mb-2 text-black">
                                             POR Description {{porItem.ind}}
                                         </label>
-                                        <textarea name="{{porItem.por_des_string}}" id="{{porItem.por_des_string}}" rows="3"
-                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">
-                                            {{porItem.PorDesc}}
-                                        </textarea>
+                                        <textarea name="porDesc"  rows="3"
+                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">{{porItem.PorDesc}}</textarea>
                                     </div>
                                     
                                 </div>
@@ -939,66 +840,21 @@
                             var parent = document.getElementById("Por_");
                             var div = document.createElement("div");
                             div.setAttribute("id", "por" + PORFields + "_");
-
-                            /*
-                            <div id = "Por1" class="my-6 p-3 mr-20">
-                                    <div class="mb-8 flex flex-col ">
-                                        <label for="por1_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            POR 1
-                                        </label>
-                                        <input type="text" name="por1_" id="por1_" 
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                    </div>  
-                                    <div class="mb-8 flex flex-col">
-                                        <label for="porDes_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            POR Description 1
-                                        </label>
-                                        <input type="text" name="porDes_" id="porDes_" 
-                                            class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                    </div>
-                                    <br>  
-                                </div>
-                                
-
-                                
-                            var PORStr = '<div id = "Por'+ PORFields +'">';
-                                PORStr += '<div class="mb-8 flex flex-col ">';
-                                PORStr += '<label for="por'+ PORFields +'_" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
-                                PORStr += 'POR '+ PORFields;
-                                PORStr += '</label>';
-                                PORStr += '<input type="text" name="por'+ PORFields +'" id="por'+ PORFields + '"';
-                                PORStr += 'class="py-2 px-4 border-b-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none focus:border-b-2 hover:border-b-2">';
-                                PORStr += '</div>';
-                                PORStr += '<div class="mb-8 flex flex-col">';
-                                PORStr += '<label for="por'+ PORFields +'des" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
-                                PORStr += 'Description '+PORFields;
-                                PORStr += '</label>';
-                                PORStr += '<textarea name="por'+ PORFields +'_" id="por'+ PORFields +'_" rows="3"';
-                                PORStr += 'class="py-2 px-4 rounded-lg border-2 border-solid border-gray-300 hover:border-black focus:border-red-300  focus:outline-none  text-left">';
-                                PORStr += '</textarea>';
-                                PORStr += '</div>';
-                                PORStr += '<br>';
-                                PORStr += '</div>';
-                                
-                                
-                            */
-
-                                
                             
                             var str = '<div id = "por'+ PORFields +'_">';
                                 str += '<div class="mb-8 flex flex-col ">';
                                 str += '<label for="por'+ PORFields +'">';
                                 str += 'Position of Responsibility '+PORFields ;
                                 str += '</label>';
-                                str += '<input type="text"  name="por'+ PORFields +'" id="por'+ PORFields +'"';
+                                str += '<input type="text"  name="por"';
                                 str += '  class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                 str += '</div>';
                                 str += '<div class="mb-8 flex flex-col">';
-                                str += '<label for="porDesc'+ PORFields +'" class="mb-2 text-black">';
+                                str += '<label for="porDesc" class="mb-2 text-black">';
                                 str += 'POR Description '+PORFields;
                                 str += '</label>';
-                                str += '<textarea name="porDesc'+ PORFields +'" id="porDesc'+ PORFields +'" rows="3"';
-                                str += '    class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">';
+                                str += '<textarea name="porDesc" rows="3"';
+                                str += ' class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">';
                                 str += '</textarea>';
                                 str += '</div>';
                                 str += '</div>';
@@ -1042,7 +898,7 @@
                                         <label for="{{achItem.ach_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Achievement {{achItem.ind}}
                                         </label>
-                                        <input type="text" name="{{achItem.ach_string}}" id="{{achItem.ach_string}}"
+                                        <input type="text" name="ach" 
                                         class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2"
                                             value = "{{achItem.Ach}}">
                                     </div>  
@@ -1050,10 +906,8 @@
                                         <label for="{{achItem.ach_des_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                             Description {{achItem.ind}}
                                         </label>
-                                        <textarea name="{{achItem.ach_des_string}}" id="{{achItem.ach_des_string}}" rows="3"
-                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">
-                                        {{achItem.AchDes}}
-                                        </textarea>
+                                        <textarea name="achDes" rows="3"
+                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">{{achItem.AchDes}}</textarea>
                                     </div>
                                     <hr>  
                                 </div>
@@ -1087,17 +941,17 @@
                             div.setAttribute("id", "ach" + AchFields+"_");
 
                             var str = '<div class="mb-8 flex flex-col ">';
-                                str+='<label for="ach'+ AchFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                str+='<label for="ach" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
                                 str+='Achievement '+AchFields;
                                 str+='</label>';
-                                str+='<input type="text" name="ach'+ AchFields+'" id="ach'+ AchFields +'"';
+                                str+='<input type="text" name="ach"';
                                 str+=' class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                 str+='</div>';
                                 str+='<div class="mb-8 flex flex-col">';
-                                str+='<label for="achDes'+ AchFields +'" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                str+='<label for="achDes" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
                                 str+='Description '+AchFields;
                                 str+='</label>';
-                                str+='<textarea name="achDes'+ AchFields+'" id="achDes'+ AchFields +'" rows="3"';
+                                str+='<textarea name="achDes" rows="3"';
                                 str+='  class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">';
                                 str+='</textarea>';
                                 str+='</div>';
@@ -1135,7 +989,7 @@
         </div>
 
         <input type="hidden" id="save_flag" name="save_flag" value="false">
-        <input type="submit" id="submit" name="submit" style="visibility: hidden;">
+        <input type="submit" id="submit" style="visibility: hidden;">
 
         </form>
 

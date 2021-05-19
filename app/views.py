@@ -196,12 +196,6 @@ def index(request,pk):
 
         #input dictionary
         md = request.POST
-
-        if md['save_flag']=="true":
-
-            data_generator(md,resume_file_name)
-            return redirect('/index/'+str(pk)+'/')
-        
         
         
         print(md) 
@@ -226,65 +220,57 @@ def index(request,pk):
 
         
         #collecting internships data     
-        i=1
-        while i:
-           str1 = 'exp' + str(i)
-           str2 = 'expDes' + str(i)
-           if str1 in md.keys():
-               internships.append([md[str1],md[str2]])
-           else:
-               break
-           i=i+1
-        
+        if ('exp' in request.POST.keys()):
+            exp_titles = request.POST.getlist('exp')
+            exp_descs = request.POST.getlist('expDes')
+
+            for i in range(len(exp_titles)):
+                internships.append([exp_titles[i], exp_descs[i]])
+
         #collecting projects data
         #format ["title1","club1","desc1","link1","date1"]
-        i=1
-        while i:
-           str1 = 'proTitle' + str(i)
-           str2 = 'proDate' + str(i)
-           str3 = 'clubName' + str(i)
-           str4 = 'githubLink' +str(i)
-           str5 = 'proDes' + str(i)
-           
-           if str1 in md.keys():
-               projects.append([md[str1], md[str3], md[str5], md[str4], md[str2]])
-           else:
-               break
-           i=i+1
+
+        if('proTitle' in request.POST.keys()):
+            pro_titles = request.POST.getlist('proTitle')
+            pro_clubs = request.POST.getlist('clubName')
+            pro_descs = request.POST.getlist('proDes')
+            pro_links = request.POST.getlist('githubLink')
+            pro_dates = request.POST.getlist('proDate')
+
+            for i in range(len(pro_titles)):
+                projects.append([pro_titles[i],pro_clubs[i], pro_descs[i], pro_links[i], pro_dates[i]])
+
+            
+        
         
         #collecting course data
-        i=1
-        while i:
-           str1 = 'course' + str(i)
-           if str1 in md.keys():
-               course.append(md[str1])    
-           else:
-               break
-           i=i+1
+
+        if('course' in request.POST.keys()):
+            course = request.POST.getlist('course')
+
         
         #collecting por data
-        i=1
-        while i:
-           str1 = 'por' + str(i)
-           str2 = 'porDesc' + str(i)
-           
-           if str1 in md.keys():
-               por.append([md[str1],md[str2]])
-           else:
-               break
-           i=i+1
+
+        if ('por' in request.POST.keys()):
+            por_titles = request.POST.getlist('por')
+            por_descs = request.POST.getlist('porDesc')
+
+            for i in range(min(len(por_titles), len(por_descs))):
+                por.append([por_titles[i], por_descs[i]])
+
+
         
         #collecting ach data
-        i=1
-        while i:
-           str1 = 'ach' + str(i)
-           str2 = 'achDes' + str(i)
 
-           if str1 in md.keys():   
-               achievements.append([md[str1], md[str2]])
-           else:
-               break
-           i=i+1
+        if('ach' in request.POST.keys()):
+            ach_titles = request.POST.getlist('ach')
+            ach_descs = request.POST.getlist('achDes')
+
+            for i in range(min(len(ach_titles),len(ach_descs))):
+                achievements.append([ach_titles[i], ach_descs[i]])
+
+            
+        
 
         #collecting technical skills
         techskills = {
@@ -295,6 +281,11 @@ def index(request,pk):
             "Miscellaneous": md['miscellaneous'],
             "Other skills": md['otherSkills'],
         }
+
+        if md['save_flag']=="true":
+
+            data_generator(md,resume_file_name, achievements =  achievements,por = por, course = course, projects = projects, internships = internships)
+            return redirect('/index/'+str(pk)+'/')
                
 
         #generating the LaTex file  
@@ -310,7 +301,7 @@ def index(request,pk):
             achievements=achievements)
 
         # updating corresponding data file
-        data_generator(md,resume_file_name)
+        data_generator(md,resume_file_name, achievements =  achievements,por = por, course = course, projects = projects, internships = internships)
         
         # compiling the latex file and generating pdf file
         pdflatex_cmd_str = 'pdflatex '+ '-output-directory=' + str(PDFS_ROOT)+ ' ' + str(LATEX_ROOT) +'\\'+ str(resume_mod.latexFile)
