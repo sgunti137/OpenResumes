@@ -18,4 +18,3 @@ class User_resume_relation(models.Model):
 
     def __str__(self):
         return self.user.first_name
-
