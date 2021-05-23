@@ -7,8 +7,9 @@
         <title>
             {{name}}-Home
         </title>
+        <link rel="icon" href="{% static 'images/favicon.ico' %}"  type="image/x-icon"/>
         <meta charset ="utf-8">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+        
         <!-- Bootstrap CSS library -->
     <link rel="stylesheet" href=
     "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -35,34 +36,88 @@
         integrity=
     "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        <script>
+            submit_form = function(){
+                document.getElementById("submit").click();
+            }
+            function request_delete_resume(id_arg,name_arg) {
+                if(confirm('Are you sure about deleting '+name_arg +' permanently?')){
+                    document.getElementById("delete_resume_id").value = id_arg;
+                    document.getElementById("delete_flag").value = 'true';
+                    document.getElementById("submit").click();
+                }
+            }
+        </script>
     </head>
-    <body>
+    <body style=" background-color: #00140e;">
        
         <!-- main content of the html page ************-->
         <main>
-            <a href = '{% url "django_auth_adfs:logout" %}'>Logout</a><br>
+            <br>
             <div class="row">
-                <div class="col-md-4">
-
-                </div>
-                <div class="col-md-8">
-                    <h2>Title</h2>
-                    <form method="POST" action = '.'>{% csrf_token %}
-                    {% for resume in Resumes %}
-                        
-                        <input type="radio" name = "resume_id" value="{{resume.id}}">
-                        <label>{{resume}}</label>
-                        <br>
-                    {% endfor %}
-                    <label for = "newResume">Create new: </label>
-                    <div class="col-md-5">
-                        <input type = "text" class = "form-control" name = "newResume">
-                    </div><br>
-                    <label for = "submit">Submit: </label>
-                    <input type="submit" class = "btn btn-success" name = "submit">
-                    </form>
+                <div class="col-1"></div>
+                <div class="col-11">
+                    <h2 style = "color: antiquewhite;">OpenResumes</h2>
                 </div>
             </div>
+            <br>
+            <div class="row">
+                <div class="col-10"></div>
+                <div class = "col-2">
+                    <button type="button" class="btn btn-success"><a href = '{% url "django_auth_adfs:logout" %}' style = "color: antiquewhite;">Logout</a></button>
+                </div>
+            </div>
+            <br>
+            
+            <!--div clas = "row">
+                {% for resume in Resumes %}
+                <a href = "index/{{resume.id}}">{{resume}}</a><br>
+                {% endfor %}
+            </div>
+            <br-->
+            
+        
+            
+           
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                    {% for resume in Resumes %}
+                    <a class = "btn btn-link" style="color: antiquewhite; font-size: larger;" href = "index/{{resume.id}}">{{resume}}</a>
+                    <br><br>
+                    
+                    {% endfor %}
+                </div>
+                <div class="col-md-4">
+                    {% for resume in Resumes %}
+                        <button type = "button" class="btn btn-danger" onclick = "request_delete_resume('{{resume.id}}','{{resume}}')">Delete</button><br><br>
+                    {% endfor %}
+                <br>  
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-md-8">
+                    <hr style = "color: antiquewhite;">
+                    <br><br><br>
+                    <form method="POST" action = '.'>{% csrf_token %}
+                        <div class="row">
+                            <label for = "newResume" style="color: antiquewhite;">New one?</label>
+                            <div class="col-3">
+                                <input type = "text" class = "form-control" name = "newResume" placeholder="name of the new resume">
+                            </div>
+                            <input type = "hidden" id = "delete_resume_id" name = "delete_resume_id">
+                            <input type = "hidden" id = "delete_flag" name = "delete_flag" value = "false">
+                            <input type="submit" class = "btn btn-success" id = "submit" name = "submit" value = "create">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            
+
         </main> 
     </body>
 </html>

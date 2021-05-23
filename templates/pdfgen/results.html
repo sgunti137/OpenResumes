@@ -8,6 +8,7 @@
             Resume pdf
         </title>
         <meta charset ="utf-8">
+        <link rel="icon" href="{% static 'images/favicon.ico' %}"  type="image/x-icon"/>
         <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
         <!-- Bootstrap CSS library -->
     <link rel="stylesheet" href=
@@ -43,8 +44,15 @@
         <h2>Here are your results!</h2>
         
         <!--a href = "{% static 'data/datafile.txt' %}" download>download</a> the data file<br-->
-        <a href = '{% url "django_auth_adfs:logout" %}'>Logout</a>
+      
 
+        <div class="row">
+            <div class="col-10"></div>
+            <div class = "col-2">
+                <button type="button" class="btn btn-success"><a href = '{% url "django_auth_adfs:logout" %}' style = "color: antiquewhite;">Logout</a></button>
+            </div>
+        </div>
+        
         
         
         <!-- main content of the html page ************-->

@@ -27,4 +27,4 @@ urlpatterns = [
     path('results/<str:pk>/',include('app.urls_results')),
     path('oauth2/', include('django_auth_adfs.urls')),
     path('',include('app.urls_home')), 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root = settings.STATIC_DIR)

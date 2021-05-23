@@ -53,7 +53,7 @@ class achObj:
         self.Ach = Ach
         self.AchDes = AchDes
 
-class expObj():
+class expObj:
     def __init__(self,exp_string,exp_des_string,ind,Exp,ExpDes):
         self.exp_string = exp_string
         self.exp_des_string = exp_des_string
@@ -72,23 +72,34 @@ class courseObj:
 @login_required()
 def index(request,pk):
    
-    #*********************************************
+    # initialize the dictionary to be sent to the template.
     my_dict = {}
-    #*********************************************
+
+    
+    # collected the details of the user.
     us = User.objects.get(username = request.user)
     resume_mod = Resume.objects.get(id=pk)
     resume_file_name = str(resume_mod.rFile)
 
+    res_rel = us.user_resume_relation_set.first()
+    resume_list = list(Resume.objects.filter(user_resume_relation = res_rel))
 
+    if resume_mod not in resume_list:
+        return render(request,'pdfgen/wrongIndex.html')
 
+    #reading the lines of the data file to be injected into index template.
     data_file_lines = open(os.path.join(DATA_ROOT,resume_file_name),'r').readlines()
+
+
+    #count of each section fields to be looped in the template.
     projectsCount = 0
     coursesCount = 0
     porCount = 0
     achCount = 0
     expCount = 0
 
-
+    
+    #filling my_dict with corresponding data and also keeping track of count of fields
     for line in data_file_lines:
         if line != "":
             tmp = line.split('#')
@@ -97,7 +108,6 @@ def index(request,pk):
             tmp_key = str(tmp[0])
             my_dict[tmp_key] = str(tmp[1])
             
-
             if "course" in tmp_key:
                 coursesCount +=1
             elif "proTitle" in tmp_key and len(tmp_key) == 9:
@@ -109,28 +119,24 @@ def index(request,pk):
             elif "exp" in tmp_key and len(tmp_key) == 4:
                 expCount +=1
     
+    
+    #counts of section fields sent successfully
     my_dict["projectsCount"] = projectsCount
     my_dict["porCount"] = porCount
     my_dict["coursesCount"] = coursesCount
     my_dict["achCount"] = achCount
     my_dict["expCount"] = expCount
 
-    """
-    proTitle3#
-    proDate3#
-    clubName3#
-    githubLink3#
-    proDes3#
-    """
-
-
+    #print("achCount = ", achCount)
+    
+    #initializing the lists of section fields to be sent
     project_list = []
     exp_list = []
     courses_list = []
     ach_list = []
     por_list = []
 
-    #print("projectCount: ", projectsCount)
+    #filling projects list with format -> projectObj(title_string, date_string, club_string, github_string, des_string, corresponding values)
     for i in range(projectsCount):
         title_string = "proTitle" + str(i+1)
         date_string = "proDate" + str(i+1)
@@ -138,9 +144,11 @@ def index(request,pk):
         github_string = "githubLink" + str(i+1)
         des_string = "proDes" + str(i+1)
 
-        project_list.append(projectObj(title_string, date_string, club_string, github_string, des_string, my_dict[title_string], my_dict[date_string], my_dict[club_string], my_dict[github_string], my_dict[des_string],i+1))
+        project_list.append(projectObj(title_string , date_string, club_string, github_string, des_string, my_dict[title_string], my_dict[date_string], my_dict[club_string], my_dict[github_string], my_dict[des_string],i+1))
     my_dict["project_list"] = project_list
- 
+    
+
+    # filling por_list with values of format -> porObj()
     for i in range(porCount):
         por_string = "por" + str(i+1)
         por_des_string = "porDesc" + str(i+1)
@@ -148,6 +156,7 @@ def index(request,pk):
     my_dict["por_list"] = por_list
 
     
+    # filling por_list with values of format -> achObj()
     for i in range(achCount):
         ach_string = "ach" + str(i+1)
         ach_des_string = "achDes" + str(i+1)
@@ -155,153 +164,176 @@ def index(request,pk):
     my_dict["ach_list"] = ach_list
 
     
+    # filling por_list with values of format -> courseObj()
     for i in range(coursesCount):
         course_string = "course" + str(i+1)
         courses_list.append(courseObj(course_string,my_dict[course_string]))
     my_dict["courses_list"] = courses_list
 
     
+    # filling por_list with values of format -> expObj()
     for i in range(expCount):
         exp_string = "exp" + str(i+1)
         exp_des_string = "expDes" + str(i+1)
-        exp_list.append(expObj(exp_string,exp_des_string, i+1,my_dict[exp_string],my_dict[exp_des_string]))
+        exp_list.append(expObj(exp_string ,exp_des_string , i+1,my_dict[exp_string],my_dict[exp_des_string]))
     my_dict["exp_list"] = exp_list
 
-    #************************************
+
+    # the name of the pdf to be passed for displaying in the top-> initialization and added to my_dict
+    pdf_string = 'pdfs/' + str(resume_mod.pdfFile)
+
+    if os.path.getsize('static/'+pdf_string)==0:
+        pdf_string = 'data/display_resume.pdf'
+        
+    my_dict['pdf_string'] = pdf_string
+
+    
+
+    """****************************************************************************************************************************"""
+
+
     if request.method == 'POST':
+
+        #input dictionary
         md = request.POST
+        
         
         print(md) 
         
+        # initializing section lists
         education=[]
         internships=[]
         projects=[]
-        # techskills=[]
         course=[]
         por=[]
         achievements=[]
         
-        # edu_list = ['BTech','Seniory Secondary','Secondary']
-        
-
+        # edu_list = ['MTech', 'BTech','Seniory Secondary','Secondary']
         education = [
                      ["M.Tech",md["mtechBoard"], md["mtechGrade"],md["mtechYear"]],
                      ["B.Tech",md["btechBoard"],md["btechGrade"],md["btechYear"]],
                      ["Secondary senior",md["ssBoard"],md["ssGrade"],md["ssYear"]],
                      ["Secondary",md["sBoard"],md["sGrade"],md["sYear"]],
                     ]
+        if(md["mtechBoard"]=="" and md["mtechYear"]=="" and md["mtechGrade"]==""):
+            education.pop(0)
 
-        #collecting internships data     
-        i=1
-        while i:
-           l =[]
-           str1 = 'exp' + str(i)
-           str2 = 'expDes' + str(i)
-           
-           if str1 in md.keys():
-               l.append(md[str1])
-               l.append(md[str2])
-               internships.append(l)
-           else:
-               break
-           i=i+1
         
+        #collecting internships data     
+        if ('exp' in request.POST.keys()):
+            exp_titles = request.POST.getlist('exp')
+            exp_descs = request.POST.getlist('expDes')
+
+            for i in range(len(exp_titles)):
+                internships.append([exp_titles[i], exp_descs[i]])
+
         #collecting projects data
-        i=1
-        while i:
-           l =[]
-           str1 = 'proTitle' + str(i)
-           str2 = 'proDate' + str(i)
-           str3 = 'clubName' + str(i)
-           str4 = 'githubLink' +str(i)
-           str5 = 'proDes' + str(i)
-           
-           
-           if str1 in md.keys():
-               l.append(md[str1])
-               l.append(md[str2])
-               l.append(md[str3])
-               l.append(md[str4])
-               l.append(md[str5])    
-               projects.append(l)
-           else:
-               break
-           i=i+1
+        #format ["title1","club1","desc1","link1","date1"]
+
+        if('proTitle' in request.POST.keys()):
+            pro_titles = request.POST.getlist('proTitle')
+            pro_clubs = request.POST.getlist('clubName')
+            pro_descs = request.POST.getlist('proDes')
+            pro_links = request.POST.getlist('githubLink')
+            pro_dates = request.POST.getlist('proDate')
+
+            for i in range(len(pro_titles)):
+                projects.append([pro_titles[i],pro_clubs[i], pro_descs[i], pro_links[i], pro_dates[i]])
+
+            
+        
         
         #collecting course data
-        i=1
-        while i:
-        #    l =[]
-           str1 = 'course' + str(i)
-           
-           if str1 in md.keys():
-               course.append(md[str1])    
-            #    course.append(l)
-           else:
-               break
-           i=i+1
+
+        if('course' in request.POST.keys()):
+            course = request.POST.getlist('course')
+
         
         #collecting por data
-        i=1
-        while i:
-           l =[]
-           str1 = 'por' + str(i)
-           str2 = 'porDesc' + str(i)
-           
-           
-           if str1 in md.keys():
-               l.append(md[str1])
-               l.append(md[str2])    
-               por.append(l)
-           else:
-               break
-           i=i+1
+
+        if ('por' in request.POST.keys()):
+            por_titles = request.POST.getlist('por')
+            por_descs = request.POST.getlist('porDesc')
+
+            for i in range(min(len(por_titles), len(por_descs))):
+                por.append([por_titles[i], por_descs[i]])
+
+
         
         #collecting ach data
-        i=1
-        while i:
-           l =[]
-           str1 = 'ach' + str(i)
-           str2 = 'achDes' + str(i)
-           
-           
-           if str1 in md.keys():
-               l.append(md[str1])
-               l.append(md[str2])    
-               achievements.append(l)
-           else:
-               break
-           i=i+1
+
+        if('ach' in request.POST.keys()):
+            ach_titles = request.POST.getlist('ach')
+            ach_descs = request.POST.getlist('achDes')
+
+            for i in range(min(len(ach_titles),len(ach_descs))):
+                achievements.append([ach_titles[i], ach_descs[i]])
+
+            
+        
+
+        #collecting technical skills
+        techskills = {
+            "Programming Languages": md['pLanguages'],
+            "Web Technogies": md['webTechs'],
+            "DBMS": md['dbms'],
+            "OS": md['os'],
+            "Miscellaneous": md['miscellaneous'],
+            "Other skills": md['otherSkills'],
+        }
+
+        if md['save_flag']=="true":
+
+            data_generator(md,resume_file_name, achievements =  achievements,por = por, course = course, projects = projects, internships = internships)
+            return redirect('/index/'+str(pk)+'/')
                
-                
-        createTextFile(latex_file_name = str(resume_mod.latexFile), name = md['name'], rollno=str(md['roll']), stream = md['stream'],branch=md['programme'],minor=md['minor'],college="IITG",
+
+        #generating the LaTex file  
+        createTextFile(latex_file_name = str(resume_mod.latexFile), name = md['name'], rollno=str(md['roll']), stream = md['stream'],branch=md['programme'],minor=md['minor'],college="IIT Guwahati",
             email= md['email'],iitgmail=md['webmail'],mobileno= str(md['mobile']),
             linkedin= md['linkedIn'],
             education=education,
             internships=internships,
             projects=projects,
-            techskills=[md['pLanguages'],md['webTechs'],md['dbms'],md['os'],md['miscellaneous'],md['otherSkills']],
+            techskills=techskills,
             keyCourses=course,
             por=por,
             achievements=achievements)
 
-        data_generator(md,resume_file_name)
+        # updating corresponding data file
+        data_generator(md,resume_file_name, achievements =  achievements,por = por, course = course, projects = projects, internships = internships)
         
+        # compiling the latex file and generating pdf file
         pdflatex_cmd_str = 'pdflatex '+ '-output-directory=' + str(PDFS_ROOT)+ ' ' + str(LATEX_ROOT) +'\\'+ str(resume_mod.latexFile)
-        
-        print(pdflatex_cmd_str)
-        
         os.system(pdflatex_cmd_str)
-        return redirect('/results/'+str(pk)+'/')
+
+        #deleting auxilary files for efficient memory usage.
+        plain_name = str(resume_mod.latexFile)
+        plain_name = 'static/pdfs/'+plain_name[:-4]
+        os.remove(plain_name + '.aux')
+        os.remove(plain_name + '.out')
+        os.remove(plain_name + '.log')
+        
+        return redirect('/index/'+str(pk)+'/')
        
-    return render(request,'pdfgen/index.html',context = my_dict)
+    return render(request,'app/index.html',context = my_dict)
 
 
 
 
 @login_required()
 def results(request,pk):
+    #checking whether the requested resume is permitted for the current user
+    us = User.objects.get(username = request.user)
     resume_mod = Resume.objects.get(id=pk)
+    res_rel = us.user_resume_relation_set.first()
+    resume_list = list(Resume.objects.filter(user_resume_relation = res_rel))
+
+    
+    if resume_mod not in resume_list:
+        return render(request,'pdfgen/wrongIndex.html')
+
+    
     #pdf_location = '{% static \'pdfs/'+str(resume_mod.pdfFile)+ '\' %}'
     pdf_loc = '/pdfs/' + str(resume_mod.pdfFile)
     latex_loc = '/latex/'+str(resume_mod.latexFile)
@@ -316,20 +348,50 @@ def home(request):
 
     us = User.objects.get(username = request.user)
     res_rel = us.user_resume_relation_set.first()
+    if res_rel is None:
+        res_rel = User_resume_relation()
+        res_rel.user = us
+        res_rel.save()
     resumes_list = list(Resume.objects.filter(user_resume_relation = res_rel))
+    print(resumes_list)
 
     home_dict = {"name":us.first_name}
     home_dict["Resumes"] = resumes_list
+
+
+
     
     # if len(resumes_list)==0:
     #     return redirect('index/')
 
     if request.method == 'POST':
         requestDir = request.POST
+
+        print(requestDir)
+        
+        if requestDir["delete_flag"]=='true':
+            delete_resume_id = int(requestDir['delete_resume_id'])
+            del_res = Resume.objects.get(id = delete_resume_id)
+
+            delete_data_file = str(del_res.rFile)
+            delete_pdf_file = str(del_res.pdfFile)
+            delete_latex_file = str(del_res.latexFile)
+
+            delete_data_file = 'media/data/'+delete_data_file
+            delete_pdf_file = 'static/pdfs/'+delete_pdf_file
+            delete_latex_file = 'static/latex/'+delete_latex_file
+
+            del_res.delete()
+
+            os.remove(delete_data_file)
+            os.remove(delete_pdf_file)
+            os.remove(delete_latex_file)
+            return redirect('/')
+
+
         if requestDir["newResume"]=="":
-            res_id = requestDir['resume_id']
-            redirect_url = '/index/'+str(res_id)+'/'
-            return redirect(redirect_url)
+            print("form submitted successfully..")
+            return redirect('/')
         else:
             #creating a new instance and setting the parameters when ever a user request for new resume generation..
             resume_mod = Resume()
@@ -337,7 +399,7 @@ def home(request):
             resume_mod.save()
             resume_id = resume_mod.id
 
-            
+            #setting the object attributes
             
             new_data_file_name = 'datafile_'+str(resume_id)+'.txt'
             new_pdf_file_name = 'latexFile_'+str(resume_id)+'.pdf'
@@ -361,5 +423,36 @@ def home(request):
             print(redirect_url)
             return redirect(redirect_url)
 
-    return render(request,'pdfgen/home.html',context = home_dict)
+    return render(request,'app/home.html',context = home_dict)
 
+"""
+def send(request):
+    toh=request.POST['to']
+    print(toh)
+    mail_content = '''
+    '''
+    sender_address = 'resumegenerator112@gmail.com'
+    sender_pass = 'Resumegenerator123'
+    receiver_address = toh
+    message = MIMEMultipart()
+    message['From'] = sender_address
+    message['To'] = receiver_address
+    message['Subject'] = 'Hi bro Nuv thoppp!!!!!!!'
+    message.attach(MIMEText(mail_content, 'plain'))
+    attach_file_name ='static/pdfs/'+ Resume.objects.get(id=request.POST['pk']).pdfFile
+    print
+    attach_file = open(attach_file_name, 'rb') 
+    payload = MIMEBase('application', 'octate-stream')
+    payload.set_payload((attach_file).read())
+    encoders.encode_base64(payload) 
+    payload.add_header('Content-Decomposition', 'attachment', filename=attach_file_name)
+    message.attach(payload)
+    session = smtplib.SMTP('smtp.gmail.com', 587)
+    session.starttls() 
+    session.login(sender_address, sender_pass) 
+    text = message.as_string()
+    session.sendmail(sender_address, receiver_address, text)
+    session.quit()
+    print('Mail Sent')
+    return redirect('home')
+"""
