@@ -12,6 +12,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
+    <!-- <script src="jquery-3.6.0.js"></script> -->
+    <script type="text/javascript" src="{% static 'js/jquery-3.6.0.js' %}"></script>
     <!-- Tailwind CSS -->
     <link href="https://unpkg.com/tailwindcss@^2.1.1/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" href="{% static 'images/favicon.ico' %}"  type="image/x-icon"/>
@@ -110,26 +112,34 @@
             overflow: hidden;
  }
     </style>
+    
     <script>
 
         function myFunction() {
             alert("ddff");
             }
+        
 
         function save_data(){
+
 
             document.getElementById("save_flag").value = 'true';
             document.getElementById("submit").click();
         }
 
         function compile_data(){
-            document.getElementById("submit").click();
+            
+            document.getElementById("submit").click();    
         }
+
+       
+        
 
 
     </script>
 </head>
-    <body>
+    <body>    
+        
         <!-- Header part -->
 
         <div class="relative items-center bg-white">
@@ -970,6 +980,7 @@
                             AchFields -= 1;
                             
                         }
+
                     </script>
                     
                 </div>

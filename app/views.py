@@ -196,7 +196,7 @@ def index(request,pk):
 
         #input dictionary
         md = request.POST
-        
+    
         
         print(md) 
         
@@ -228,7 +228,8 @@ def index(request,pk):
                 internships.append([exp_titles[i], exp_descs[i]])
 
         #collecting projects data
-        #format ["title1","club1","desc1","link1","date1"]
+        #format ["title1","club1",["desc1","desc2" .. ], "link1","date1"]
+        # proDes: [['pro1 des1', 'pro1 des2' .. ], ['pro2 des', 'pro2 des2' .. ], ..]
 
         if('proTitle' in request.POST.keys()):
             pro_titles = request.POST.getlist('proTitle')
@@ -240,7 +241,6 @@ def index(request,pk):
             for i in range(len(pro_titles)):
                 projects.append([pro_titles[i],pro_clubs[i], pro_descs[i], pro_links[i], pro_dates[i]])
 
-            
         
         
         #collecting course data
@@ -256,7 +256,7 @@ def index(request,pk):
             por_descs = request.POST.getlist('porDesc')
 
             for i in range(min(len(por_titles), len(por_descs))):
-                por.append([por_titles[i], por_descs[i]])
+                por.append([por_titles[i], por_descs[i].split('\n') ])
 
 
         

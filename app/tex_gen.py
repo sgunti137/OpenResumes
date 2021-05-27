@@ -130,7 +130,7 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
         writefile.write(lines[126])
         writefile.write(lines[127])
     #Projects Dynamic code
-    #projects=[["title1","club1","desc1","link1","date1"],["title2","club2","desc2","link2","date2"],["title3","club3","desc3","link3","date3"],["title4","club4","desc4","link4","date4"]]
+    #projects=[["title1","club1",["desc1","desc2" .. ]"link1","date1"],["title2","club2","desc2","link2","date2"],["title3","club3","desc3","link3","date3"],["title4","club4","desc4","link4","date4"]]
     for sublist in projects:
         sublist_3_str = percentReplacerString(sublist[3])
         for i in range(len(sublist)):
@@ -141,6 +141,8 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
             writefile.write("\n")
             writefile.write(r"\begin{itemize}")
             writefile.write("\n")
+            # for i in range(len(sublist[2])):
+            #     writefile.write(r"\item "+sublist[2][i])
             writefile.write(r"\item "+sublist[2])
             writefile.write("\n")
             writefile.write(r" \end{itemize}")
@@ -174,28 +176,7 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
             if(techskills[key]!=""):
                 writefile.write(r"\resumeSubItem{"+ key +r"}{" +techskills[key] + r"}")
                 writefile.write("\n")
-        """
-        for i in range(len(techskills)):
-            techskills[i]=percentReplacerString(techskills[i])
-        if(techskills[0]!=""):
-            writefile.write(r"\resumeSubItem{Programming Languages}{"+techskills[0]+r"}")
-            writefile.write("\n")
-        if(techskills[1]!=""):
-            writefile.write(r"\resumeSubItem{Web Technologies}{"+techskills[1]+r"}")
-            writefile.write("\n")
-        if(techskills[2]!=""):
-            writefile.write(r"\resumeSubItem{DBMS}{"+techskills[2]+r"}")
-            writefile.write("\n")
-        if(techskills[3]!=""):
-            writefile.write(r"\resumeSubItem{OS}{"+techskills[3]+r"}")
-            writefile.write("\n")
-        if(techskills[4]!=""):
-            writefile.write(r"\resumeSubItem{Miscelleneous}{"+techskills[4]+r"}")
-            writefile.write("\n")
-        if(techskills[5]!=""):
-            writefile.write(r"\resumeSubItem{Other Skills}{"+techskills[5]+r"}")
-            writefile.write("\n")
-        """
+        
 
         #write some static code
         for i in range(170,174):
@@ -237,10 +218,11 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
         writefile.write(lines[206])
         writefile.write(lines[207])
     #POR Dynamic code
-    #por=[["title1","desc1"],["title2","desc2"],["title3","desc3"],["title4","desc4"]]
+    #por=[["title1",["desc1", "desc2" ... ]],["title2","desc2"],["title3","desc3"],["title4","desc4"]]
     for sublist in por:
-        for i in range(len(sublist)):
-            sublist[i]=percentReplacerString(sublist[i])
+        sublist[0] = percentReplacerString(sublist[0])
+        for i in range(len(sublist[1])):
+            sublist[1][i]=percentReplacerString(sublist[1][i])
         if(sublist[0]!=""):
             writefile.write(r"\resumeSubItem{"+sublist[0]+r"}")
             writefile.write("\n")
@@ -248,8 +230,11 @@ def createTextFile(latex_file_name,name,rollno,stream,branch,minor,college,email
             writefile.write("\n")
             writefile.write(r"\begin{itemize}")
             writefile.write("\n")
-            writefile.write(r"\item "+sublist[1])
-            writefile.write("\n")
+            for sub_desc in sublist[1]:
+                if(sub_desc.isspace() or sub_desc==""):
+                    continue
+                writefile.write(r"\item "+sub_desc)
+                writefile.write("\n")
             writefile.write(r"\end{itemize} }")
             writefile.write("\n")
             writefile.write("\n")
