@@ -8,6 +8,7 @@ from app.data_gen import data_generator
 from openresume.settings import BASE_DIR,MEDIA_ROOT,MEDIA_URL,STATIC_DIR
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+import platform
 
 # model imports
 from app.models import *
@@ -345,7 +346,14 @@ def index(request,pk):
         # data_generator(md,resume_file_name, achievements =  achievements,por = por, course = course, projects = projects, internships = internships)
         
         # compiling the latex file and generating pdf file
-        pdflatex_cmd_str = 'pdflatex '+ '-output-directory=' + str(PDFS_ROOT)+ ' ' + str(LATEX_ROOT) +'\\'+ str(resume_mod.latexFile)
+        pdflatex_cmd_str = 'pdflatex '+ '-output-directory=' + str(PDFS_ROOT)+ ' ' + str(LATEX_ROOT) 
+        
+        if str(platform.system())=='Linux':
+            pdflatex_cmd_str += '/'
+        elif str(platform.system())=='Windows':
+            pdflatex_cmd_str += '\\'
+        
+        pdflatex_cmd_str += str(resume_mod.latexFile)
         os.system(pdflatex_cmd_str)
 
         #deleting auxilary files for efficient memory usage.
