@@ -215,6 +215,22 @@ def index(request,pk):
                      ["Secondary senior",md["ssBoard"],md["ssGrade"],md["ssYear"]],
                      ["Secondary",md["sBoard"],md["sGrade"],md["sYear"]],
                     ]
+        #education update
+        new_edu=resume_mod.education
+        new_edu.mtechBoard = md['mtechBoard']
+        new_edu.mtechGrade = md['mtechGrade']
+        new_edu.mtechYear = md['mtechYear']
+        new_edu.btechBoard = md['btechBoard']
+        new_edu.btechGrade = md['btechGrade']
+        new_edu.btechYear = md['btechYear']
+        new_edu.ssBoard = md['ssBoard']
+        new_edu.ssGrade = md['ssGrade']
+        new_edu.ssYear = md['ssYear']
+        new_edu.sBoard = md['sBoard']
+        new_edu.sGrade = md['sGrade']
+        new_edu.sYear = md['sYear']
+        new_edu.save()
+        
         if(md["mtechBoard"]=="" and md["mtechYear"]=="" and md["mtechGrade"]==""):
             education.pop(0)
 
@@ -223,9 +239,26 @@ def index(request,pk):
         if ('exp' in request.POST.keys()):
             exp_titles = request.POST.getlist('exp')
             exp_descs = request.POST.getlist('expDes')
-
+            prev_exp=resume_mod.experience_set.all()
+            prev_exp_count=len(prev_exp)
+            new_exp_count=len(exp_titles)
+            for j in range(min(prev_exp_count,new_exp_count)):
+                prev_exp[j].exp=exp_titles[j]
+                prev_exp[j].expDes=exp_descs[j]
+                prev_exp[j].save()
+            if prev_exp_count>new_exp_count:
+                for j in range(new_exp_count,prev_exp_count):
+                    prev_exp[j].delete()
+            else:
+                for j in range(prev_exp_count,new_exp_count):
+                    new_exp=Experience(resume=resume_mod,exp=exp_titles[j],expDes=exp_descs[j])
+                    new_exp.save()
+            
+            
             for i in range(len(exp_titles)):
                 internships.append([exp_titles[i], exp_descs[i]])
+                print(exp_descs[i])
+               
 
         #collecting projects data
         #format ["title1","club1",["desc1","desc2" .. ], "link1","date1"]
@@ -237,16 +270,45 @@ def index(request,pk):
             pro_descs = request.POST.getlist('proDes')
             pro_links = request.POST.getlist('githubLink')
             pro_dates = request.POST.getlist('proDate')
-
+            prev_pro=resume_mod.projects_set.all()
+            prev_pro_count=len(prev_pro)
+            new_pro_count=len(pro_titles)
+            for j in range(min(prev_pro_count,new_pro_count)):
+                prev_pro[j].proTitle=pro_titles[j]
+                prev_pro[j].proDes=pro_descs[j]
+                prev_pro[j].clubName=pro_clubs[j]
+                prev_pro[j].githubLink=pro_links[j]
+                prev_pro[j].proDate=pro_dates[j]
+                prev_pro[j].save()
+            if prev_pro_count>new_pro_count:
+                for j in range(new_pro_count,prev_pro_count):
+                    prev_pro[j].delete()
+            else:
+                for j in range(prev_pro_count,new_pro_count):
+                    new_pro=Projects(resume=resume_mod,proTitle=pro_titles[j],proDes=pro_descs[j],clubName=pro_clubs[j],githubLink=pro_links[j],proDate=pro_dates[j])
+                    new_pro.save()
             for i in range(len(pro_titles)):
                 projects.append([pro_titles[i],pro_clubs[i], pro_descs[i], pro_links[i], pro_dates[i]])
-
         
         
         #collecting course data
 
         if('course' in request.POST.keys()):
             course = request.POST.getlist('course')
+            prev_cou=resume_mod.course_set.all()
+            prev_cou_count=len(prev_cou)
+            new_cou_count=len(course)
+
+            for j in range(min(prev_cou_count,new_cou_count)):
+                prev_cou[j].name=course[j]
+                prev_cou[j].save()
+            if prev_cou_count>new_cou_count:
+                for j in range(new_cou_count,prev_cou_count):
+                    prev_cou[j].delete()
+            else:
+                for j in range(prev_cou_count,new_cou_count):
+                    new_cou=Course(resume=resume_mod,name=course[j])
+                    new_cou.save()
 
         
         #collecting por data
@@ -254,6 +316,20 @@ def index(request,pk):
         if ('por' in request.POST.keys()):
             por_titles = request.POST.getlist('por')
             por_descs = request.POST.getlist('porDesc')
+            prev_por=resume_mod.por_set.all()
+            prev_por_count=len(prev_por)
+            new_por_count=len(por_titles)
+            for j in range(min(prev_por_count,new_por_count)):
+                prev_por[j].por=por_titles[j]
+                prev_por[j].porDesc=por_descs[j]
+                prev_por[j].save()
+            if prev_por_count>new_por_count:
+                for j in range(new_por_count,prev_por_count):
+                    prev_por[j].delete()
+            else:
+                for j in range(prev_por_count,new_por_count):
+                    new_por=Por(resume=resume_mod,por=por_titles[j],porDesc=por_descs[j])
+                    new_por.save()
 
             for i in range(min(len(por_titles), len(por_descs))):
                 por.append([por_titles[i], por_descs[i].split('\n') ])
@@ -265,11 +341,27 @@ def index(request,pk):
         if('ach' in request.POST.keys()):
             ach_titles = request.POST.getlist('ach')
             ach_descs = request.POST.getlist('achDes')
+            prev_ach=resume_mod.achievement_set.all()
+            prev_ach_count=len(prev_ach)
+            new_ach_count=len(ach_titles)
+            for j in range(min(prev_ach_count,new_ach_count)):
+                prev_ach[j].ach=ach_titles[j]
+                prev_ach[j].achDes=ach_descs[j]
+                prev_ach[j].save()
+            if prev_ach_count>new_ach_count:
+                for j in range(new_ach_count,prev_ach_count):
+                    prev_ach[j].delete()
+            else:
+                for j in range(prev_ach_count,new_ach_count):
+                    new_ach=Achievement(resume=resume_mod,ach=ach_titles[j],achDes=ach_descs[j])
+                    new_ach.save()        
 
+
+             
+                
             for i in range(min(len(ach_titles),len(ach_descs))):
                 achievements.append([ach_titles[i], ach_descs[i]])
-
-            
+                
         
 
         #collecting technical skills
@@ -281,14 +373,41 @@ def index(request,pk):
             "Miscellaneous": md['miscellaneous'],
             "Other skills": md['otherSkills'],
         }
+        #tech skills update
+        pro_tech=resume_mod.techskills
+        pro_tech.pLanguages = md['pLanguages']
+        pro_tech.webTechs = md['webTechs']
+        pro_tech.dbms = md['dbms']
+        pro_tech.os = md['os']
+        pro_tech.miscellaneous = md['miscellaneous']
+        pro_tech.others = md['otherSkills']
+        pro_tech.save()
 
+
+        #profile model update
+        pro_model=resume_mod.profile
+        print(pro_model)
+        pro_model.name=md['name'] 
+        pro_model.roll=md['roll']
+        pro_model.stream=md['stream']
+        pro_model.programme=md['programme']
+        pro_model.minor=md['minor']
+        pro_model.email=md['email']
+        pro_model.webmail=md['webmail']
+        pro_model.mobile=str(md['mobile'])
+        pro_model.linkedIn=md['linkedIn']
+        pro_model.save()           
+        print(pro_model) 
         if md['save_flag']=="true":
-
             data_generator(md,resume_file_name, achievements =  achievements,por = por, course = course, projects = projects, internships = internships)
             return redirect('/index/'+str(pk)+'/')
-               
+        
 
-        #generating the LaTex file  
+        
+        
+        
+
+        #generating the LaTex file 
         createTextFile(latex_file_name = str(resume_mod.latexFile), name = md['name'], rollno=str(md['roll']), stream = md['stream'],branch=md['programme'],minor=md['minor'],college="IIT Guwahati",
             email= md['email'],iitgmail=md['webmail'],mobileno= str(md['mobile']),
             linkedin= md['linkedIn'],
@@ -381,11 +500,10 @@ def home(request):
             delete_pdf_file = 'static/pdfs/'+delete_pdf_file
             delete_latex_file = 'static/latex/'+delete_latex_file
 
-            del_res.delete()
-
             os.remove(delete_data_file)
             os.remove(delete_pdf_file)
             os.remove(delete_latex_file)
+            del_res.delete()
             return redirect('/')
 
 
@@ -416,7 +534,12 @@ def home(request):
             resume_mod.latexFile = new_latex_file_name
 
             resume_mod.save()
-    
+            pro_mod=Profile(resume=resume_mod)
+            pro_mod.save()
+            tech_mod=Techskills(resume=resume_mod)
+            tech_mod.save()
+            edu_mod=Education(resume=resume_mod)
+            edu_mod.save()
             res_rel.resumes.add(resume_mod)
 
             redirect_url = '/index/'+str(resume_mod.id)+'/'
