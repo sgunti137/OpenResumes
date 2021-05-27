@@ -215,6 +215,20 @@ def index(request,pk):
                      ["Secondary senior",md["ssBoard"],md["ssGrade"],md["ssYear"]],
                      ["Secondary",md["sBoard"],md["sGrade"],md["sYear"]],
                     ]
+        new_edu=resume_mod.education
+        new_edu.mtechBoard = md['mtechBoard']
+        new_edu.mtechGrade = md['mtechGrade']
+        new_edu.mtechYear = md['mtechYear']
+        new_edu.btechBoard = md['btechBoard']
+        new_edu.btechGrade = md['btechGrade']
+        new_edu.btechYear = md['btechYear']
+        new_edu.ssBoard = md['ssBoard']
+        new_edu.ssGrade = md['ssGrade']
+        new_edu.ssYear = md['ssYear']
+        new_edu.sBoard = md['sBoard']
+        new_edu.sGrade = md['sGrade']
+        new_edu.sYear = md['sYear']
+        new_edu.save()
         if(md["mtechBoard"]=="" and md["mtechYear"]=="" and md["mtechGrade"]==""):
             education.pop(0)
 
@@ -236,7 +250,23 @@ def index(request,pk):
             pro_descs = request.POST.getlist('proDes')
             pro_links = request.POST.getlist('githubLink')
             pro_dates = request.POST.getlist('proDate')
-
+            prev_pro=resume_mod.projects_set.all()
+            prev_pro_count=len(prev_pro)
+            new_pro_count=len(pro_titles)
+            for j in range(min(prev_pro_count,new_pro_count)):
+                prev_pro[j].proTitle=pro_titles[j]
+                prev_pro[j].proDes=pro_descs[j]
+                prev_pro[j].clubName=pro_clubs[j]
+                prev_pro[j].githubLink=pro_links[j]
+                prev_pro[j].proDate=pro_dates[j]
+                prev_pro[j].save()
+            if prev_pro_count>new_pro_count:
+                for j in range(new_pro_count,prev_pro_count):
+                    prev_pro[j].delete()
+            else:
+                for j in range(prev_pro_count,new_pro_count):
+                    new_pro=Projects(resume=resume_mod,proTitle=pro_titles[j],proDes=pro_descs[j],clubName=pro_clubs[j],githubLink=pro_links[j],proDate=pro_dates[j])
+                    new_pro.save()
             for i in range(len(pro_titles)):
                 projects.append([pro_titles[i],pro_clubs[i], pro_descs[i], pro_links[i], pro_dates[i]])
 
@@ -254,10 +284,23 @@ def index(request,pk):
         if ('por' in request.POST.keys()):
             por_titles = request.POST.getlist('por')
             por_descs = request.POST.getlist('porDesc')
+            prev_por=resume_mod.por_set.all()
+            prev_por_count=len(prev_por)
+            new_por_count=len(por_titles)
+            for j in range(min(prev_por_count,new_por_count)):
+                prev_por[j].por=por_titles[j]
+                prev_por[j].porDesc=por_descs[j]
+                prev_por[j].save()
+            if prev_por_count>new_por_count:
+                for j in range(new_por_count,prev_por_count):
+                    prev_por[j].delete()
+            else:
+                for j in range(prev_por_count,new_por_count):
+                    new_por=Por(resume=resume_mod,por=por_titles[j],porDesc=por_descs[j])
+                    new_por.save()
 
             for i in range(min(len(por_titles), len(por_descs))):
                 por.append([por_titles[i], por_descs[i]])
-
 
         
         #collecting ach data
@@ -281,6 +324,14 @@ def index(request,pk):
             "Miscellaneous": md['miscellaneous'],
             "Other skills": md['otherSkills'],
         }
+        pro_tech=resume_mod.techskills
+        pro_tech.pLanguages = md['pLanguages']
+        pro_tech.webTechs = md['webTechs']
+        pro_tech.dbms = md['dbms']
+        pro_tech.os = md['os']
+        pro_tech.miscellaneous = md['miscellaneous']
+        pro_tech.others = md['otherSkills']
+        pro_tech.save()
 
         if md['save_flag']=="true":
 
@@ -416,7 +467,10 @@ def home(request):
             resume_mod.latexFile = new_latex_file_name
 
             resume_mod.save()
-    
+            tech_mod=Techskills(resume=resume_mod)
+            tech_mod.save()
+            edu_mod=Education(resume=resume_mod)
+            edu_mod.save()
             res_rel.resumes.add(resume_mod)
 
             redirect_url = '/index/'+str(resume_mod.id)+'/'
