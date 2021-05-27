@@ -61,7 +61,42 @@ class Por(models.Model):
     por = models.CharField(max_length=100)
     porDesc = models.TextField()
     def str(self):
-        return self.resume              
+        return self.resume
+class Profile(models.Model):
+    resume = models.OneToOneField(Resume,on_delete=models.CASCADE)
+    name=models.CharField(max_length=100,null=True)
+    roll=models.CharField(max_length=40,null=True)
+    stream=models.CharField(max_length=50,null=True)
+    programme=models.CharField(max_length=50,null=True)
+    minor=models.CharField(max_length=50,null=True)
+    webmail=models.CharField(max_length=50,null=True)
+    email=models.CharField(max_length=50,null=True)
+    mobile=models.CharField(max_length=50,null=True)
+    linkedIn=models.CharField(max_length=50,null=True)
+
+
+class Experience(models.Model):
+    resume = models.ForeignKey(Resume,on_delete=models.CASCADE)
+    exp=models.CharField(max_length=60,null=True)
+    expDes=models.TextField(null=True)
+    def __str__(self):
+        return self.exp
+
+
+class Achievement(models.Model):
+    resume = models.ForeignKey(Resume,on_delete=models.CASCADE)
+    ach=models.CharField(max_length=60,null=True)
+    achDes=models.TextField(null=True)
+    def __str__(self):
+        return self.ach     
+
+
+class Course(models.Model):
+    resume = models.ForeignKey(Resume,on_delete=models.CASCADE)
+    name=models.CharField(max_length=50,null=True)
+    def __str__(self):
+        return self.name    
+    
 
 
 
