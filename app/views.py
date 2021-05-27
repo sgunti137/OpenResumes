@@ -12,7 +12,7 @@ import platform
 
 # model imports
 from app.models import *
-from .models import Experience, Projects, Profile, Course, Por, Achievement, Techskills, Education
+from .models import Experience, Projects, Profile, Course, Por, Achievement, Techskill, Education
 from django.contrib.auth.models import User
 
 #path declarations
@@ -41,22 +41,21 @@ def index(request,pk):
     if resume_mod not in resume_list:
         return render(request,'pdfgen/wrongIndex.html')
 
- 
-
     #count of each section fields to be looped in the template.
-
 
     project_list = list(resume_mod.projects_set.all())
     course_list = list(resume_mod.course_set.all())
     exp_list = list(resume_mod.experience_set.all())
     por_list = list(resume_mod.por_set.all())
     ach_list = list(resume_mod.achievement_set.all())
+    tech_list = list(resume_mod.techskill_set.all())
 
     my_dict['project_list'] = project_list
     my_dict['por_list'] = por_list
     my_dict['exp_list'] = exp_list
     my_dict['course_list'] = course_list
     my_dict['ach_list'] = ach_list
+    my_dict['tech_list'] = tech_list
 
     #profile data
 
@@ -84,15 +83,6 @@ def index(request,pk):
     my_dict['sBoard'] = resume_mod.education.sBoard
     my_dict['sGrade'] = resume_mod.education.sGrade
     my_dict['sYear'] = resume_mod.education.sYear
-
-    #TechSkills data
-
-    my_dict['pLanguages'] = resume_mod.techskills.pLanguages
-    my_dict['webTechs'] = resume_mod.techskills.webTechs
-    my_dict['dbms'] = resume_mod.techskills.dbms
-    my_dict['os'] = resume_mod.techskills.os
-    my_dict['miscellaneous'] = resume_mod.techskills.miscellaneous
-    my_dict['others'] = resume_mod.techskills.others
             
     
     #counts of section fields sent successfully
@@ -101,6 +91,7 @@ def index(request,pk):
     my_dict["coursesCount"] = len(course_list)
     my_dict["achCount"] = len(ach_list)
     my_dict["expCount"] = len(exp_list)
+    my_dict['techCount'] = len(tech_list)
 
 
     # the name of the pdf to be passed for displaying in the top-> initialization and added to my_dict
@@ -180,8 +171,8 @@ def index(request,pk):
             
             
             for i in range(len(exp_titles)):
-                internships.append([exp_titles[i], exp_descs[i]])
-                print(exp_descs[i])
+                internships.append([exp_titles[i], exp_descs[i].split('\n')])
+               
                
 
         #collecting projects data
@@ -212,7 +203,7 @@ def index(request,pk):
                     new_pro=Projects(resume=resume_mod,proTitle=pro_titles[j],proDes=pro_descs[j],clubName=pro_clubs[j],githubLink=pro_links[j],proDate=pro_dates[j])
                     new_pro.save()
             for i in range(len(pro_titles)):
-                projects.append([pro_titles[i],pro_clubs[i], pro_descs[i], pro_links[i], pro_dates[i]])
+                projects.append([pro_titles[i],pro_clubs[i], pro_descs[i].split('\n'), pro_links[i], pro_dates[i]])
         
         
         #collecting course data
@@ -259,8 +250,34 @@ def index(request,pk):
                 por.append([por_titles[i], por_descs[i].split('\n') ])
 
 
+        #collecting techskills
+
+        techskills = {}
+        if('tech' in request.POST.keys()):
+            tech_titles = request.POST.getlist('tech')
+            tech_descs = request.POST.getlist('techDes')
+            prev_tech = resume_mod.techskill_set.all()
+            prev_tech_count=len(prev_tech)
+            new_tech_count=len(tech_titles)
+            for j in range(min(prev_tech_count,new_tech_count)):
+                prev_tech[j].name=tech_titles[j]
+                prev_tech[j].value=tech_descs[j]
+                prev_tech[j].save()
+            if prev_tech_count>new_tech_count:
+                for j in range(new_tech_count,prev_tech_count):
+                    prev_tech[j].delete()
+            else:
+                for j in range(prev_tech_count,new_tech_count):
+                    new_tech=Techskill(resume=resume_mod,name=tech_titles[j],value=tech_descs[j])
+                    new_tech.save()
+
+            for i in range(len(tech_titles)):
+                techskills[tech_titles[i]] = tech_descs[i]
+ 
+
+
         
-        #collecting ach data
+        #collecting ach data achievements = [[ach1, [achdes1, achdes2, .. ], [] , ..]]
 
         if('ach' in request.POST.keys()):
             ach_titles = request.POST.getlist('ach')
@@ -279,33 +296,10 @@ def index(request,pk):
                 for j in range(prev_ach_count,new_ach_count):
                     new_ach=Achievement(resume=resume_mod,ach=ach_titles[j],achDes=ach_descs[j])
                     new_ach.save()        
-
-
-             
-                
+   
             for i in range(min(len(ach_titles),len(ach_descs))):
-                achievements.append([ach_titles[i], ach_descs[i]])
+                achievements.append([ach_titles[i], ach_descs[i].split('\n')])
                 
-        
-
-        #collecting technical skills
-        techskills = {
-            "Programming Languages": md['pLanguages'],
-            "Web Technogies": md['webTechs'],
-            "DBMS": md['dbms'],
-            "OS": md['os'],
-            "Miscellaneous": md['miscellaneous'],
-            "Other skills": md['otherSkills'],
-        }
-        #tech skills update
-        pro_tech=resume_mod.techskills
-        pro_tech.pLanguages = md['pLanguages']
-        pro_tech.webTechs = md['webTechs']
-        pro_tech.dbms = md['dbms']
-        pro_tech.os = md['os']
-        pro_tech.miscellaneous = md['miscellaneous']
-        pro_tech.others = md['otherSkills']
-        pro_tech.save()
 
 
         #profile model update
@@ -326,10 +320,6 @@ def index(request,pk):
             return redirect('/index/'+str(pk)+'/')
         
 
-        
-        
-        
-
         #generating the LaTex file 
         createTextFile(latex_file_name = str(resume_mod.latexFile), name = md['name'], rollno=str(md['roll']), stream = md['stream'],branch=md['programme'],minor=md['minor'],college="IIT Guwahati",
             email= md['email'],iitgmail=md['webmail'],mobileno= str(md['mobile']),
@@ -342,9 +332,6 @@ def index(request,pk):
             por=por,
             achievements=achievements)
 
-        # updating corresponding data file
-        # data_generator(md,resume_file_name, achievements =  achievements,por = por, course = course, projects = projects, internships = internships)
-        
         # compiling the latex file and generating pdf file
         pdflatex_cmd_str = 'pdflatex '+ '-output-directory=' + str(PDFS_ROOT)+ ' ' + str(LATEX_ROOT) 
         
@@ -461,8 +448,8 @@ def home(request):
             resume_mod.save()
             pro_mod=Profile(resume=resume_mod)
             pro_mod.save()
-            tech_mod=Techskills(resume=resume_mod)
-            tech_mod.save()
+            # tech_mod=Techskills(resume=resume_mod)
+            # tech_mod.save()
             edu_mod=Education(resume=resume_mod)
             edu_mod.save()
             res_rel.resumes.add(resume_mod)

@@ -658,55 +658,42 @@
                     <div class="my-3 p-8  border rounded-xl border-gray-300 bg-white hidden overflow-hidden  ">
                         <!-- <form> -->
                             <span class="text-base not-italic font-normal leading-5 tracking-normal text-left">Fill the data of your Technical Skills and use superscript * to mention elementary proficiency </span>
-                            <div class="my-6 p-3 mr-20">
-                                <div class="sm:mb-8 sm:flex sm:flex-row ">
-                                    <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2"> 
-                                        <label for="pLanguages" class="mb-2 text-gray-800 text-opacity-80 hover:text-black" >
-                                            Programming Languages
+                            <div id="TechSkills_" class="my-6 p-3 mr-20">
+
+                                {% for techitem in tech_list %}
+                                <div >
+                                    <div class="mb-8 flex flex-col ">
+                                        <label for="tech" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            Techskill Name
                                         </label>
-                                        <input type="text" name="pLanguages" id="pLanguages" placeholder="c++ , java*, python^" value="{{pLanguages}}"
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                    </div>
-                                    <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                        <label for="webTechs" class="mb-2 text-gray-800 text-opacity-80 hover:text-black" >
-                                            Web Technologies
+                                        <input type="text" name="tech"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2"
+                                            value = "{{techitem.name}}">
+                                    </div>  
+                                    <div class="mb-8 flex flex-col  ">
+                                        <label for="techDes" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            Skill Set
                                         </label>
-                                        <input type="text" name="webTechs" id="webTechs" placeholder="HTML, CSS*, JavaScript" value="{{webTechs}}"
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
+                                        <input type="text" name="techDes"
+                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2"
+                                            value = "{{techitem.value}}">
                                     </div>
+                                    <br>  
                                 </div>
-                                <div class="sm:mb-8 sm:flex sm:flex-row ">
-                                    <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="dbms" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            Database Management
-                                        </label>
-                                        <input type="text" name="dbms" id="dbms" placeholder="mySQL^, Oracle, RDBMS"
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2"  value="{{dbms}}">
-                                    </div>
-                                    <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                        <label for="os" class="mb-2 text-gray-800 text-opacity-80 hover:text-black" >
-                                            Operating systems
-                                        </label>
-                                        <input type="text" name="os" id="os" placeholder="http://github.com/sample_name"
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2" value="{{os}}">
-                                    </div>
-                                </div>
-                                <div class="sm:mb-8 sm:flex sm:flex-row ">
-                                    <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
-                                        <label for="miscellaneous" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            Miscellaneous
-                                        </label>
-                                        <input type="text" name="miscellaneous" id="miscellaneous" placeholder="mySQL^, Oracle, RDBMS" value="{{miscellaneous}}"
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                    </div>
-                                    <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
-                                        <label for="otherSkills" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            Others
-                                        </label>
-                                        <input type="text" name="otherSkills" id="otherSkills" placeholder="http://github.com/sample_name" value="{{otherSkills}}"
-                                        class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
-                                    </div>
-                                </div>
+
+                                {% endfor %}
+                                
+                            </div>
+
+                            <div class="sm:mb-8 sm:flex sm:flex-row sm:justify-center">
+                                <button class=" mb-8 mr-8 sm:mb-0  sm:w-1/4 flex flex-row justify-center items-center h-12 rounded flex-none order-1 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white   focus:outline-none bg-red-500 "  ; 
+                                type="button" onclick="add_more_tech()">
+                                    Add More
+                                </button>
+                                <button class=" mb-8  sm:mb-0 sm:w-1/4 flex flex-row justify-center items-center h-12 bg-red-700  rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:ring-none focus:outline-none" 
+                                type="button" onclick="remove_tech()">
+                                    Remove
+                                </button>
                             </div>
                             
                             <button class="w-full flex flex-row justify-center items-center h-12 bg-gray-700 rounded flex-none order-2 flex-grow-0 text-base not-italic font-bold leading-6 tracking-normal text-center text-white  focus:outline-none"
@@ -716,6 +703,44 @@
                             
                         <!-- </form> -->
                     </div>
+                    <!-- script for adding more techs, delete operation.. -->
+                    <script>
+                        var TechFields = parseInt("{{techCount}}");
+                
+        
+                        function add_more_tech() {
+                            TechFields = TechFields + 1;
+                            var parent = document.getElementById("TechSkills_");
+                            var div = document.createElement("div");
+                            
+
+                            var expStr = '';
+                                expStr += '<div class="mb-8 flex flex-col ">';
+                                expStr += '<label for="tech" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                expStr += 'Technical Skill';
+                                expStr += '</label>';
+                                expStr += '<input type="text" name="tech" ';
+                                expStr += 'class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                expStr += '</div>';
+                                expStr += '<div class="mb-8 flex flex-col">';
+                                expStr += '<label for="techDes" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
+                                expStr += 'Skill Set';
+                                expStr += '</label>';
+                                expStr += '<input type="text" name="techDes"';
+                                expStr += 'class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
+                                expStr += '</div>';
+                                expStr += '<br>';
+                                
+                            div.innerHTML = expStr;
+                            parent.appendChild(div);
+                        }
+                        function remove_exp() {
+                            
+                            var parent = document.getElementById("TechSkills_");
+                            parent.removeChild(parent.lastChild);
+                            TechFields -= 1;
+                        }
+                    </script>
                     <!-- Technical Skills End -->
                     
                      <!-- Key Courses  Start -->
