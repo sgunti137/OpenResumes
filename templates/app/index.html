@@ -421,21 +421,21 @@
                             <div id="Experience_" class="my-6 p-3 mr-20">
                                 
                                 {% for expitem in exp_list %}
-                                <div id = "{{expitem.exp_string}}">
+                                <div >
                                     <div class="mb-8 flex flex-col ">
                                         <label for="exp" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            Company Name {{expitem.ind}}
+                                            Company Name 
                                         </label>
                                         <input type="text" name="exp"
                                         class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2"
-                                            value = "{{expitem.Exp}}">
+                                            value = "{{expitem.exp}}">
                                     </div>  
                                     <div class="mb-8 flex flex-col  ">
                                         <label for="expDes" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            Description {{expitem.ind}}
+                                            Description 
                                         </label>
                                         <textarea name="expDes" rows="3"
-                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">{{expitem.ExpDes}}</textarea>
+                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">{{expitem.expDes}}</textarea>
                                     </div>
                                     <hr>  
                                 </div>
@@ -468,9 +468,9 @@
                             ExpFields = ExpFields + 1;
                             var parent = document.getElementById("Experience_");
                             var div = document.createElement("div");
-                            div.setAttribute("id", "Exp" + ExpFields);
+                            
 
-                            var expStr = '<div id = "Exp'+ ExpFields +'">';
+                            var expStr = '';
                                 expStr += '<div class="mb-8 flex flex-col ">';
                                 expStr += '<label for="exp" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
                                 expStr += 'Company Name ';
@@ -487,7 +487,7 @@
                                 expStr += '</textarea>';
                                 expStr += '</div>';
                                 expStr += '<br>';
-                                expStr += '</div>';
+                                
                         
                             div.innerHTML = expStr;
                             parent.appendChild(div);
@@ -518,45 +518,45 @@
 
                                 {% for proItem in project_list %}
 
-                                <div id="{{proItem.title_string}}">
+                                <div>
                                     <div class="sm:mb-8 sm:flex sm:flex-row ">
                                         <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
                                             <label for="proTitle" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                                Project Title {{proitem.ind}}
+                                                Project Title
                                             </label>
-                                            <input type="text" name="proTitle" value="{{proItem.title}}" 
+                                            <input type="text" name="proTitle" value="{{proItem.proTitle}}" 
                                             class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                         <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
                                             <label for="proDate" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
                                                 Finished / Ongoing
                                             </label>
-                                            <input type="text" name="proDate" value="{{proItem.date}}"
+                                            <input type="text" name="proDate" value="{{proItem.proDate}}"
                                             class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                     </div>
                                     <div class="sm:mb-8 sm:flex sm:flex-row ">
                                         <div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">
                                             <label for="clubName" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                                Club / Organization {{proItem.ind}}
+                                                Club / Organization
                                             </label>
-                                            <input type="text" name="clubName" value="{{proItem.club}}"
+                                            <input type="text" name="clubName" value="{{proItem.clubName}}"
                                             class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                         <div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">
                                             <label for="githubLink" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                                Github Link {{proitem.ind}}
+                                                Github Link
                                             </label>
-                                            <input type="text" name="githubLink" placeholder="http://github.com/sample_name" value="{{proItem.github}}"
+                                            <input type="text" name="githubLink" placeholder="http://github.com/sample_name" value="{{proItem.githubLink}}"
                                             class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                     </div>
                                     <div class="mb-8 flex flex-col ">
                                         <label for="proDes" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            Description {{proitem.ind}}
+                                            Description
                                         </label>
                                         <textarea  name="proDes" 
-                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">{{proItem.des}}</textarea>
+                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">{{proItem.proDes}}</textarea>
                                     </div>
                                     <br>
                                 </div>
@@ -592,7 +592,7 @@
                                 var div = document.createElement("div");
                                 div.setAttribute("id", "proTitle" + ProFields);
 
-                                var str = '<div id="proTitle'+ ProFields +'">';
+                                var str = '';
                                     str += '<div class="sm:mb-8 sm:flex sm:flex-row ">';
                                     str+='<div class=" mb-8  sm:mb-0 flex flex-col mr-8 sm:w-1/2">';
                                     str+='<label for="proTitle" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
@@ -614,7 +614,7 @@
                                     str+= 'class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                     str+= '</div>';
                                     str+= '<div class=" mb-8  sm:mb-0 flex flex-col  sm:w-1/2 ">';
-                                    str+= '<label for="githubLink" class="mb-2 text-gray-800 text-opacity-80 hover:text-black"> Github Link</label>';
+                                    str+= '<label for="githubLink" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Github Link</label>';
                                     str+= '<input type="text" name="githubLink" placeholder="http://github.com/sample_name"';
                                     str+= 'class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                     str+= '</div>';
@@ -626,7 +626,7 @@
                                     str += '</textarea>';
                                     str+= '</div>';
                                     str+= '<br>';
-                                    str+='</div>';
+                                    
 
                                 div.innerHTML = str;
                                 parent.appendChild(div);
@@ -728,12 +728,12 @@
                             <span class="text-base not-italic font-normal leading-5 tracking-normal text-left">Fill the data of your key courses taken and use superscript * to mention the ongoing course </span>
                             <div id="Courses_" class="my-6 p-3 mr-20">
 
-                                {% for courseItem in courses_list %}
+                                {% for courseItem in course_list %}
 
-                                    <div id="{{courseItem.course_string}}">
+                                    <div>
                                         <div class="mb-8 flex flex-col">
-                                            <label for="course" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">{{courseItem.course_string}}</label>
-                                            <input type="text" name="course" value="{{courseItem.Course}}"
+                                            <label for="course" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">Course</label>
+                                            <input type="text" name="course" value="{{courseItem.name}}"
                                             class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                         </div>
                                     </div>
@@ -770,7 +770,7 @@
                                     CourseFields = CourseFields + 1;
                                     var parent = document.getElementById("Courses_");
                                     var div = document.createElement("div");
-                                    div.setAttribute("id", "course" + CourseFields + "_");
+                                    
 
                                     var str = '<div class="mb-8 flex flex-col ">';
                                         str += '<label for="course" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">New Course</label>';
@@ -806,18 +806,18 @@
                             <div id="Por_" class="my-6 p-3 mr-20">
                                 
                                 {% for porItem in por_list %}
-                                <div id = "{{poritem.por_string}}">
+                                <div >
                                     <div class="mb-8 flex flex-col "> 
-                                        <label for="{{porItem.por_string}}">Position of Responsibility {{porItem.ind}}</label>
-                                        <input type="text"  name="por" value="{{porItem.Por}}"
+                                        <label for="por">Position of Responsibility</label>
+                                        <input type="text"  name="por" value="{{porItem.por}}"
                                         class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">
                                     </div> 
                                     <div class="mb-8 flex flex-col  ">
-                                        <label for="{{porItem.por_des_string}}" class="mb-2 text-black">
-                                            POR Description {{porItem.ind}}
+                                        <label for="porDesc" class="mb-2 text-black">
+                                            POR Description
                                         </label>
                                         <textarea name="porDesc"  rows="3"
-                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">{{porItem.PorDesc}}</textarea>
+                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">{{porItem.porDesc}}</textarea>
                                     </div>
                                     
                                 </div>
@@ -849,25 +849,25 @@
                             PORFields = PORFields + 1;
                             var parent = document.getElementById("Por_");
                             var div = document.createElement("div");
-                            div.setAttribute("id", "por" + PORFields + "_");
+                           
                             
-                            var str = '<div id = "por'+ PORFields +'_">';
+                            var str = '';
                                 str += '<div class="mb-8 flex flex-col ">';
-                                str += '<label for="por'+ PORFields +'">';
-                                str += 'Position of Responsibility '+PORFields ;
+                                str += '<label for="por">';
+                                str += 'Position of Responsibility ' ;
                                 str += '</label>';
                                 str += '<input type="text"  name="por"';
                                 str += '  class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                 str += '</div>';
                                 str += '<div class="mb-8 flex flex-col">';
                                 str += '<label for="porDesc" class="mb-2 text-black">';
-                                str += 'POR Description '+PORFields;
+                                str += 'POR Description ';
                                 str += '</label>';
                                 str += '<textarea name="porDesc" rows="3"';
                                 str += ' class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">';
                                 str += '</textarea>';
                                 str += '</div>';
-                                str += '</div>';
+                                
 
                             div.innerHTML = str;
                             parent.appendChild(div);
@@ -903,21 +903,21 @@
                             <div id="Achievements_" class="my-6 p-3 mr-20">
                                 
                                 {% for achItem in ach_list %}
-                                <div id = "{{achItem.ach_string}}">
+                                <div>
                                     <div class="mb-8 flex flex-col ">
-                                        <label for="{{achItem.ach_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            Achievement {{achItem.ind}}
+                                        <label for="ach" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            Achievement 
                                         </label>
                                         <input type="text" name="ach" 
                                         class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2"
-                                            value = "{{achItem.Ach}}">
+                                            value = "{{achItem.ach}}">
                                     </div>  
                                     <div class="mb-8 flex flex-col">
-                                        <label for="{{achItem.ach_des_string}}" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
-                                            Description {{achItem.ind}}
+                                        <label for="{achDes" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">
+                                            Description 
                                         </label>
                                         <textarea name="achDes" rows="3"
-                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">{{achItem.AchDes}}</textarea>
+                                            class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">{{achItem.achDes}}</textarea>
                                     </div>
                                     <hr>  
                                 </div>
@@ -948,18 +948,18 @@
                             AchFields = AchFields + 1;
                             var parent = document.getElementById("Achievements_");
                             var div = document.createElement("div");
-                            div.setAttribute("id", "ach" + AchFields+"_");
+                           
 
                             var str = '<div class="mb-8 flex flex-col ">';
                                 str+='<label for="ach" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
-                                str+='Achievement '+AchFields;
+                                str+='Achievement';
                                 str+='</label>';
                                 str+='<input type="text" name="ach"';
                                 str+=' class="py-2 px-4 border-b-2 border-solid border-gray-200 hover:border-gray-300 focus:border-red-200  focus:outline-none focus:border-b-2 hover:border-b-2">';
                                 str+='</div>';
                                 str+='<div class="mb-8 flex flex-col">';
                                 str+='<label for="achDes" class="mb-2 text-gray-800 text-opacity-80 hover:text-black">';
-                                str+='Description '+AchFields;
+                                str+='Description';
                                 str+='</label>';
                                 str+='<textarea name="achDes" rows="3"';
                                 str+='  class = "txt_area_container custom-scrollbar border-gray-100 hover:border-gray-200 focus:border-red-200  focus:outline-none">';

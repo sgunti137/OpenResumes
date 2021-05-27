@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 # model imports
 from app.models import *
+from .models import Experience, Projects, Profile, Course, Por, Achievement, Techskills, Education
 from django.contrib.auth.models import User
 
 #path declarations
@@ -18,54 +19,6 @@ from django.contrib.auth.models import User
 DATA_ROOT = os.path.join(MEDIA_ROOT,'data')
 LATEX_ROOT = os.path.join(STATIC_DIR,'latex')
 PDFS_ROOT = os.path.join(STATIC_DIR,'pdfs')
-# Create your views here.
-
-#classes
-
-class projectObj:
-    def __init__(self, title_string, date_string,club_string, github_string, des_string, title, date, club, github, des,ind):
-        self.title_string = title_string
-        self.date_string = date_string
-        self.club_string = club_string
-        self.github_string = github_string
-        self.des_string = des_string
-        self.title = title
-        self.date = date
-        self.club = club
-        self.github = github
-        self.des = des
-        self.ind = ind
-
-class porObj:
-    def __init__(self,por_string,por_des_string,ind,Por,PorDesc):
-        self.por_string = por_string
-        self.por_des_string = por_des_string
-        self.ind = ind
-        self.Por = Por
-        self.PorDesc = PorDesc
-
-
-class achObj:
-    def __init__(self,ach_string,ach_des_string,ind,Ach,AchDes):
-        self.ach_string = ach_string
-        self.ach_des_string = ach_des_string
-        self.ind = ind
-        self.Ach = Ach
-        self.AchDes = AchDes
-
-class expObj:
-    def __init__(self,exp_string,exp_des_string,ind,Exp,ExpDes):
-        self.exp_string = exp_string
-        self.exp_des_string = exp_des_string
-        self.ind = ind
-        self.Exp = Exp
-        self.ExpDes = ExpDes
-
-class courseObj:
-    def __init__(self, course_string,Course):
-        self.course_string = course_string
-        self.Course = Course
-
 
 
 
@@ -79,104 +32,74 @@ def index(request,pk):
     # collected the details of the user.
     us = User.objects.get(username = request.user)
     resume_mod = Resume.objects.get(id=pk)
-    resume_file_name = str(resume_mod.rFile)
+  
 
     res_rel = us.user_resume_relation_set.first()
-    resume_list = list(Resume.objects.filter(user_resume_relation = res_rel))
+    resume_list = list(Resume.objects.filter(user_resume_relation = res_rel)) # do it again
 
     if resume_mod not in resume_list:
         return render(request,'pdfgen/wrongIndex.html')
 
-    #reading the lines of the data file to be injected into index template.
-    data_file_lines = open(os.path.join(DATA_ROOT,resume_file_name),'r').readlines()
-
+ 
 
     #count of each section fields to be looped in the template.
-    projectsCount = 0
-    coursesCount = 0
-    porCount = 0
-    achCount = 0
-    expCount = 0
 
-    
-    #filling my_dict with corresponding data and also keeping track of count of fields
-    for line in data_file_lines:
-        if line != "":
-            tmp = line.split('#')
-            if len(tmp) != 2:
-                continue
-            tmp_key = str(tmp[0])
-            my_dict[tmp_key] = str(tmp[1])
+
+    project_list = list(resume_mod.projects_set.all())
+    course_list = list(resume_mod.course_set.all())
+    exp_list = list(resume_mod.experience_set.all())
+    por_list = list(resume_mod.por_set.all())
+    ach_list = list(resume_mod.achievement_set.all())
+
+    my_dict['project_list'] = project_list
+    my_dict['por_list'] = por_list
+    my_dict['exp_list'] = exp_list
+    my_dict['course_list'] = course_list
+    my_dict['ach_list'] = ach_list
+
+    #profile data
+
+    my_dict['name'] = resume_mod.profile.name
+    my_dict['roll'] = resume_mod.profile.roll
+    my_dict['stream'] = resume_mod.profile.stream
+    my_dict['programme'] = resume_mod.profile.programme
+    my_dict['minor'] = resume_mod.profile.minor
+    my_dict['webmail'] = resume_mod.profile.webmail
+    my_dict['email'] = resume_mod.profile.email
+    my_dict['mobile'] = resume_mod.profile.mobile
+    my_dict['linkedIn'] = resume_mod.profile.linkedIn
+
+    #Education data
+
+    my_dict['mtechBoard'] = resume_mod.education.mtechBoard
+    my_dict['mtechGrade'] = resume_mod.education.mtechGrade
+    my_dict['mtechYear'] = resume_mod.education.mtechYear
+    my_dict['btechBoard'] = resume_mod.education.btechBoard
+    my_dict['btechGrade'] = resume_mod.education.btechGrade
+    my_dict['btechYear'] = resume_mod.education.btechYear
+    my_dict['ssBoard'] = resume_mod.education.ssBoard
+    my_dict['ssGrade'] = resume_mod.education.ssGrade
+    my_dict['ssYear'] = resume_mod.education.ssYear
+    my_dict['sBoard'] = resume_mod.education.sBoard
+    my_dict['sGrade'] = resume_mod.education.sGrade
+    my_dict['sYear'] = resume_mod.education.sYear
+
+    #TechSkills data
+
+    my_dict['pLanguages'] = resume_mod.techskills.pLanguages
+    my_dict['webTechs'] = resume_mod.techskills.webTechs
+    my_dict['dbms'] = resume_mod.techskills.dbms
+    my_dict['os'] = resume_mod.techskills.os
+    my_dict['miscellaneous'] = resume_mod.techskills.miscellaneous
+    my_dict['others'] = resume_mod.techskills.others
             
-            if "course" in tmp_key:
-                coursesCount +=1
-            elif "proTitle" in tmp_key and len(tmp_key) == 9:
-                projectsCount +=1
-            elif "por" in tmp_key and len(tmp_key) == 4:
-                porCount +=1
-            elif "ach" in tmp_key and len(tmp_key) == 4:
-                achCount += 1
-            elif "exp" in tmp_key and len(tmp_key) == 4:
-                expCount +=1
-    
     
     #counts of section fields sent successfully
-    my_dict["projectsCount"] = projectsCount
-    my_dict["porCount"] = porCount
-    my_dict["coursesCount"] = coursesCount
-    my_dict["achCount"] = achCount
-    my_dict["expCount"] = expCount
-
-    #print("achCount = ", achCount)
-    
-    #initializing the lists of section fields to be sent
-    project_list = []
-    exp_list = []
-    courses_list = []
-    ach_list = []
-    por_list = []
-
-    #filling projects list with format -> projectObj(title_string, date_string, club_string, github_string, des_string, corresponding values)
-    for i in range(projectsCount):
-        title_string = "proTitle" + str(i+1)
-        date_string = "proDate" + str(i+1)
-        club_string = "clubName" + str(i+1)
-        github_string = "githubLink" + str(i+1)
-        des_string = "proDes" + str(i+1)
-
-        project_list.append(projectObj(title_string , date_string, club_string, github_string, des_string, my_dict[title_string], my_dict[date_string], my_dict[club_string], my_dict[github_string], my_dict[des_string],i+1))
-    my_dict["project_list"] = project_list
-    
-
-    # filling por_list with values of format -> porObj()
-    for i in range(porCount):
-        por_string = "por" + str(i+1)
-        por_des_string = "porDesc" + str(i+1)
-        por_list.append(porObj(por_string,por_des_string, i+1, my_dict[por_string], my_dict[por_des_string]))
-    my_dict["por_list"] = por_list
-
-    
-    # filling por_list with values of format -> achObj()
-    for i in range(achCount):
-        ach_string = "ach" + str(i+1)
-        ach_des_string = "achDes" + str(i+1)
-        ach_list.append(achObj(ach_string,ach_des_string,i+1,my_dict[ach_string],my_dict[ach_des_string]))
-    my_dict["ach_list"] = ach_list
-
-    
-    # filling por_list with values of format -> courseObj()
-    for i in range(coursesCount):
-        course_string = "course" + str(i+1)
-        courses_list.append(courseObj(course_string,my_dict[course_string]))
-    my_dict["courses_list"] = courses_list
-
-    
-    # filling por_list with values of format -> expObj()
-    for i in range(expCount):
-        exp_string = "exp" + str(i+1)
-        exp_des_string = "expDes" + str(i+1)
-        exp_list.append(expObj(exp_string ,exp_des_string , i+1,my_dict[exp_string],my_dict[exp_des_string]))
-    my_dict["exp_list"] = exp_list
+    my_dict["projectsCount"] = len(project_list)
+    my_dict["porCount"] =len(por_list)
+    my_dict["coursesCount"] = len(course_list)
+    my_dict["achCount"] = len(ach_list)
+    my_dict["expCount"] = len(exp_list)
 
 
     # the name of the pdf to be passed for displaying in the top-> initialization and added to my_dict
@@ -397,9 +320,8 @@ def index(request,pk):
         pro_model.mobile=str(md['mobile'])
         pro_model.linkedIn=md['linkedIn']
         pro_model.save()           
-        print(pro_model) 
+
         if md['save_flag']=="true":
-            data_generator(md,resume_file_name, achievements =  achievements,por = por, course = course, projects = projects, internships = internships)
             return redirect('/index/'+str(pk)+'/')
         
 
@@ -420,18 +342,18 @@ def index(request,pk):
             achievements=achievements)
 
         # updating corresponding data file
-        data_generator(md,resume_file_name, achievements =  achievements,por = por, course = course, projects = projects, internships = internships)
+        # data_generator(md,resume_file_name, achievements =  achievements,por = por, course = course, projects = projects, internships = internships)
         
         # compiling the latex file and generating pdf file
         pdflatex_cmd_str = 'pdflatex '+ '-output-directory=' + str(PDFS_ROOT)+ ' ' + str(LATEX_ROOT) +'\\'+ str(resume_mod.latexFile)
         os.system(pdflatex_cmd_str)
 
         #deleting auxilary files for efficient memory usage.
-        plain_name = str(resume_mod.latexFile)
-        plain_name = 'static/pdfs/'+plain_name[:-4]
-        os.remove(plain_name + '.aux')
-        os.remove(plain_name + '.out')
-        os.remove(plain_name + '.log')
+        # plain_name = str(resume_mod.latexFile)
+        # plain_name = 'static/pdfs/'+plain_name[:-4]
+        # os.remove(plain_name + '.aux')
+        # os.remove(plain_name + '.out')
+        # os.remove(plain_name + '.log')
         
         return redirect('/index/'+str(pk)+'/')
        
@@ -492,15 +414,12 @@ def home(request):
             delete_resume_id = int(requestDir['delete_resume_id'])
             del_res = Resume.objects.get(id = delete_resume_id)
 
-            delete_data_file = str(del_res.rFile)
             delete_pdf_file = str(del_res.pdfFile)
             delete_latex_file = str(del_res.latexFile)
 
-            delete_data_file = 'media/data/'+delete_data_file
             delete_pdf_file = 'static/pdfs/'+delete_pdf_file
             delete_latex_file = 'static/latex/'+delete_latex_file
 
-            os.remove(delete_data_file)
             os.remove(delete_pdf_file)
             os.remove(delete_latex_file)
             del_res.delete()
@@ -519,17 +438,15 @@ def home(request):
 
             #setting the object attributes
             
-            new_data_file_name = 'datafile_'+str(resume_id)+'.txt'
+         
             new_pdf_file_name = 'latexFile_'+str(resume_id)+'.pdf'
             new_latex_file_name = 'latexFile_'+str(resume_id)+'.tex'
-            open(os.path.join(DATA_ROOT,new_data_file_name),'w').close()
             open(os.path.join(PDFS_ROOT,new_pdf_file_name),'w').close()
             open(os.path.join(LATEX_ROOT,new_latex_file_name),'w').close()
             
 
 
             resume_mod = Resume.objects.get(id = resume_id)
-            resume_mod.rFile.name = new_data_file_name
             resume_mod.pdfFile = new_pdf_file_name
             resume_mod.latexFile = new_latex_file_name
 
