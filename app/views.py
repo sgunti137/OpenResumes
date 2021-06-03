@@ -315,9 +315,6 @@ def index(request,pk):
         pro_model.mobile=str(md['mobile'])
         pro_model.linkedIn=md['linkedIn']
         pro_model.save()           
-
-        if md['save_flag']=="true":
-            return redirect('/index/'+str(pk)+'/')
         
 
         #generating the LaTex file 
