@@ -29,6 +29,8 @@ def index(request,pk):
     # initialize the dictionary to be sent to the template.
     my_dict = {}
 
+    if Resume.objects.filter(id = pk).count()==0:
+        return render(request, 'pdfgen/wrongIndex.html')
     
     # collected the details of the user.
     us = User.objects.get(username = request.user)
@@ -42,6 +44,8 @@ def index(request,pk):
         return render(request,'pdfgen/wrongIndex.html')
 
     #count of each section fields to be looped in the template.
+
+    
 
     project_list = list(resume_mod.projects_set.all())
     course_list = list(resume_mod.course_set.all())
@@ -111,6 +115,22 @@ def index(request,pk):
 
         #input dictionary
         md = request.POST
+
+        if(md['delete_flag']=='true'):
+            del_res = resume_mod
+
+            delete_pdf_file = str(del_res.pdfFile)
+            delete_latex_file = str(del_res.latexFile)
+
+            delete_pdf_file = 'static/pdfs/'+delete_pdf_file
+            delete_latex_file = 'static/latex/'+delete_latex_file
+
+            os.remove(delete_pdf_file)
+            os.remove(delete_latex_file)
+            del_res.delete()
+            return redirect('/')
+
+
     
         
         print(md) 
