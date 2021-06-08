@@ -157,60 +157,11 @@
 
                     {% endfor %} 
 
-                    <!-- Individual card starts 
-                    <div class=" flex pt-6 pr-6 relative inline-block text-left dropdown">
-                        <span class="rounded-md shadow-sm ">
-                            <button class="bg-gray-100 rounded inline-flex justify-between items-center w-full px-1 py-2 pr-4 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" 
-                                    type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
-                                <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path opacity="0.4" d="M25.1617 12.6961C24.5597 12.6961 23.7623 12.6828 22.7695 12.6828C20.3483 12.6828 18.3574 10.6788 18.3574 8.23478V3.94678C18.3574 3.60944 18.0881 3.33478 17.754 3.33478H10.7015C7.41021 3.33478 4.74998 6.03611 4.74998 9.34678V23.7134C4.74998 27.1868 7.53695 30.0014 10.9761 30.0014H21.4784C24.7578 30.0014 27.4167 27.3174 27.4167 24.0041V13.2961C27.4167 12.9574 27.1486 12.6841 26.8133 12.6854C26.2496 12.6894 25.5736 12.6961 25.1617 12.6961Z" fill="#FF9766"/>
-                                    <path opacity="0.4" d="M21.5287 4.09119C21.13 3.67652 20.434 3.96186 20.434 4.53652V8.05252C20.434 9.52719 21.6487 10.7405 23.1233 10.7405C24.0527 10.7512 25.3433 10.7539 26.4393 10.7512C27.0007 10.7499 27.286 10.0792 26.8967 9.67386C25.49 8.21119 22.9713 5.58986 21.5287 4.09119Z" fill="#FF5200"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0485 15.8516H16.5619C17.1099 15.8516 17.5552 15.4076 17.5552 14.8596C17.5552 14.3116 17.1099 13.8662 16.5619 13.8662H12.0485C11.5005 13.8662 11.0565 14.3116 11.0565 14.8596C11.0565 15.4076 11.5005 15.8516 12.0485 15.8516ZM12.0486 22.5105H19.3073C19.8553 22.5105 20.3006 22.0665 20.3006 21.5185C20.3006 20.9705 19.8553 20.5252 19.3073 20.5252H12.0486C11.5006 20.5252 11.0566 20.9705 11.0566 21.5185C11.0566 22.0665 11.5006 22.5105 12.0486 22.5105Z" fill="#FF5200"/>
-                                </svg>
-                                <div class="flex-column px-3">
-                                    <span class="flex text-lg not-italic font-semibold leading-6 tracking-normal text-left">{{resume}}</span>
-                                    <span class="static left-0 bottom-0 not-italic font-normal text-sm leading-5 text-gray-500 flex-none order-1 flex-grow-0">12th January 2021</span>
-                                </div>
-                                <svg class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
-                                    </path>
-                                </svg>
-                            </button>
-                        </span>
-                        <div class="z-20 opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-left  scale-95">
-                            <div class="absolute right-0 w-32 top-12  mt-2 origin-top-left bg-gray-100 border border-yellow-100 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                                <div class="py-1" style="font-family: 'Open Sans';">
-                                    <a href="index/{{resume.id}}" tabindex="0" class="text-gray-700 flex justify-between px-4 py-2 text-sm leading-5 text-left"  role="menuitem" style="color: darkolivegreen;">Edit</a>
-                                    <a href="{% static 'pdfs/{{resume.pdfFile}}' %}" download tabindex="1" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
-                                        pdf
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="gray">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                        </svg>
-                                    </a>
-                                    <a href="{% static 'latex/{{resume.latexFile}}' %}" download tabindex="2" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
-                                        LaTex
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="gray">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                        </svg>
-                                    </a>
-                                    <span role="menuitem" tabindex="-1" class="flex justify-between px-4 py-2 text-sm leading-5 text-left text-gray-700 cursor-not-allowed opacity-50" aria-disabled="true">Share (soon)</span>
-                                </div>
-                                <div class="py-1" style="font-family: 'Open Sans';">
-                                    <button type = "button" onclick="myFunc('{{resume.id}}','{{resume}}')" tabindex="3" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left"  role="menuitem" style="color: red;">
-                                        Delete
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="red">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     Individual card end-->  
+                    
                 </div>
                 
 
-                <!-- Crete New Resume -->
+                <!-- Create New Resume -->
                 <p class="text-base not-italic font-bold leading-5 tracking-normal text-left pt-12" style="font-family: 'Open Sans';">Create a new resume</p>
 
                 <div class="flex flex-wrap content-between vertical-align w-3/4 py-3 ">

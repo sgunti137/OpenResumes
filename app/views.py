@@ -134,7 +134,7 @@ def index(request,pk):
             os.remove(delete_pdf_file)
             os.remove(delete_latex_file)
             del_res.delete()
-            return redirect('/')
+            return redirect('/OpenResumes')
 
 
     
