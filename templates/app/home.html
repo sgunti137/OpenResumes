@@ -129,13 +129,13 @@
                                 <div class="absolute right-0 w-32 top-12  mt-2 origin-top-left bg-gray-100 border border-yellow-100 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                     <div class="py-1" style="font-family: 'Open Sans';">
                                         <a href="index/{{resume.id}}" tabindex="0" class="text-gray-700 flex justify-between px-4 py-2 text-sm leading-5 text-left"  role="menuitem" style="color: darkolivegreen;">Edit</a>
-                                        <a href="static/pdfs/{{resume.pdfFile}}" download tabindex="1" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
+                                        <a href="{% static 'pdfs/' %}{{resume.pdfFile}}" download tabindex="1" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
                                             pdf
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="gray">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                             </svg>
                                         </a>
-                                        <a href="static/latex/{{resume.latexFile}}" download tabindex="2" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
+                                        <a href="{% static 'latex/' %}{{resume.latexFile}}" download tabindex="2" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
                                             LaTex
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="gray">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />

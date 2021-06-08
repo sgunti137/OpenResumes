@@ -373,7 +373,7 @@ def index(request,pk):
         # os.remove(plain_name + '.out')
         # os.remove(plain_name + '.log')
         
-        return redirect('/index/'+str(pk)+'/')
+        return redirect('/OpenResumes/index/'+str(pk)+'/')
        
     return render(request,'app/index.html',context = my_dict)
 
@@ -441,12 +441,12 @@ def home(request):
             os.remove(delete_pdf_file)
             os.remove(delete_latex_file)
             del_res.delete()
-            return redirect('/')
+            return redirect('/OpenResumes')
 
 
         if requestDir["newResume"]=="":
             print("form submitted successfully..")
-            return redirect('/')
+            return redirect('/OpenResumes')
         else:
             #creating a new instance and setting the parameters when ever a user request for new resume generation..
             resume_mod = Resume()
@@ -484,7 +484,7 @@ def home(request):
             edu_mod.save()
             res_rel.resumes.add(resume_mod)
 
-            redirect_url = '/index/'+str(resume_mod.id)+'/'
+            redirect_url = '/OpenResumes/index/'+str(resume_mod.id)+'/'
             print(redirect_url)
             return redirect(redirect_url)
 

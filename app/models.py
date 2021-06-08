@@ -71,6 +71,9 @@ class Profile(models.Model):
     mobile=models.CharField(max_length=50,null=True)
     linkedIn=models.CharField(max_length=50,null=True)
 
+    def __str__(self):
+        return str(self.resume.name)
+
 
 class Experience(models.Model):
     resume = models.ForeignKey(Resume,on_delete=models.CASCADE)
