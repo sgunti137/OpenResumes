@@ -10,6 +10,9 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 import platform
 
+# import for date and time
+from datetime import datetime
+
 # model imports
 from app.models import *
 from .models import Experience, Projects, Profile, Course, Por, Achievement, Techskill, Education
@@ -119,6 +122,11 @@ def index(request,pk):
 
     if request.method == 'POST':
 
+        now = datetime.now()
+        now_date = now.strftime("%I:%M %p %B %d, %Y")
+        resume_mod.date = now_date
+        resume_mod.save()
+
         #input dictionary
         md = request.POST
 
@@ -134,10 +142,10 @@ def index(request,pk):
             os.remove(delete_pdf_file)
             os.remove(delete_latex_file)
             del_res.delete()
-            return redirect('/OpenResumes')
+            return redirect('/OpenResumes/')
 
 
-    
+
         
         print(md) 
         
@@ -452,7 +460,11 @@ def home(request):
             resume_mod = Resume()
             resume_mod.name = requestDir["newResume"]
             resume_mod.save()
+            now = datetime.now()
+            now_date = now.strftime("%I:%M %p %B %d, %Y")
+            resume_mod.date = now_date
             resume_id = resume_mod.id
+            resume_mod.save()
 
             #setting the object attributes
             
