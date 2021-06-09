@@ -443,7 +443,15 @@ def home(request):
             del_res.delete()
             return redirect('/OpenResumes')
 
-
+	if requestDir["renameResume"]=="":
+            print("rename form print...")
+        else: 
+            pk=requestDir["renameResumeId"]
+            res_mod=Resume.objects.get(pk=pk)
+            res_mod.name=requestDir["renameResume"]
+            res_mod.save()
+            print("saved .....")
+            return redirect('/OpenResumes')
         if requestDir["newResume"]=="":
             print("form submitted successfully..")
             return redirect('/OpenResumes')
