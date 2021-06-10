@@ -443,9 +443,17 @@ def home(request):
             del_res.delete()
             return redirect('/OpenResumes')
 
-        if requestDir["duplicate_resume_id"]!="-1":
-            print('make a copy of the existing model object and its branches in relational db')
-            # make a copy of the existing model object and its branches in relational db
+	if requestDir["renameResume"]=="":
+            print("rename form print...")
+        else: 
+            pk=requestDir["renameResumeId"]
+            res_mod=Resume.objects.get(pk=pk)
+            res_mod.name=requestDir["renameResume"]
+            res_mod.save()
+            print("saved .....")
+            return redirect('/OpenResumes')
+        if requestDir["newResume"]=="":
+            print("form submitted successfully..")
             return redirect('/OpenResumes')
         
         if requestDir["newResume"]!="":
