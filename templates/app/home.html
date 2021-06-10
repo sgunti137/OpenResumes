@@ -55,6 +55,17 @@
             name_field = document.getElementById("name_taking_form");
             name_field.style = "visibility: visible;";
         }
+        pop_up_rename_resume=function(id){
+            document.getElementById("renameResume").value = prompt("Enter the name of resume","");
+            document.getElementById("renameResumeId").value=id;
+            if(validate_name( document.getElementById("renameResume").value)){
+                console.log(document.getElementById("renameResume").value);
+                document.getElementById("submit").click();
+            }
+            else{
+                alert("coorect ga rayi bro");
+            }
+        }
         create_new_resume = function(){
             
             if(validate_name(document.getElementById("temp_name").value)){
@@ -64,6 +75,7 @@
                 alert("Enter a valid name containing (a-z, 0-9, '_')");
             }
         }
+        
         stop_new_resume = function(){
             name_field = document.getElementById("name_taking_form");
             name_field.style = "visibility: hidden;";
@@ -128,14 +140,16 @@
                             <div class="z-20 opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-left  scale-95">
                                 <div class="absolute right-0 w-32 top-12  mt-2 origin-top-left bg-gray-100 border border-yellow-100 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                     <div class="py-1" style="font-family: 'Open Sans';">
-                                        <a href="index/{{resume.id}}" tabindex="0" class="text-gray-700 flex justify-between px-4 py-2 text-sm leading-5 text-left"  role="menuitem" style="color: darkolivegreen;">Edit</a>
-                                        <a href="{% static 'pdfs/' %}{{resume.pdfFile}}" download tabindex="1" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
+                                        
+                                        <a href="javascript:window.onclick = pop_up_rename_resume('{{resume.id}}');" tabindex="0" class="text-gray-700 flex justify-between px-4 py-2 text-sm leading-5 text-left"  role="menuitem" style="color: darkolivegreen;" >Rename</a>
+                                        <a href="index/{{resume.id}}" tabindex="1" class="text-gray-700 flex justify-between px-4 py-2 text-sm leading-5 text-left"  role="menuitem" style="color: darkolivegreen;">Edit</a>
+                                        <a href="{% static 'pdfs/' %}{{resume.pdfFile}}" download tabindex="2" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
                                             pdf
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="gray">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                             </svg>
                                         </a>
-                                        <a href="{% static 'latex/' %}{{resume.latexFile}}" download tabindex="2" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
+                                        <a href="{% static 'latex/' %}{{resume.latexFile}}" download tabindex="3" class="text-gray-700 flex justify-between  px-4 py-2 text-sm leading-5 text-left" role="menuitem">
                                             LaTex
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="gray">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -156,6 +170,7 @@
                         </div>
 
                     {% endfor %} 
+                  
 
                     
                 </div>
@@ -201,7 +216,7 @@
                         </button>
                         </div>
                     </form>
-                
+                   
                     
                     <!-- Individual card end-->
                 </div>
@@ -212,13 +227,15 @@
             <input type="hidden" id = "delete_resume_id" name="delete_resume_id">
             <input type="hidden" id = "delete_flag" name = "delete_flag" value = "false">
             <input type="hidden" id = "newResume" name = "newResume">
+            <input type="hidden" id = "renameResume" name="renameResume">
+            <input type="hidden" id = "renameResumeId" name="renameResumeId">
             <input type = "submit" id = "submit" name = "submit" style = "visibility: hidden;">
         </form>
     </body>
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
 
     <script>
-        /*
+       /*
         function myfunct(pk){
         var to = prompt("enter your name","");
         console.log(to);
@@ -228,5 +245,5 @@
          var data={'to':to,'pk':pk , 'csrfmiddlewaretoken': '{{ csrf_token }}'}
         $.post(URL,data);
         }*/
-    </script>
+        </script>
 </html>
