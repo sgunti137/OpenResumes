@@ -55,7 +55,19 @@
             name_field = document.getElementById("name_taking_form");
             name_field.style = "visibility: visible;";
         }
-        
+        pop_up_rename_resume=function(id){
+            resume_rename = prompt("Enter the name: ");
+            // document.getElementById("renameResume").value = prompt("Enter the name: ","");
+            // document.getElementById("renameResumeId").value=id;
+            if(validate_name(resume_rename)){
+                document.getElementById("renameResume").value = resume_rename;
+                document.getElementById("renameResumeId").value = id;
+                document.getElementById("submit").click();
+            }
+            else{
+                alert("Enter a valid name containing (a-z, 0-9, '_', ' ')");
+            }
+        }
         create_new_resume = function(){
             
             if(validate_name(document.getElementById("temp_name").value)){
