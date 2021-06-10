@@ -443,11 +443,12 @@ def home(request):
             del_res.delete()
             return redirect('/OpenResumes')
 
-
-        if requestDir["newResume"]=="":
-            print("form submitted successfully..")
+        if requestDir["duplicate_resume_id"]!="-1":
+            print('make a copy of the existing model object and its branches in relational db')
+            # make a copy of the existing model object and its branches in relational db
             return redirect('/OpenResumes')
-        else:
+        
+        if requestDir["newResume"]!="":
             #creating a new instance and setting the parameters when ever a user request for new resume generation..
             resume_mod = Resume()
             resume_mod.name = requestDir["newResume"]
