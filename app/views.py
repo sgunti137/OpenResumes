@@ -451,11 +451,20 @@ def home(request):
             del_res.delete()
             return redirect('/OpenResumes')
 
-
+	if requestDir["renameResume"]=="":
+            print("rename form print...")
+        else: 
+            pk=requestDir["renameResumeId"]
+            res_mod=Resume.objects.get(pk=pk)
+            res_mod.name=requestDir["renameResume"]
+            res_mod.save()
+            print("saved .....")
+            return redirect('/OpenResumes')
         if requestDir["newResume"]=="":
             print("form submitted successfully..")
             return redirect('/OpenResumes')
-        else:
+        
+        if requestDir["newResume"]!="":
             #creating a new instance and setting the parameters when ever a user request for new resume generation..
             resume_mod = Resume()
             resume_mod.name = requestDir["newResume"]
