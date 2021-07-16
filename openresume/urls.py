@@ -22,9 +22,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('index/<str:pk>/',views.index,name = 'index'),
-    path('results/<str:pk>/',include('app.urls_results')),
     path('oauth2/', include('django_auth_adfs.urls')),
-    path('',include('app.urls_home')), 
+    path('OpenResumes/',include('app.urls')), 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root = settings.STATIC_DIR)

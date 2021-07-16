@@ -2,13 +2,31 @@ def percentReplacerDict(md):
     keys = md.keys()
     for i in keys:
         if(i!='csrfmiddlewaretoken'):
-            md[i] = md[i].replace("%",r"\%")
-            md[i] = md[i].replace("_",r"\_")
+            string = md[i]
+            string=string.replace('%',r'\%')
+            string  = string.replace('_',r'\_')
+            string  = string.replace('#',r'\#')
+            string  = string.replace('$',r'\$')
+            string  = string.replace('~',r'\~')
+            string  = string.replace('&',r'\&')
+            string  = string.replace('^',r'\^')
+            string  = string.replace('\\','\\\\')
+            string  = string.replace('{',r'\{')
+            string  = string.replace('}',r'\}')
+            md[i] = string
     return(md)
 
 def percentReplacerString(string):
     string=string.replace('%',r'\%')
     string  = string.replace('_',r'\_')
+    string  = string.replace('#',r'\#')
+    string  = string.replace('$',r'\$')
+    string  = string.replace('~',r'\~')
+    string  = string.replace('&',r'\&')
+    string  = string.replace('^',r'\^')
+    string  = string.replace('\\','\\\\')
+    string  = string.replace('{',r'\{')
+    string  = string.replace('}',r'\}')
     return(string)
 
 
