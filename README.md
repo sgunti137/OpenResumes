@@ -24,7 +24,7 @@ Open Resumes is a Resume generator that takes several fields which are generally
 * Edit the resumes created.
 * Download the resume as well as the LaTeX code.
 * Share the link of the resume.
-* Make a auto-formatted, good looking resume from a simple, flexible and user friendly resume without the need of LaTeX knowledge in few minutes. 
+* Make a auto-formatted, good looking resume from a simple, flexible and user friendly form without the need of LaTeX knowledge in few minutes. 
 
 ### Login Page
 
