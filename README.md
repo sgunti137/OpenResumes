@@ -17,16 +17,31 @@ Open Resumes is a Resume generator that takes several fields which are generally
 * Latex
 * Tailwind CSS
 
+### Login Page
+
+* The web application is authenticated and a user must signin using the IIT Guwahati work mail ID.
+
+![](/read_me_data/8.jpeg)
+
 ### Home Page
 
-The home page contains navbar , body and footer .
-* Before authentication it shows two options signup and login .
+* After login the home page is displayed, where user can create resume.
 
-![](/read_me_data/1.jpeg)
+![](/read_me_data/10.jpeg)
 
-* After login it displays user's username and gives access to all other parts of the website
+* Multiple resumes can be created for various profiles.
 
-![](/read_me_data/1.jpeg)
+![](/read_me_data/11.jpeg)
+
+* Each created resume has the following features.
+    * Rename the resume.
+    * Edit the form fields to recompile and update the resume.
+    * Download the resume (in pdf format) and the LaTeX code of the resume.
+    * Share the resume through a link.
+    * Create a copy of the resume.
+    * Delete the resume
+    
+![](/read_me_data/12.jpeg)
 
 
 ### Practice Section
@@ -62,15 +77,6 @@ A user can contribute as well .
 
 A user added question or experience needs admin approval to be displayed in the website . If a admin adds it gets saved and displayed by default.
 
-## Admin Panel
-
-* Authenticated admin panel 
-
-![](/read_me_data/1.jpeg)
-
-* Admins can add , delete modify models data and also approve questions or experiences added by users .
-
-![](/read_me_data/1.jpeg)
 
 # [Certificate of Completion](https://drive.google.com/file/d/1b2tCpY_eWCodU6F1X4rAWiZFPlmYkB31/view?usp=sharing)
 
