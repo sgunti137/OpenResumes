@@ -7,8 +7,8 @@ Open Resumes is a Resume generator that takes several fields which are generally
 
 ### Environment Setup Locally
 
-* Install (Django)[https://docs.djangoproject.com/en/3.2/topics/install/] and (Strawberry Perl)[https://strawberryperl.com/]
-* Install all the required packages mentioned in the (requirements.txt)[https://github.com/Nikitha2309/OpenResumes/blob/master/requirements.txt] using the command `pip install -r requirements.txt`
+* Install [Django](https://docs.djangoproject.com/en/3.2/topics/install/) and [Strawberry Perl](https://strawberryperl.com/)
+* Install all the required packages mentioned in the [requirements.txt](https://github.com/Nikitha2309/OpenResumes/blob/master/requirements.txt) using the command `pip install -r requirements.txt`
 * Run the server and Connect the port to localhost:8000
 
 ### Tech Stack Used
