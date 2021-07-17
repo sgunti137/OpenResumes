@@ -13,9 +13,11 @@ Open Resumes is a Resume generator that takes several fields which are generally
 
 ### Tech Stack Used
 * Django
-* SQL
+* SQLite
 * Latex
 * Tailwind CSS
+* HTML
+* JavaScript
 
 ### Key Features
 
